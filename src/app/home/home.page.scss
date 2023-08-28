@@ -1,27 +1,117 @@
-#container {
+// #container {
+//   text-align: center
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+// #container strong {
+//   font-size: 20px;
+//   line-height: 26px;
+// }
+
+// #container p {
+//   font-size: 16px;
+//   line-height: 22px;
+//   color: #8c8c8c;
+//   margin: 0;
+// }
+
+// #container a {
+//   text-decoration: none;
+// }
+
+
+.calendario{
+  width: 100%;
+  height: 100vh;
+}
+
+.cabecalho{
+  width: 100%;
+  height: 9vh;
+  background-color: rgb(174, 188, 255);
+  padding: 10px;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.cabecalho h1{
+  font-size: 30px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.semana{
+  width: 100%;
+  display: flex;
 }
 
-#container a {
-  text-decoration: none;
+.dia-semana{
+  width: 14.28%;
+  height: 10vh;
+  background-color: rgb(250, 255, 199);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  border-bottom: 0.3px solid black;
+}
+
+.dias{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.dia{
+  width: 14.28%;
+  height: 13.5vh;
+  background-color: rgb(255, 255, 255);
+  border-left: 0.3px solid black;
+  border-bottom: 0.3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.dia::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+.dia::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.dia::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.prev{
+  background-color: rgb(246, 224, 235);
+}
+
+.numeroDia{
+  width: 100%;
+  height: 3vh;
+  text-align: right;
+  font-size: 22px;
+  padding-right: 6px;
+}
+
+.agendamentos{
+  width: 100%;
+  min-height: 9vh;
+}
+
+.agendamentoDoDia{
+  font-size: 18px;
 }
