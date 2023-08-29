@@ -22,4 +22,12 @@ export const routes: Routes = [
     path: 'pet',
     loadComponent: () => import('./pet/pet.page').then( m => m.PetPage)
   },
+  {
+    path: 'procedimentos',
+    loadComponent: () => import('./procedimentos/procedimentos.page').then( m => m.ProcedimentosPage)
+  },
+  {
+    path: 'pacote',
+    loadComponent: () => import('./pacote/pacote.page').then( m => m.PacotePage)
+  },
 ];
