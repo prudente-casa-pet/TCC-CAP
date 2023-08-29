@@ -25,14 +25,15 @@
 
 
 .calendario{
-  width: 100%;
-  height: 100vh;
+  background: #e7e7e7;
+  padding: 1em;
+  margin: 2em;
+  border-radius: 4em;
 }
 
 .cabecalho{
   width: 100%;
   height: 9vh;
-  background-color: rgb(174, 188, 255);
   padding: 10px;
   text-align: center;
   display: flex;
@@ -53,12 +54,10 @@
 .dia-semana{
   width: 14.28%;
   height: 10vh;
-  background-color: rgb(250, 255, 199);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 25px;
-  border-bottom: 0.3px solid black;
 }
 
 .dias{
@@ -70,10 +69,6 @@
 
 .dia{
   width: 14.28%;
-  height: 13.5vh;
-  background-color: rgb(255, 255, 255);
-  border-left: 0.3px solid black;
-  border-bottom: 0.3px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,27 +86,36 @@
 }
 
 .dia::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--ion-color-tertiary);
   border-radius: 3px;
 }
 
-.prev{
-  background-color: rgb(246, 224, 235);
-}
+
 
 .numeroDia{
   width: 100%;
   height: 3vh;
-  text-align: right;
+  text-align: center;
   font-size: 22px;
-  padding-right: 6px;
+  margin-bottom: 1em;
 }
 
 .agendamentos{
   width: 100%;
-  min-height: 9vh;
+  height: 10vh;
+  margin-bottom: 5px;
 }
 
 .agendamentoDoDia{
   font-size: 18px;
+  margin: 0;
+}
+
+.prev{
+  color: #b4b2b2;
+}
+
+.atual{
+  color: var(--ion-color-primary);
+  font-weight: bolder;
 }

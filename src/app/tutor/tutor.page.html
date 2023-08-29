@@ -1,13 +1,128 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tutor</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content color="primary" class="ion-padding">This is the menu content.</ion-content>
+</ion-menu>
+
+
+
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary" id="main-content">
+      <ion-title>Tutor</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tutor</ion-title>
+    <ion-toolbar color="primary" id="main-content">
+      <ion-title>Tutor</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
+  
+<div id="container">
+
+  <ion-row>
+    <ion-col size="3"><ion-title class="titulo2">Tutores</ion-title></ion-col>
+    <ion-col size="6"><ion-searchbar value="Pesquisar"></ion-searchbar></ion-col>
+    <ion-col size="3">
+      <ion-fab>
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="12">
+      <div class="elementos">
+
+          <div class="elemento">
+            <div class="primeiraLinha">
+              <p class="titulo">Amanda Cancian</p>
+              <div class="botoes">
+                <ion-fab-button size="small">
+                  <ion-icon name="create-outline"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button size="small">
+                  <ion-icon name="trash"></ion-icon>
+                </ion-fab-button>
+
+              </div>
+            </div>
+            <div class="segundaLinha">
+              <ul>
+                <li><b>Telefone:</b> (15)99999-9999</li>
+              <li><b>Endereço:</b> Rua do moranguinho 123</li>
+              <li><b>E-mail:</b> amand4cancian@gmail.com</li>
+              <li><b>CPF:</b> 199953569-55</li>
+              </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="elemento">
+          <div class="primeiraLinha">
+            <p class="titulo">Camilly Mialichi</p>
+            <div class="botoes">
+              <ion-fab-button size="small">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button size="small">
+                <ion-icon name="trash"></ion-icon>
+              </ion-fab-button>
+
+            </div>
+          </div>
+          <div class="segundaLinha">
+            <ul>
+              <li><b>Telefone:</b> (15)99999-9999</li>
+              <li><b>Endereço:</b> Rua do mirtilinho 123</li>
+              <li><b>E-mail:</b> camillymialichi@gmail.com</li>
+              <li><b>CPF:</b> 159253569-20</li>
+            </ul>
+          </div>
+      </div>
+      <hr>
+      <div class="elemento">
+        <div class="primeiraLinha">
+          <p class="titulo">Patrícia Dias</p>
+          <div class="botoes">
+            <ion-fab-button size="small">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button size="small">
+              <ion-icon name="trash"></ion-icon>
+            </ion-fab-button>
+
+          </div>
+        </div>
+        <div class="segundaLinha">
+          <ul>
+            <li><b>Telefone:</b> (15)99999-9999</li>
+            <li><b>Endereço:</b> Rua da laranjinha 123</li>
+            <li><b>E-mail:</b>patricia_dias@gmail.com</li>
+            <li><b>CPF:</b> 189253777-10</li>
+          </ul>
+        </div>
+    </div>
+
+      </div>
+    </ion-col>
+  </ion-row>
+
+</div>
+
 </ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+  </ion-toolbar>
+</ion-footer>
