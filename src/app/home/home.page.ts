@@ -48,7 +48,6 @@ generateRange(start: number, end: number): number[] {
   return range;
 }
 
-
 gerarDataAnt(ano:any, mes:any, dia:any){
   const dataDia = `${ano}-${mes-1 < 10 ? `0${mes}` : mes}-${dia < 10 ? '0' + dia : dia}`
   return dataDia;
@@ -81,7 +80,7 @@ buscarAPI(tabela:any, parametro:any) {
       return JSON.parse(request.responseText);
   } else {
       console.error('Erro na requisição:', request.status);
-      return null;
+      return Array();
   }
 }
 
