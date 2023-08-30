@@ -4,7 +4,15 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content color="primary" class="ion-padding">This is the menu content.</ion-content>
+  <ion-content color="primary" class="ion-padding">
+    <div><a href="../home">Agenda</a></div>
+    <div><a href="../pet">Pets</a></div>
+    <div><a href="../tutor">Tutores</a></div>
+    <div><a href="../procedimentos">Tipos de procedimento</a></div>
+    <div><a href="../pacote">Pacotes</a></div>
+    <div><a href="">Pagamento</a></div>
+    <div><a href="../servico">Serviços</a></div>
+  </ion-content>
 </ion-menu>
 
 
@@ -30,9 +38,10 @@
   
 <div id="container">
   <ion-row>
-    <ion-col size="9">
+    <ion-col size="9" id="coluna">
       <div class="calendario">
-        <div class="cabecalho"><i class="mudarMes"></i><h1>{}{{ano}}</h1><i class="mudarMes">></i></div>
+        <div class="cabecalho"><ion-icon name="chevron-back-sharp"></ion-icon><h1>{{meses[mes]}} - 2023</h1><ion-icon name="chevron-forward-sharp"></ion-icon></div>
+        <hr>
         <div class="semana">
             <div class="dia-semana">Dom</div>
             <div class="dia-semana">Seg</div>
@@ -43,48 +52,24 @@
             <div class="dia-semana">Sab</div>
         </div>
         <div class="dias">
-            <div class="dia prev"><div class="numeroDia">30</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">31</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">1</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">2</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">3</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">4</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">5</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">6</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">7</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">8</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">9</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">10</div><div class="agendamentos"><p class="agendamentoDoDia">Creche - Lili</p><p class="agendamentoDoDia">Creche - Lili</p><p class="agendamentoDoDia">Creche - Lili</p></div></div>
-            <div class="dia"><div class="numeroDia">11</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">12</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">13</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">14</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">15</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">16</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">17</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">18</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">19</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">20</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">21</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">22</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">23</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">24</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">25</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">26</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">27</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">28</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">29</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">30</div><div class="agendamentos"></div></div>
-            <div class="dia"><div class="numeroDia">31</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">1</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">2</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">3</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">4</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">5</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">6</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">7</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">8</div><div class="agendamentos"></div></div>
-            <div class="dia prev"><div class="numeroDia">9</div><div class="agendamentos"></div></div>
+          <div class="dia prev" *ngFor="let i of generateRange(priMesAnt, antDia); let index = index">
+            <div class="numeroDia">{{i}}</div>
+            <div class="agendamentos" *ngIf="verificarArray(buscarAPI('agendamento', gerarDataAnt(ano, mes, i)))">
+                <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarDataAnt(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+            </div>
+          </div>
+          <div class="dia" *ngFor="let i of generateRange(1, ultDia); let index = index">
+            <div class="numeroDia">{{i}}</div>
+            <div class="agendamentos" *ngIf="verificarArray(buscarAPI('agendamento', gerarData(ano, mes, i)))">
+                <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarData(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+            </div>
+          </div>
+          <div class="dia prev" *ngFor="let i of generateRange(1, proxDias); let index = index">
+            <div class="numeroDia">{{i}}</div>
+            <div class="agendamentos" *ngIf="verificarArray(buscarAPI('agendamento', gerarDataProx(ano, mes, i)))">
+                <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarDataProx(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+            </div>
+          </div>
         </div>
     </div>
     </ion-col>
