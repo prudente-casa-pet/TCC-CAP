@@ -1,0 +1,31 @@
+.elementos{
+    background: var(--ion-color-tertiary);
+    border-radius: 1.5em;
+    margin: 2em;
+    padding: 0.5em 1.5em;
+}
+
+.primeiraLinha{
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+}
+
+.botoes{
+    display: flex;
+}
+
+
+.titulo{
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.listagem{
+    font-weight: bolder;
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+.segundaLinha{
+    margin-bottom: 3em;
+}
