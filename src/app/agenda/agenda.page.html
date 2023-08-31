@@ -40,7 +40,7 @@
   <ion-row>
     <ion-col size="9" id="coluna">
       <div class="calendario">
-        <div class="cabecalho"><ion-icon name="chevron-back-sharp"></ion-icon><h1>{{meses[mes]}} - 2023</h1><ion-icon name="chevron-forward-sharp"></ion-icon></div>
+        <div class="cabecalho"><ion-icon name="chevron-back-sharp" (click)="mesAnterior()"></ion-icon><h1>{{meses[mes]}} - {{ano}}</h1><ion-icon name="chevron-forward-sharp"  (click)="proximoMes()"></ion-icon></div>
         <hr>
         <div class="semana">
             <div class="dia-semana">Dom</div>
@@ -79,8 +79,8 @@
   </ion-row>
 </div>
 
-</ion-content>
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>
 </ion-footer>
+</ion-content>

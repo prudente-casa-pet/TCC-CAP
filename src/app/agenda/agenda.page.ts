@@ -24,17 +24,55 @@ primeiroDia = new Date(this.ano, this.mes, 1);     // Primeiro dia do mês atual
 ultimoDia = new Date(this.ano, this.mes + 1, 0);   // Ultimo dia do mês atual
 anteriorDia = new Date(this.ano, this.mes, 0);     // Ultimo dia do mês anterior
 
-priDia = this.primeiroDia.getDay();           // Número do primeiro dia do mês atual
 ultDia = this.ultimoDia.getDate();            // Número do ultimo dia do mês atual
 antDia = this.anteriorDia.getDate();          // Número do ultimo dia do mês anterior
 
-quantAntDias = this.primeiroDia.getUTCDay();       // Quantidade de dias que aparecera do mês anterior
+quantAntDias = this.primeiroDia.getUTCDay();            // Quantidade de dias que aparecera do mês anterior
 priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
-proxDias = 35 - this.quantAntDias - this.ultDia;        // Quantidade de dias que aparecera do mês seguinte
+proxDias = 6 - this.ultimoDia.getDay()                   // Quantidade de dias que aparecera do mês seguinte  
 
-dataAgendamentoAnt = `${this.ano}-${this.mes-1 < 10 ? `0${this.mes}` : this.mes}`;  // Formata data de agendamento do mês anterior, ex: 2023-07
-// agendamentosAnt = this.buscarAPI('agendamento', this.dataAgendamentoAnt);    // Busca na API agendamentos com a data
+mesAnterior(){
+  if (this.mes == 0){  // Se é janeiro
+    this.mes = 11
+    this.ano = this.ano-1
+  } else{
+    this.mes = this.mes-1
+  }
 
+  // Reseta configurações
+  this.primeiroDia = new Date(this.ano, this.mes, 1);     // Primeiro dia do mês atual
+  this.ultimoDia = new Date(this.ano, this.mes + 1, 0);   // Ultimo dia do mês atual
+  this.anteriorDia = new Date(this.ano, this.mes, 0);     // Ultimo dia do mês anterior
+  
+  this.ultDia = this.ultimoDia.getDate();            // Número do ultimo dia do mês
+  this.antDia = this.anteriorDia.getDate();          // Número do ultimo dia do mês anterior
+  
+  this.quantAntDias = this.primeiroDia.getUTCDay();             // Quantidade de dias que aparecera do mês anterior
+  this.priMesAnt = this.antDia - this.quantAntDias + 1;         // Primeiro dia que aparecera do mês anterior
+  this.proxDias = 6 - this.ultimoDia.getDay()                   // Quantidade de dias que aparecera do mês seguinte  
+}
+
+proximoMes(){
+  if (this.mes == 11){  // Se é dezembro
+    this.mes = 0
+    this.ano = this.ano+1
+  } else{
+    this.mes = this.mes+1
+  }
+
+  // Reseta configurações
+  this.primeiroDia = new Date(this.ano, this.mes, 1);     // Primeiro dia do mês atual
+  this.ultimoDia = new Date(this.ano, this.mes + 1, 0);   // Ultimo dia do mês atual
+  this.anteriorDia = new Date(this.ano, this.mes, 0);     // Ultimo dia do mês anterior
+  
+  this.ultDia = this.ultimoDia.getDate();            // Número do ultimo dia do mês
+  this.antDia = this.anteriorDia.getDate();          // Número do ultimo dia do mês anterior
+  
+  this.quantAntDias = this.primeiroDia.getUTCDay();            // Quantidade de dias que aparecera do mês anterior
+  this.priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
+  this.proxDias = 6 - this.ultimoDia.getDay()                   // Quantidade de dias que aparecera do mês seguinte  
+  
+}
 
 verificarArray(items:any): any {
   return Array.isArray(items)
