@@ -22,4 +22,8 @@ export const routes: Routes = [
     path: 'pet',
     loadComponent: () => import('./pet/pet.page').then( m => m.PetPage)
   },
+  {
+    path: 'agenda',
+    loadComponent: () => import('./agenda/agenda.page').then( m => m.AgendaPage)
+  },
 ];
