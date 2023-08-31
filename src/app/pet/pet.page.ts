@@ -1,20 +1,44 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-pet',
-  templateUrl: './pet.page.html',
-  styleUrls: ['./pet.page.scss'],
+  templateUrl: 'pet.page.html',
+  styleUrls: ['pet.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, RouterLink],
+  
 })
-export class PetPage implements OnInit {
+export class PetPage {
 
   constructor() { }
 
-  ngOnInit() {
+  verificarArray(items:any): any {
+    return Array.isArray(items)
   }
+  
+  generateRange(start: number, end: number): number[] {
+    const range = [];
+    for (let i = start; i <= end; i++) {
+      range.push(i);
+    }
+    return range;
+  }
+  
+  // Função que faz uma busca na API
+  buscarAPI(tabela:any, parametro:any) {
+  const request = new XMLHttpRequest();
+  request.open('GET', `http://localhost/Aula/API%20TCC/listar/${tabela}/${parametro}`, false);
+  request.send();
+
+  if (request.status === 200) {
+      return JSON.parse(request.responseText);
+  } else {
+      console.error('Erro na requisição:', request.status);
+      return Array();
+  }
+}
 
 }

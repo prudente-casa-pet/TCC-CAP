@@ -44,11 +44,11 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos">
+      <div class="elementos" *ngIf="verificarArray(buscarAPI('pet', ''))===true">
 
-          <div class="elemento">
+          <div class="elemento" *ngFor="let pet of buscarAPI('pet', '')">
             <div class="primeiraLinha">
-              <p class="titulo">Aysha - Amanda Cancian</p>
+              <p class="titulo">{{pet.nome}} - {{buscarAPI('tutor', pet.cod_tutor)[0].nome}}</p>
               <div class="botoes">
                 <ion-fab-button size="small">
                   <ion-icon name="create-outline"></ion-icon>
@@ -61,59 +61,15 @@
             </div>
             <div class="segundaLinha">
               <ul>
-                <li><b>Espécie:</b> Cachorro</li>
-                <li><b>Raça:</b> Shitzu</li>
-                <li><b>Porte:</b> Pequeno</li>
-                <li><b>Observação:</b> Atenção com gatos</li>
+                <li><b>Espécie:</b> {{pet.especie}}</li>
+                <li><b>Raça:</b> {{pet.raca}}</li>
+                <li><b>Porte:</b> {{pet.porte}}</li>
+                <li><b>Observação:</b> {{pet.observacoes}}</li>
               </ul>
             </div>
         </div>
         <hr>
-        <div class="elemento">
-          <div class="primeiraLinha">
-            <p class="titulo">Pascal - Camilly Mialichi</p>
-            <div class="botoes">
-              <ion-fab-button size="small">
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-fab-button>
-              <ion-fab-button size="small">
-                <ion-icon name="trash"></ion-icon>
-              </ion-fab-button>
-
-            </div>
-          </div>
-          <div class="segundaLinha">
-            <ul>
-              <li><b>Espécie:</b> Cachorro</li>
-              <li><b>Raça:</b> Salsichinha</li>
-              <li><b>Porte:</b> Pequeno</li>
-              <li><b>Observação:</b> Mimado</li>
-            </ul>
-          </div>
-      </div>
-      <hr>
-      <div class="elemento">
-        <div class="primeiraLinha">
-          <p class="titulo">Lili - Patrícia Dias</p>
-          <div class="botoes">
-            <ion-fab-button size="small">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-fab-button>
-            <ion-fab-button size="small">
-              <ion-icon name="trash"></ion-icon>
-            </ion-fab-button>
-
-          </div>
-        </div>
-        <div class="segundaLinha">
-          <ul>
-            <li><b>Espécie:</b> Cachorro</li>
-            <li><b>Raça:</b> SRD</li>
-            <li><b>Porte:</b> Pequeno</li>
-            <li><b>Observação:</b> Alérgica a perfumes</li>
-          </ul>
-        </div>
-    </div>
+        
 
       </div>
     </ion-col>
