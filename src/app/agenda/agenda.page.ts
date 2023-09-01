@@ -15,7 +15,7 @@ export class AgendaPage {
 
 meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-hoje = new Date();          // Dia atual
+hoje = new Date();               // Dia atual
 mes = this.hoje.getMonth();      // Mês atual
 ano = this.hoje.getFullYear();   // Ano atual
 
@@ -94,6 +94,10 @@ gerarDataAnt(ano:any, mes:any, dia:any){
 gerarData(ano:any, mes:any, dia:any){
   const dataDia = `${ano}-${mes < 10 ? `0${mes+1}` : mes+1}-${dia < 10 ? '0' + dia : dia}`
   return dataDia;
+}
+
+gerarDataPostIt(mes:any, dia:any){
+
 }
 
 gerarDataProx(ano:any, mes:any, dia:any){

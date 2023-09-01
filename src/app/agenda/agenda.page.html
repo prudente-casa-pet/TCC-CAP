@@ -40,7 +40,7 @@
   <ion-row>
     <ion-col size="9" id="coluna">
       <div class="calendario">
-        <div class="cabecalho"><ion-icon name="chevron-back-sharp" (click)="mesAnterior()"></ion-icon><h1>{{meses[mes]}} - {{ano}}</h1><ion-icon name="chevron-forward-sharp"  (click)="proximoMes()"></ion-icon></div>
+        <div class="cabecalho"><ion-icon name="chevron-back-sharp" class="mudarMes" (click)="mesAnterior()"></ion-icon><h1>{{meses[mes]}} - {{ano}}</h1><ion-icon name="chevron-forward-sharp" class="mudarMes" (click)="proximoMes()"></ion-icon></div>
         <hr>
         <div class="semana">
             <div class="dia-semana">Dom</div>
@@ -54,27 +54,46 @@
         <div class="dias">
           <div class="dia prev" *ngFor="let i of generateRange(priMesAnt, antDia); let index = index">
             <div class="numeroDia">{{i}}</div>
-            <div class="agendamentos" *ngIf="verificarArray(buscarAPI('agendamento', gerarDataAnt(ano, mes, i)))">
-                <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarDataAnt(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+            <div class="agendamentos">
+              <div class="agendamento" *ngIf="verificarArray(buscarAPI('agendamento', gerarDataAnt(ano, mes, i)))">
+                  <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarDataAnt(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+              </div>
             </div>
           </div>
           <div class="dia" *ngFor="let i of generateRange(1, ultDia); let index = index">
             <div class="numeroDia">{{i}}</div>
-            <div class="agendamentos" *ngIf="verificarArray(buscarAPI('agendamento', gerarData(ano, mes, i)))">
-                <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarData(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+            <div class="agendamentos">
+              <div class="agendamento" *ngIf="verificarArray(buscarAPI('agendamento', gerarData(ano, mes, i)))">
+                  <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarData(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+              </div>
             </div>
           </div>
           <div class="dia prev" *ngFor="let i of generateRange(1, proxDias); let index = index">
             <div class="numeroDia">{{i}}</div>
-            <div class="agendamentos" *ngIf="verificarArray(buscarAPI('agendamento', gerarDataProx(ano, mes, i)))">
-                <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarDataProx(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+            <div class="agendamentos">
+              <div class="agendamento" *ngIf="verificarArray(buscarAPI('agendamento', gerarDataProx(ano, mes, i)))">
+                  <p class="agendamentoDoDia" *ngFor="let agend of buscarAPI('agendamento', gerarDataProx(ano, mes, i))">{{gerarAgendamento(agend)}}</p>
+              </div>
             </div>
           </div>
         </div>
     </div>
     </ion-col>
-    <ion-col size="3">
-
+    <ion-col size="3" class="ion-text-center">
+      <div class="postit">
+        <p class="titulo"></p>
+        <ul>
+          <li>aaa</li>
+          <li>aaa</li>
+        </ul>
+      </div>
+      <div class="postit">
+        <p class="titulo"></p>
+        <ul>
+          <li>aaa</li>
+          <li>aaa</li>
+        </ul>
+      </div>
     </ion-col>
   </ion-row>
 </div>
