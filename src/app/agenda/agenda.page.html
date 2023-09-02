@@ -81,14 +81,14 @@
     </ion-col>
     <ion-col size="3" class="ion-text-center">
       <div class="postit">
-        <p class="titulo"></p>
-        <ul>
+        <p class="titulo">{{gerarDataPostIt(this.hoje)}}</p>
+        <ul *ngIf="verificarArray(buscarAPI('agendamento', gerarDataPostIt(this.hoje)))">
           <li>aaa</li>
           <li>aaa</li>
         </ul>
       </div>
       <div class="postit">
-        <p class="titulo"></p>
+        <p class="titulo">{{gerarDataPostIt(this.amanha)}}</p>
         <ul>
           <li>aaa</li>
           <li>aaa</li>

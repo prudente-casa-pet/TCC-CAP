@@ -16,6 +16,7 @@ export class AgendaPage {
 meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
 hoje = new Date();               // Dia atual
+amanha = this.adicionarUmDia(this.hoje)
 mes = this.hoje.getMonth();      // Mês atual
 ano = this.hoje.getFullYear();   // Ano atual
 
@@ -74,6 +75,13 @@ proximoMes(){
   
 }
 
+adicionarUmDia(data: Date): Date {
+  const novaData = new Date(data);
+  novaData.setDate(novaData.getDate() + 1);
+
+  return novaData;
+}
+
 verificarArray(items:any): any {
   return Array.isArray(items)
 }
@@ -96,8 +104,24 @@ gerarData(ano:any, mes:any, dia:any){
   return dataDia;
 }
 
-gerarDataPostIt(mes:any, dia:any){
+gerarDataPostIt(data:any){
+  let mes = data.getMonth()+1
+  let dia = data.getDate()
+  let dataFormatada = dia < 10 ? `0${dia}` : dia
+  dataFormatada += '/'
+  dataFormatada += mes < 10 ? `0${mes}` : mes
+  return dataFormatada
+}
 
+gerarDataPostItAPI(data:any){
+  let mes = data.getMonth()+1
+  let dia = data.getDate()
+  let ano = data.getFullYear()
+  let dataFormatada = ano
+  dataFormatada += dia < 10 ? `0${dia}` : dia
+  dataFormatada += '/'
+  dataFormatada += mes < 10 ? `0${mes}` : mes
+  return dataFormatada
 }
 
 gerarDataProx(ano:any, mes:any, dia:any){
