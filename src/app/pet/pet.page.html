@@ -25,7 +25,15 @@
         <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content color="primary" class="ion-padding">This is the menu content.</ion-content>
+    <ion-content color="primary" class="ion-padding">
+      <div><a href="../agenda/">Agenda</a></div>
+      <div><a href="../pet">Pets</a></div>
+      <div><a href="../tutor">Tutores</a></div>
+      <div><a href="../procedimentos">Tipos de procedimento</a></div>
+      <div><a href="../pacote">Pacotes</a></div>
+      <div><a href="">Pagamento</a></div>
+      <div><a href="../servico">Serviços</a></div>
+    </ion-content>
   </ion-menu>
 
   <ion-row>
@@ -42,11 +50,11 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarArray(buscarAPI('pet', ''))===true">
+      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pet', ''))===true">
 
-          <div class="elemento" *ngFor="let pet of buscarAPI('pet', '')">
+          <div class="elemento" *ngFor="let pet of buscarAPI('listar', 'pet', '')">
             <div class="primeiraLinha">
-              <p class="titulo">{{pet.nome}} - {{buscarAPI('tutor', pet.cod_tutor)[0].nome}}</p>
+              <p class="titulo">{{pet.nome}} - {{buscarAPI('listar', 'tutor', pet.cod_tutor)[0].nome}}</p>
               <div class="botoes">
                 <ion-fab-button size="small">
                   <ion-icon name="create-outline"></ion-icon>

@@ -28,17 +28,17 @@ export class PetPage {
   }
   
   // Função que faz uma busca na API
-  buscarAPI(tabela:any, parametro:any) {
-  const request = new XMLHttpRequest();
-  request.open('GET', `http://localhost/Aula/API%20TCC/listar/${tabela}/${parametro}`, false);
-  request.send();
+  buscarAPI(metodo:any, tabela:any, parametro:any) {
+    const request = new XMLHttpRequest();
+    request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);
+    request.send();
 
-  if (request.status === 200) {
-      return JSON.parse(request.responseText);
-  } else {
-      console.error('Erro na requisição:', request.status);
-      return Array();
-  }
+    if (request.status === 200) {
+        return JSON.parse(request.responseText);
+    } else {
+        console.error('Erro na requisição:', request.status);
+        return Array();
+    }
 }
 
 }

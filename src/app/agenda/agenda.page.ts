@@ -15,10 +15,10 @@ export class AgendaPage {
 
 meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-hoje = new Date();               // Dia atual
-amanha = this.adicionarUmDia(this.hoje)
-mes = this.hoje.getMonth();      // Mês atual
-ano = this.hoje.getFullYear();   // Ano atual
+hoje = new Date();                          // Dia atual
+amanha = this.adicionarUmDia(this.hoje);    // Dia seguinte
+mes = this.hoje.getMonth();                 // Mês atual
+ano = this.hoje.getFullYear();              // Ano atual
 
 
 primeiroDia = new Date(this.ano, this.mes, 1);     // Primeiro dia do mês atual
@@ -130,15 +130,15 @@ gerarDataProx(ano:any, mes:any, dia:any){
 
 // Gera escrita do agendamento
 gerarAgendamento(agendamento: any){
-  let sevico = this.buscarAPI('servico', agendamento.cod_servico)[0].nome;  // Pega o nome do serviço do agendamento
-  let pet = this.buscarAPI('pet', agendamento.cod_pet)[0].nome;             // Pega o nome do pet do agendamento
+  let sevico = this.buscarAPI('listar', 'servico', agendamento.cod_servico)[0].nome;  // Pega o nome do serviço do agendamento
+  let pet = this.buscarAPI('listar', 'pet', agendamento.cod_pet)[0].nome;             // Pega o nome do pet do agendamento
   return `${sevico} - ${pet}`;
 }
 
 // Função que faz uma busca na API
-buscarAPI(tabela:any, parametro:any) {
+buscarAPI(metodo:any, tabela:any, parametro:any) {
   const request = new XMLHttpRequest();
-  request.open('GET', `http://localhost/Aula/API%20TCC/listar/${tabela}/${parametro}`, false);
+  request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);
   request.send();
 
   if (request.status === 200) {
