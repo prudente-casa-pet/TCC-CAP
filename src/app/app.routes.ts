@@ -26,4 +26,12 @@ export const routes: Routes = [
     path: 'agenda',
     loadComponent: () => import('./agenda/agenda.page').then( m => m.AgendaPage)
   },
+  {
+    path: 'procedimentos',
+    loadComponent: () => import('./procedimentos/procedimentos.page').then( m => m.ProcedimentosPage)
+  },
+  {
+    path: 'pacote',
+    loadComponent: () => import('./pacote/pacote.page').then( m => m.PacotePage)
+  },
 ];
