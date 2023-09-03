@@ -15,6 +15,8 @@ export class PetPage {
 
   constructor() { }
 
+  parametro = "";
+
   verificarArray(items:any): any {
     return Array.isArray(items)
   }
@@ -39,6 +41,10 @@ export class PetPage {
         console.error('Erro na requisição:', request.status);
         return Array();
     }
-}
+  }
 
+  handleInput(event:any) {
+    let pesquisa = event.target.value;
+    this.parametro = pesquisa;
+  }
 }

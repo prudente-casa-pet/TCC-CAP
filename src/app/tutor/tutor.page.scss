@@ -1,13 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&display=swap');
+
+// Menu
+a{
+    color: var(--ion-color-light);
+    text-decoration: none;
+    font-size: 1.4em;
+    margin: 3em 0.5em;
+}
+
+a:hover{
+    color: var(--ion-color-secondary);
+}
+
+// Pet
+
+.tituloPagina{
+    font-size: 3em;
+    text-align: center;
+    font-family: 'Abril Fatface', cursive;
+}
+
 .elementos{
     background: var(--ion-color-tertiary);
-    border-radius: 1.5em;
-    margin: 2em;
-    padding: 0.5em 1.5em;
+    border-radius: 2.5em;
+    margin: 0 2em 2em 2em;
+    padding: 0.8em 3.5em;
 }
 
 .primeiraLinha{
     display: flex;
-    // align-items: center;
     justify-content: space-between;
 }
 
@@ -15,11 +36,21 @@
     display: flex;
 }
 
+.divInicio{
+    display: flex;
+    align-items: center;
+}
+
 .titulo{
     font-weight: bolder;
     font-size: 1.5em;
 }
 
-.titulo2{
-    font-size: 2em;
+.elemento{
+    border-bottom: 1px solid var(--ion-color-primary);
+    margin-top: 8px;
+}
+
+.elemento:last-child{
+    border-bottom: none;
 }
