@@ -30,14 +30,14 @@ antDia = this.anteriorDia.getDate();          // Número do ultimo dia do mês a
 
 quantAntDias = this.primeiroDia.getUTCDay();            // Quantidade de dias que aparecera do mês anterior
 priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
-proxDias = 6 - this.ultimoDia.getDay()                   // Quantidade de dias que aparecera do mês seguinte  
+proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
 
 mesAnterior(){
   if (this.mes == 0){  // Se é janeiro
-    this.mes = 11
-    this.ano = this.ano-1
+    this.mes = 11;
+    this.ano = this.ano-1;
   } else{
-    this.mes = this.mes-1
+    this.mes = this.mes-1;
   }
 
   // Reseta configurações
@@ -50,15 +50,15 @@ mesAnterior(){
   
   this.quantAntDias = this.primeiroDia.getUTCDay();             // Quantidade de dias que aparecera do mês anterior
   this.priMesAnt = this.antDia - this.quantAntDias + 1;         // Primeiro dia que aparecera do mês anterior
-  this.proxDias = 6 - this.ultimoDia.getDay()                   // Quantidade de dias que aparecera do mês seguinte  
+  this.proxDias = 6 - this.ultimoDia.getDay();                  // Quantidade de dias que aparecera do mês seguinte  
 }
 
 proximoMes(){
   if (this.mes == 11){  // Se é dezembro
-    this.mes = 0
-    this.ano = this.ano+1
+    this.mes = 0;
+    this.ano = this.ano+1;
   } else{
-    this.mes = this.mes+1
+    this.mes = this.mes+1;
   }
 
   // Reseta configurações
@@ -71,19 +71,18 @@ proximoMes(){
   
   this.quantAntDias = this.primeiroDia.getUTCDay();            // Quantidade de dias que aparecera do mês anterior
   this.priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
-  this.proxDias = 6 - this.ultimoDia.getDay()                   // Quantidade de dias que aparecera do mês seguinte  
+  this.proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
   
 }
 
 adicionarUmDia(data: Date): Date {
   const novaData = new Date(data);
   novaData.setDate(novaData.getDate() + 1);
-
   return novaData;
 }
 
 verificarArray(items:any): any {
-  return Array.isArray(items)
+  return Array.isArray(items);
 }
 
 generateRange(start: number, end: number): number[] {
@@ -95,37 +94,37 @@ generateRange(start: number, end: number): number[] {
 }
 
 gerarDataAnt(ano:any, mes:any, dia:any){
-  const dataDia = `${ano}-${mes-1 < 10 ? `0${mes}` : mes}-${dia < 10 ? '0' + dia : dia}`
+  const dataDia = `${ano}-${mes-1 < 10 ? `0${mes}` : mes}-${dia < 10 ? '0' + dia : dia}`;
   return dataDia;
 }
 
 gerarData(ano:any, mes:any, dia:any){
-  const dataDia = `${ano}-${mes < 10 ? `0${mes+1}` : mes+1}-${dia < 10 ? '0' + dia : dia}`
+  const dataDia = `${ano}-${mes < 10 ? `0${mes+1}` : mes+1}-${dia < 10 ? '0' + dia : dia}`;
   return dataDia;
 }
 
 gerarDataPostIt(data:any){
-  let mes = data.getMonth()+1
-  let dia = data.getDate()
-  let dataFormatada = dia < 10 ? `0${dia}` : dia
-  dataFormatada += '/'
-  dataFormatada += mes < 10 ? `0${mes}` : mes
-  return dataFormatada
+  let mes = data.getMonth()+1;
+  let dia = data.getDate();
+  let dataFormatada = dia < 10 ? `0${dia}` : dia;
+  dataFormatada += '/';
+  dataFormatada += mes < 10 ? `0${mes}` : mes;
+  return dataFormatada;
 }
 
 gerarDataPostItAPI(data:any){
-  let mes = data.getMonth()+1
-  let dia = data.getDate()
-  let ano = data.getFullYear()
-  let dataFormatada = ano
-  dataFormatada += dia < 10 ? `0${dia}` : dia
-  dataFormatada += '/'
-  dataFormatada += mes < 10 ? `0${mes}` : mes
-  return dataFormatada
+  let mes = data.getMonth()+1;
+  let dia = data.getDate();
+  let ano = data.getFullYear();
+  let dataFormatada = ano + '-';
+  dataFormatada += mes < 10 ? `0${mes}` : mes;
+  dataFormatada += '-';
+  dataFormatada += dia < 10 ? `0${dia}` : dia;
+  return dataFormatada;
 }
 
 gerarDataProx(ano:any, mes:any, dia:any){
-  const dataDia = `${ano}-${mes+2 < 10 ? `0${mes+2}` : mes+2}-${dia < 10 ? '0' + dia : dia}`
+  const dataDia = `${ano}-${mes+2 < 10 ? `0${mes+2}` : mes+2}-${dia < 10 ? '0' + dia : dia}`;
   return dataDia;
 }
 
@@ -133,7 +132,7 @@ gerarDataProx(ano:any, mes:any, dia:any){
 gerarAgendamento(agendamento: any){
   let sevico = this.buscarAPI('servico', agendamento.cod_servico)[0].nome;  // Pega o nome do serviço do agendamento
   let pet = this.buscarAPI('pet', agendamento.cod_pet)[0].nome;             // Pega o nome do pet do agendamento
-  return `${sevico} - ${pet}`
+  return `${sevico} - ${pet}`;
 }
 
 // Função que faz uma busca na API

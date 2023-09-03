@@ -1,8 +1,22 @@
+// Menu
+a{
+    color: var(--ion-color-light);
+    text-decoration: none;
+    font-size: 1.4em;
+    margin: 3em 0.5em;
+}
+
+a:hover{
+    color: var(--ion-color-secondary);
+}
+
+// Pet
+
 .elementos{
     background: var(--ion-color-tertiary);
-    border-radius: 1.5em;
+    border-radius: 2.5em;
     margin: 2em;
-    padding: 0.5em 1.5em;
+    padding: 0.8em 3.5em;
 }
 
 .primeiraLinha{
@@ -15,7 +29,21 @@
     display: flex;
 }
 
+.divTitulo{
+    display: flex;
+    justify-content: center;
+}
+
 .titulo{
     font-weight: bolder;
     font-size: 1.5em;
+}
+
+.elemento{
+    border-bottom: 1px solid var(--ion-color-primary);
+    margin-top: 8px;
+}
+
+.elemento:last-child{
+    border-bottom: none;
 }

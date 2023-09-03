@@ -1,3 +1,19 @@
+// Menu
+a{
+  color: var(--ion-color-light);
+  text-decoration: none;
+  font-size: 1.4em;
+  margin: 3em 0.5em;
+}
+
+a:hover{
+  color: var(--ion-color-secondary);
+}
+
+
+
+// Calendário
+
 .calendario{
   background: #e7e7e7;
   padding: 1em 1em 0.1em 1em;
@@ -111,7 +127,7 @@
   background: var(--ion-color-secondary);
   width: 80%;
   min-height: 40vh;
-  margin-bottom: 30px
+  margin: 2em;
 }
 
 .titulo{

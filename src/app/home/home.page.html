@@ -1,27 +1,14 @@
 <ion-content [fullscreen]="true" color="primary">
   
   <div id="container">
-    <div class="img"><img src="../../assets/img/Logo_com_nome.png" alt="logo"></div>
-
-  <div class="imput" >
-    <ion-input shape="round"
-  type="password"
-  fill="solid"
-  label="Senha"
-  labelPlacement="floating"
-  errorText="Senha invalida"
-  ngModel
-  password
-  ></ion-input>
-  </div>
-  <ion-item class="roundedInput">
-    <ion-label position="floating">Rounded Input</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+    <div class="centro">
+      <div class="img"><img src="../../assets/img/Logo_com_nome.png" alt="logo"></div>
+      <div class="input">
+        <input type="password" placeholder="Senha">
+      </div>
+      <ion-button id="botao_entrar" fill="solid" shape="round" [strong]="true">ENTRAR<ion-ripple-effect></ion-ripple-effect></ion-button>
+    </div>
   
-   
-  
-  <ion-button id="botao_entrar" fill="solid" shape="round" >ENTRAR<ion-ripple-effect></ion-ripple-effect></ion-button>
   </div>
 
 </ion-content>
