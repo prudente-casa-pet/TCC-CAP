@@ -12,18 +12,35 @@ a:hover{
     color: var(--ion-color-secondary);
 }
 
-// Pet
-
-.tituloPagina{
-    font-size: 3em;
+// Container
+.divInicioTitulo{
+    align-items: center;
+    justify-content: center;
+}
+.tituloSuperior{
+    display: flex;
+    font-size: 1em;
     text-align: center;
     font-family: 'Abril Fatface', cursive;
+}
+
+.tituloPagina{
+    display: flex;
+    font-size: 2em;
+    text-align: center;
+    font-family: 'Abril Fatface', cursive;
+}
+
+.mes{
+    margin: 0.8em 2em 2em 2em;
+    padding: 0.8em 3.5em;
+    text-decoration: none;
 }
 
 .elementos{
     background: var(--ion-color-tertiary);
     border-radius: 2.5em;
-    margin: 0 2em 2em 2em;
+    margin: 0.8em 2em 2em 2em;
     padding: 0.8em 3.5em;
 }
 
@@ -48,15 +65,10 @@ a:hover{
 
 .elemento{
     border-bottom: 1px solid var(--ion-color-primary);
-    margin-top: 8px;
+    height: 15vh;
 }
 
 .elemento:last-child{
     border-bottom: none;
-}
-
-// Modal
-
-ion-modal{
-    --border-radius: 30px;
+    padding-top: 10px;
 }

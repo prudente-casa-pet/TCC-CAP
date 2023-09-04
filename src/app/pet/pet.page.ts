@@ -13,6 +13,15 @@ import { IonicModule } from '@ionic/angular';
 })
 export class PetPage {
 
+  cancel() {
+  }
+
+  confirm() {
+  }
+
+  onWillDismiss(event: Event) {
+  }
+
   constructor() { }
 
   parametro = "";

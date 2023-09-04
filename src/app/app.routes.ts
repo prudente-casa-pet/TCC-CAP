@@ -34,4 +34,12 @@ export const routes: Routes = [
     path: 'pacote',
     loadComponent: () => import('./pacote/pacote.page').then( m => m.PacotePage)
   },
+  {
+    path: 'pagamento-efetuado',
+    loadComponent: () => import('./pagamento-efetuado/pagamento-efetuado.page').then( m => m.PagamentoEfetuadoPage)
+  },
+  {
+    path: 'pagamento-pendente',
+    loadComponent: () => import('./pagamento-pendente/pagamento-pendente.page').then( m => m.PagamentoPendentePage)
+  },
 ];

@@ -8,6 +8,21 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-modal trigger="adicionarPet" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-row>
+        <ion-col size="12">
+          <ion-title>
+            Adicionar Pet
+          </ion-title>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button> -->
+    </ng-template>
+  </ion-modal>
+
+
   <ion-header collapse="condense">
     <ion-toolbar color="primary" id="main-content">
       <ion-title>Pet</ion-title>
@@ -30,8 +45,8 @@
       <div><a href="../pet">Pets</a></div>
       <div><a href="../tutor">Tutores</a></div>
       <div><a href="../procedimentos">Tipos de procedimento</a></div>
-      <div><a href="../pacote">Pacotes</a></div>
-      <div><a href="">Pagamento</a></div>
+      <div><a href="../pagamento-efetuado">Pagamentos efetuados</a></div>
+      <div><a href="../pagamento-pendente">Pagamentos pendentes</a></div>
       <div><a href="../servico">Serviços</a></div>
     </ion-content>
   </ion-menu>
@@ -42,7 +57,7 @@
     <ion-col size="3" class="divInicio">
       <ion-fab>
         <ion-fab-button>
-          <ion-icon name="add"></ion-icon>
+          <ion-icon name="add" id="adicionarPet"></ion-icon>
         </ion-fab-button>
       </ion-fab>
     </ion-col>
