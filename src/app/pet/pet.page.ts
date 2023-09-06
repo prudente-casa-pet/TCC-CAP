@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { AdicionarPetComponent } from '../modals/adicionar-pet/adicionar-pet.component';
+import { AtualizarPetComponent } from '../modals/atualizar-pet/atualizar-pet.component';
+import { DeletarPetComponent } from '../modals/deletar-pet/deletar-pet.component';
+
 
 @Component({
   selector: 'app-pet',
@@ -13,17 +17,40 @@ import { IonicModule } from '@ionic/angular';
 })
 export class PetPage {
 
-  cancel() {
+  // Modal
+  constructor(private modalController: ModalController) {}
+
+  // Abre modal de adicionar pet
+  async modalAdicionarPet() {
+    const modal = await this.modalController.create({
+      component: AdicionarPetComponent,
+    });
+    await modal.present();
   }
 
-  confirm() {
+  // Abre modal de atualizar pet passa parâmetro
+  async modalAtualizarPet(data: any) {
+    const modal = await this.modalController.create({
+      component: AtualizarPetComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
   }
 
-  onWillDismiss(event: Event) {
+  // Abre modal de atualizar pet passa parâmetro
+  async modalDeletarPet(data: any) {
+    const modal = await this.modalController.create({
+      component: DeletarPetComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
   }
 
-  constructor() { }
-
+  // Lógica de listagem
   parametro = "";
 
   verificarArray(items:any): any {
@@ -52,6 +79,7 @@ export class PetPage {
     }
   }
 
+  // Pesquisa de pet
   handleInput(event:any) {
     let pesquisa = event.target.value;
     this.parametro = pesquisa;

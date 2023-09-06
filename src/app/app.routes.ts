@@ -41,5 +41,5 @@ export const routes: Routes = [
   {
     path: 'pagamento-pendente',
     loadComponent: () => import('./pagamento-pendente/pagamento-pendente.page').then( m => m.PagamentoPendentePage)
-  },
+  }
 ];
