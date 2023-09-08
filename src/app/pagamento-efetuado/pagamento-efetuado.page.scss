@@ -12,7 +12,10 @@ a:hover{
     color: var(--ion-color-secondary);
 }
 
-// Container
+#container{
+    min-height: calc(100vh - 112px);
+}
+
 .divInicioTitulo{
     align-items: center;
     justify-content: center;

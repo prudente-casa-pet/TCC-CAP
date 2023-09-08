@@ -12,7 +12,11 @@ a:hover{
     color: var(--ion-color-secondary);
 }
 
-// Pet
+// Pacote
+
+#container{
+    min-height: calc(100vh - 112px);
+}
 
 .tituloPagina{
     font-size: 3em;
