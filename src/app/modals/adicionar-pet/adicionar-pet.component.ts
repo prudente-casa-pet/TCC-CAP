@@ -12,6 +12,16 @@ import { IonicModule } from '@ionic/angular';
 })
 export class AdicionarPetComponent  implements OnInit {
 
+  arquivo: any = "";
+
+  // Ao selecionar o arquivo, vai aparecer o nome no input
+  onFileSelected(event: any) {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      this.arquivo = selectedFile.name;
+    }
+  }
+
   constructor() { }
 
   ngOnInit() {}

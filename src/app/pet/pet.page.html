@@ -57,10 +57,10 @@
             <div class="primeiraLinha">
               <p class="titulo">{{pet.nome}} - {{buscarAPI('listar', 'tutor', pet.cod_tutor)[0].nome}}</p>
               <div class="botoes">
-                <ion-fab-button size="small" (click)="modalAtualizarPet(pet.cod_pet)">
+                <ion-fab-button size="small" (click)="modalAtualizarPet(pet)">
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-fab-button>
-                <ion-fab-button size="small" (click)="modalDeletarPet(pet.cod_pet)">
+                <ion-fab-button size="small" (click)="modalDeletarPet(pet)">
                   <ion-icon name="trash"></ion-icon>
                 </ion-fab-button>
 

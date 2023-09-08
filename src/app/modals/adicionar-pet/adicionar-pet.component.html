@@ -6,45 +6,60 @@
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
-            <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome">
+            <label for="nome" class="etiqueta">Nome</label>
+            <input type="text" name="nome" id="nome" class="input">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
-            <label for="tutor">Tutor</label>
-            <input type="text" name="tutor" id="tutor">
+            <label for="tutor" class="etiqueta">Tutor</label>
+            <input type="text" name="tutor" id="tutor" list="tutores" class="input">
+            <datalist id="tutores">
+                <option value="Amanda Cancian">Amanda Cancian</option>
+                <option value="Camilly Mialichi">Camilly Mialichi</option>
+                <option value="Patricia Dias">Patricia Dias</option>
+            </datalist>
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
-            <label for="especie">Espécie</label>
-            <input type="text" name="especie" id="especie">
+            <label for="especie" class="etiqueta">Espécie</label>
+            <input type="text" name="especie" id="especie" class="input">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
-            <label for="raca">Raça</label>
-            <input type="text" name="raca" id="raca">
+            <label for="raca" class="etiqueta">Raça</label>
+            <input type="text" name="raca" id="raca" class="input">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
-            <label for="porte">Porte</label>
-            <input type="text" name="porte" id="porte">
+            <label for="porte" class="etiqueta">Porte</label>
+            <input type="text" name="porte" id="porte" class="input">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
-            <label for="porte">Porte</label>
-            <label class="custom-file">
-                <input type="file">
-                <span class="icon"></span>
+            <label for="sociabilidade" class="etiqueta">Sociabilidade</label>
+            <ion-radio-group value="sim" name="sociabilidade" id="sociabilidade">
+                <ion-radio value="sim" labelPlacement="end">Sim</ion-radio>
+                <ion-radio value="nao" labelPlacement="end">Não</ion-radio>
+            </ion-radio-group>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="12" class="ion-padding centro">
+            <label for="foto_perfil" class="etiqueta">Foto de Perfil</label>
+            <label for="foto_perfil" id="file">
+                <input type="file" name="foto_perfil" id="foto_perfil" (change)="onFileSelected($event)">
+                <span>{{arquivo}}</span>
+                <ion-icon name="share-outline"></ion-icon>
             </label>
         </ion-col>
     </ion-row>
     <ion-row>
-        <ion-col size="12" class="ion-text-center ion-padding">
+        <ion-col size="12" class="ion-text-center ion-padding botao">
             <ion-button shape="round">Salvar</ion-button>
         </ion-col>
     </ion-row>

@@ -29,4 +29,6 @@
 // Deixa modais arrendodados
 ion-modal::part(content) {
     border-radius: 50px; 
+    max-height: 670px;
+    height: -webkit-fill-available;
 }
