@@ -89,6 +89,15 @@ a:hover{
   top: 0;
 }
 
+.fimDeSemana{
+  color: var(--ion-color-primary);
+}
+
+.diaAtual{
+  color: var(--ion-color-quartenary);
+  font-weight: bolder;
+}
+
 .agendamentos{
   width: 100%;
   position: absolute;

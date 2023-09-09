@@ -1,10 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { RouterLink } from '@angular/router';
+import { IonicModule, ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-deletar-pet',
   templateUrl: './deletar-pet.component.html',
   styleUrls: ['./deletar-pet.component.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, RouterLink]
 })
 
 export class DeletarPetComponent  implements OnInit {

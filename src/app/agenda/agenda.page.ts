@@ -19,7 +19,8 @@ hoje = new Date();                          // Dia atual
 amanha = this.adicionarUmDia(this.hoje);    // Dia seguinte
 mes = this.hoje.getMonth();                 // Mês atual
 ano = this.hoje.getFullYear();              // Ano atual
-
+diaAtual = this.hoje.getDate();             // Dia atual fixo
+mesAtual = this.mes;                        // Mes aatual fixo
 
 primeiroDia = new Date(this.ano, this.mes, 1);     // Primeiro dia do mês atual
 ultimoDia = new Date(this.ano, this.mes + 1, 0);   // Ultimo dia do mês atual
@@ -31,6 +32,21 @@ antDia = this.anteriorDia.getDate();          // Número do ultimo dia do mês a
 quantAntDias = this.primeiroDia.getUTCDay();            // Quantidade de dias que aparecera do mês anterior
 priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
 proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
+
+fimDeSemana: number[] = this.gerarFimDeSemana()         // Array com os dias que são sábado ou domingo
+
+// Gera os dias que são sábado ou domingo
+gerarFimDeSemana(){
+  let fimSemana: number[] = []
+  let aux = 7 - this.quantAntDias
+  while (aux <= this.ultDia){
+    fimSemana.push(aux)
+    fimSemana.push(aux+1)
+    aux += 7
+  }
+  return fimSemana
+}
+
 
 mesAnterior(){
   if (this.mes == 0){  // Se é janeiro
@@ -50,7 +66,8 @@ mesAnterior(){
   
   this.quantAntDias = this.primeiroDia.getUTCDay();             // Quantidade de dias que aparecera do mês anterior
   this.priMesAnt = this.antDia - this.quantAntDias + 1;         // Primeiro dia que aparecera do mês anterior
-  this.proxDias = 6 - this.ultimoDia.getDay();                  // Quantidade de dias que aparecera do mês seguinte  
+  this.proxDias = 6 - this.ultimoDia.getDay();                  // Quantidade de dias que aparecera do mês seguinte 
+  this.fimDeSemana = this.gerarFimDeSemana();                   // Array com os dias que são sábado ou domingo
 }
 
 proximoMes(){
@@ -72,7 +89,7 @@ proximoMes(){
   this.quantAntDias = this.primeiroDia.getUTCDay();            // Quantidade de dias que aparecera do mês anterior
   this.priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
   this.proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
-  
+  this.fimDeSemana = this.gerarFimDeSemana();                  // Array com os dias são sábado ou domingo
 }
 
 adicionarUmDia(data: Date): Date {
