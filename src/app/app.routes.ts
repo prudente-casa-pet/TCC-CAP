@@ -41,5 +41,9 @@ export const routes: Routes = [
   {
     path: 'pagamento-pendente',
     loadComponent: () => import('./pagamento-pendente/pagamento-pendente.page').then( m => m.PagamentoPendentePage)
+  },
+  {
+    path: 'teste',
+    loadComponent: () => import('./teste/teste.page').then( m => m.TestePage)
   }
 ];
