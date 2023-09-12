@@ -27,10 +27,12 @@ export class PagamentoPendentePage {
 
 
   obterVariavel() {
-    let data=this.sharedDataService.mes.split("-");
-    this.ano = data[0]
-    this.mes = data[1]
-    this.data = `${this.meses[this.mes-1]} ${this.ano}`;
+    if (this.sharedDataService.mes){  // Se for escolhido um mês
+      let data=this.sharedDataService.mes.split("-");
+      this.ano = data[0]
+      this.mes = data[1]
+      this.data = `${this.meses[this.mes-1]} ${this.ano}`;
+    }
   }
 
 

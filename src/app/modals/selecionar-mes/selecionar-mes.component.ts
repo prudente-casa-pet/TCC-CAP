@@ -17,13 +17,15 @@ export class SelecionarMesComponent  implements OnInit {
   @ViewChild('myDatetime')
   myDatetime!: IonDatetime;
   mes:any = "";
+
   // Função para acessar o valor do ion-datetime
   obterValorDoDatetime() {
     this.mes = this.myDatetime.value; // Obter o valor do ion-datetime
     this.enviarParaOutraPagina()
   }
-  constructor(private modalController: ModalController,
-    private sharedDataService: SharedDataService ) {}
+  
+  constructor(private modalController: ModalController, private sharedDataService: SharedDataService ) {}
+  
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
