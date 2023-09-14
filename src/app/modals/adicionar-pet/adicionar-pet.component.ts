@@ -66,5 +66,4 @@ export class AdicionarPetComponent  implements OnInit {
         .then(res => console.log(JSON.stringify(res)))
         .catch(err => console.error(err))
 }
-
 }

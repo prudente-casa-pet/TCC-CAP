@@ -16,13 +16,13 @@ export class AtualizarPetComponent  implements OnInit {
   @Input() customData: any;
 
   arquivo: any = "";
-  nome: any = "";
-  tutor: any = "";
-  especie: any = "";
-  raca: any = "";
-  porte: any = "";
-  sociabilidade: any = "";
-  observacoes: any = "";
+  nome: any;
+  tutor: any;
+  especie: any;
+  raca: any;
+  porte: any;
+  sociabilidade: any;
+  observacoes: any;
 
   // Ao selecionar o arquivo, vai aparecer o nome no input
   onFileSelected(event: any) {
@@ -34,7 +34,13 @@ export class AtualizarPetComponent  implements OnInit {
 
   constructor(private modalController: ModalController) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.nome = this.customData.nome;
+    this.tutor = this.customData.cod_tutor;
+    this.especie = this.customData.especie;
+    this.raca = this.customData.raca;
+    this.porte = this.customData.porte;
+    this.sociabilidade = this.customData.sociabilidade;
+    this.observacoes = this.customData.observacoes;
   }
 
   closeModal() {
@@ -53,8 +59,6 @@ export class AtualizarPetComponent  implements OnInit {
       'sociabilidade': Number(this.sociabilidade),
       'observacoes': `'${this.observacoes}'`
     }
-    alert(JSON.stringify(pet));
-    alert(codigo);
     this.postAPI('atualizar', 'pet', codigo, pet);
     this.modalController.dismiss();
   }

@@ -47,8 +47,8 @@
         <ion-col size="12" class="ion-padding centro">
             <label for="sociabilidade" class="etiqueta">Sociabilidade</label>
             <ion-radio-group value="sim" name="sociabilidade" id="sociabilidade" [(ngModel)]="sociabilidade">
-                <ion-radio value="sim" labelPlacement="end">Sim</ion-radio>
-                <ion-radio value="nao" labelPlacement="end">Não</ion-radio>
+                <ion-radio value="0" labelPlacement="end">Sim</ion-radio>
+                <ion-radio value="1" labelPlacement="end">Não</ion-radio>
             </ion-radio-group>
         </ion-col>
     </ion-row>
@@ -56,7 +56,7 @@
         <ion-col size="12" class="ion-padding centro">
             <label for="foto_perfil" class="etiqueta">Foto de Perfil</label>
             <label for="foto_perfil" id="file">
-                <input type="file" name="foto_perfil" id="foto_perfil" (change)="onFileSelected($event)">
+                <input type="file" name="foto_perfil" id="foto_perfil" (change)="onFileSelected($event)" >
                 <span>{{arquivo}}</span>
                 <ion-icon name="share-outline"></ion-icon>
             </label>
