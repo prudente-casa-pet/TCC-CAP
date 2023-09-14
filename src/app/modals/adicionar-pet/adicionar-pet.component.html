@@ -7,36 +7,36 @@
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="nome" class="etiqueta">Nome</label>
-            <input type="text" name="nome" id="nome" class="input">
+            <input type="text" name="nome" id="nome" class="input" [(ngModel)]="nome">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="tutor" class="etiqueta">Tutor</label>
-            <input type="text" name="tutor" id="tutor" list="tutores" class="input">
+            <input type="text" name="tutor" id="tutor" list="tutores" class="input" [(ngModel)]="tutor">
             <datalist id="tutores">
-                <option value="Amanda Cancian">Amanda Cancian</option>
-                <option value="Camilly Mialichi">Camilly Mialichi</option>
-                <option value="Patricia Dias">Patricia Dias</option>
+                <option value="2">Amanda Cancian</option>
+                <option value="1">Camilly Mialichi</option>
+                <option value="3">Patricia Dias</option>
             </datalist>
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="especie" class="etiqueta">Espécie</label>
-            <input type="text" name="especie" id="especie" class="input">
+            <input type="text" name="especie" id="especie" class="input" [(ngModel)]="especie">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="raca" class="etiqueta">Raça</label>
-            <input type="text" name="raca" id="raca" class="input">
+            <input type="text" name="raca" id="raca" class="input" [(ngModel)]="raca">
         </ion-col>
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="porte" class="etiqueta">Porte</label>
-            <select name="porte" id="porte" class="input">
+            <select name="porte" id="porte" class="input" [(ngModel)]="porte">
                 <option value="pequeno">Pequeno</option>
                 <option value="medio">Médio</option>
                 <option value="grande">Grande</option>
@@ -46,10 +46,16 @@
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="sociabilidade" class="etiqueta">Sociabilidade</label>
-            <ion-radio-group value="sim" name="sociabilidade" id="sociabilidade">
-                <ion-radio value="sim" labelPlacement="end">Sim</ion-radio>
-                <ion-radio value="nao" labelPlacement="end">Não</ion-radio>
+            <ion-radio-group value="sim" name="sociabilidade" id="sociabilidade" [(ngModel)]="sociabilidade">
+                <ion-radio value="0" labelPlacement="end">Sim</ion-radio>
+                <ion-radio value="1" labelPlacement="end">Não</ion-radio>
             </ion-radio-group>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="12" class="ion-padding centro">
+            <label for="observacoes" class="etiqueta">Observação</label>
+            <input type="text" name="observacoes" id="observacoes" class="input" [(ngModel)]="observacoes">
         </ion-col>
     </ion-row>
     <ion-row>
@@ -64,7 +70,7 @@
     </ion-row>
     <ion-row>
         <ion-col size="12" class="ion-text-center ion-padding botao">
-            <ion-button shape="round">Salvar</ion-button>
+            <ion-button shape="round" (click)="adicionarPet()">Salvar</ion-button>
         </ion-col>
     </ion-row>
 </div>

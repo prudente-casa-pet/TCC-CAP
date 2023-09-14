@@ -52,16 +52,7 @@
   <ion-row class="mes">
     <ion-col size="12">
       <ion-item>
-        <ion-select
-          class="always-flip"
-          toggleIcon="caret-down-sharp"
-          interface="popover"
-          placeholder="Agosto"
-        >
-          <ion-select-option value="julho">Julho de 2023</ion-select-option>
-          <ion-select-option value="agosto">Agosto de 2023</ion-select-option>
-          <ion-select-option value="setembro">Setembro de 2023</ion-select-option>
-        </ion-select>
+        <p (click)="modalSelecionarMes()">{{data}}</p>
       </ion-item>
     </ion-col>
   </ion-row>

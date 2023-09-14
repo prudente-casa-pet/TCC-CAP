@@ -15,6 +15,13 @@ import { FormsModule } from '@angular/forms';
 export class AdicionarPetComponent  implements OnInit {
 
   arquivo: any = "";
+  nome: any = "";
+  tutor: any = "";
+  especie: any = "";
+  raca: any = "";
+  porte: any = "";
+  sociabilidade: any = "";
+  observacoes: any = "";
 
   // Ao selecionar o arquivo, vai aparecer o nome no input
   onFileSelected(event: any) {
@@ -32,5 +39,32 @@ export class AdicionarPetComponent  implements OnInit {
   closeModal() {
     this.modalController.dismiss();
   }
+  
+  adicionarPet(){
+    let pet = {
+      'nome': `'${this.nome}'`,
+      'cod_tutor': Number(this.tutor),
+      'especie': `'${this.especie}'`,
+      'raca': `'${this.raca}'`,
+      'porte': `'${this.porte}'`,
+      'sociabilidade': Number(this.sociabilidade),
+      'observacoes': `'${this.observacoes}'`
+    }
+    this.postAPI('adicionar', 'pet', '', pet);
+    this.modalController.dismiss();
+  }
+  postAPI(acao:any, tabela:any, parametro:any, dados:any) {
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(dados),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
+        .then(res => res.json())
+        .then(res => console.log(JSON.stringify(res)))
+        .catch(err => console.error(err))
+}
 
 }
