@@ -25,10 +25,12 @@ export class DeletarPetComponent  implements OnInit {
   @Input() customData: any;
 
   deletarPet(parametro:any){
-    
-    this.buscarAPI('deletar', 'pet', parametro);
+    let foto = this.buscarAPI('listar', 'pet', parametro)[0].foto_perfil.substring(9);  // Foto perfil do pet
+    this.buscarAPI('deletarArquivos', foto, '');  // Apaga foto de perfil
+    this.buscarAPI('deletar', 'pet', parametro);  // Apaga pet
     this.modalController.dismiss();
   }
+
   buscarAPI(metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();
     request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);

@@ -98,7 +98,7 @@ export class AdicionarPetComponent  implements OnInit {
   // Chama aa função de adicionar na API e pega o caminho retornado
   async adicionarArquivo() {
     this.caminho = await this.adicionarArquivoAPI();
-    this.caminho = this.caminho.slice(3)
+    this.caminho = this.caminho.slice(4)
   }
 
   // Adiciona a foto na API

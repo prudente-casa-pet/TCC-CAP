@@ -26,6 +26,7 @@ export class AtualizarPetComponent  implements OnInit {
   foto: any = "";          // Arquivo em si
   arquivo: any = "";       // Nome do arquivo que irá aparecer no input
   caminho: any = "";       // Caminho do arquivo na API
+  caminhoAntigo: any = "";       // Caminho do arquivo antigo na API
 
   // Ao selecionar o arquivo, vai aparecer o nome no input
   onFileSelected(event: any) {
@@ -45,6 +46,7 @@ export class AtualizarPetComponent  implements OnInit {
     this.porte = this.customData.porte;
     this.sociabilidade = this.customData.sociabilidade;
     this.observacoes = this.customData.observacoes;
+    this.caminhoAntigo = this.customData.foto_perfil;
   }
 
   closeModal() {
@@ -55,6 +57,7 @@ export class AtualizarPetComponent  implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo()  // Espera o aquivo ser adicionado
     }
+
     let pet = {
       'nome': `'${this.nome}'`,
       'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
@@ -106,7 +109,11 @@ export class AtualizarPetComponent  implements OnInit {
   // Chama aa função de adicionar na API e pega o caminho retornado
   async adicionarArquivo() {
     this.caminho = await this.adicionarArquivoAPI();
-    this.caminho = this.caminho.slice(3)
+    this.caminho = this.caminho.slice(4)
+    if(this.caminho != this.caminhoAntigo){        // Se a foto antiga for diferente da nova apaga a antiga
+      let foto = this.caminhoAntigo.substring(9);  // Foto perfil do pet
+      this.getAPI('deletarArquivos', foto, '');    // Apaga foto de perfil
+    }
   }
 
   // Adiciona a foto na API
