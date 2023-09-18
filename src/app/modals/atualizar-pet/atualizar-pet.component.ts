@@ -57,7 +57,6 @@ export class AtualizarPetComponent  implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo()  // Espera o aquivo ser adicionado
     }
-
     let pet = {
       'nome': `'${this.nome}'`,
       'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
@@ -108,10 +107,14 @@ export class AtualizarPetComponent  implements OnInit {
 
   // Chama aa função de adicionar na API e pega o caminho retornado
   async adicionarArquivo() {
+    let extensao = this.foto.name.split(".");
+    extensao = extensao[extensao.length-1];
+    let nomeFoto = `${this.nome}-${Date.now()}.${extensao}`;
+    this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });  // Formata nome da foto
     this.caminho = await this.adicionarArquivoAPI();
-    this.caminho = this.caminho.slice(4)
-    if(this.caminho != this.caminhoAntigo){        // Se a foto antiga for diferente da nova apaga a antiga
-      let foto = this.caminhoAntigo.substring(9);  // Foto perfil do pet
+    this.caminho = this.caminho.slice(4);        // Caminho da foto salva
+    let foto = this.caminhoAntigo.substring(9);  // Foto perfil do pet antigo
+    if(foto){   // Se já existir uma foto, apaga a antiga
       this.getAPI('deletarArquivos', foto, '');    // Apaga foto de perfil
     }
   }

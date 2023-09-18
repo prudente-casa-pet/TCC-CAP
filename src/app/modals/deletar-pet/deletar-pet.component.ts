@@ -26,7 +26,9 @@ export class DeletarPetComponent  implements OnInit {
 
   deletarPet(parametro:any){
     let foto = this.buscarAPI('listar', 'pet', parametro)[0].foto_perfil.substring(9);  // Foto perfil do pet
-    this.buscarAPI('deletarArquivos', foto, '');  // Apaga foto de perfil
+    if(foto){
+      this.buscarAPI('deletarArquivos', foto, '');  // Apaga foto de perfil
+    }
     this.buscarAPI('deletar', 'pet', parametro);  // Apaga pet
     this.modalController.dismiss();
   }

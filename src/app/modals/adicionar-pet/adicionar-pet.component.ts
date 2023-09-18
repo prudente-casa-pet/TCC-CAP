@@ -35,6 +35,7 @@ export class AdicionarPetComponent  implements OnInit {
   }
 
   constructor(private modalController: ModalController) {}
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -47,6 +48,7 @@ export class AdicionarPetComponent  implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo()  // Espera o aquivo ser adicionado
     }
+    
     let pet = {
       'nome': `'${this.nome}'`,
       'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
@@ -57,8 +59,7 @@ export class AdicionarPetComponent  implements OnInit {
       'observacoes': `'${this.observacoes}'`,
       'foto_perfil': `'${this.caminho}'`
     }
-    this.postAPI('adicionar', 'pet', '', pet);
-    this.modalController.dismiss();
+    
   }
 
   // Faz um post na API
@@ -97,6 +98,10 @@ export class AdicionarPetComponent  implements OnInit {
 
   // Chama aa função de adicionar na API e pega o caminho retornado
   async adicionarArquivo() {
+    let extensao = this.foto.name.split(".");
+    extensao = extensao[extensao.length-1];
+    let nomeFoto = `${this.nome}-${Date.now()}.${extensao}`;
+    this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
     this.caminho = await this.adicionarArquivoAPI();
     this.caminho = this.caminho.slice(4)
   }
