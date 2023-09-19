@@ -12,6 +12,8 @@ a:hover{
     color: var(--ion-color-secondary);
 }
 
+// Pagamento efetuado
+
 #container{
     min-height: calc(100vh - 112px);
 }
@@ -21,34 +23,27 @@ a:hover{
     margin-left: 25px;
 }
 
-.divInicioTitulo{
-    align-items: center;
-    justify-content: center;
+.tituloPagina{
+    font-size: 2em;
+    font-family: 'Abril Fatface', cursive;
+    line-height: 90%;
+    margin-bottom: 1.5em;
+    margin-left: 1.5em;
 }
+
 .tituloSuperior{
     display: flex;
+    margin-left: 4.5em;
     font-size: 1em;
-    text-align: center;
     font-family: 'Abril Fatface', cursive;
-}
-
-.tituloPagina{
-    display: flex;
-    font-size: 2em;
-    text-align: center;
-    font-family: 'Abril Fatface', cursive;
-}
-
-.mes{
-    margin: 0.8em 2em 2em 2em;
-    padding: 0.8em 3.5em;
-    text-decoration: none;
+    line-height: 130%;
+    margin-top: 1.5em;
 }
 
 .elementos{
     background: var(--ion-color-tertiary);
     border-radius: 2.5em;
-    margin: 0.8em 2em 2em 2em;
+    margin: 0 2em 2em 2em;
     padding: 0.8em 3.5em;
 }
 
@@ -73,10 +68,20 @@ a:hover{
 
 .elemento{
     border-bottom: 1px solid var(--ion-color-primary);
-    height: 15vh;
+    margin-top: 8px;
 }
 
 .elemento:last-child{
     border-bottom: none;
-    padding-top: 10px;
+}
+
+ion-searchbar{
+    margin-bottom: 1.5em;
+}
+
+
+.Mes{
+    font-size: 1.3em;
+    font-family: 'Playfair Display', serif;
+    margin-left: 5.5em;
 }
