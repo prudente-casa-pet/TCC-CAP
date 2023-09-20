@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NumberSymbol } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams } from '@ionic/angular';
@@ -24,6 +24,7 @@ export class AdicionarPetComponent  implements OnInit {
   foto: any = "";          // Arquivo em si
   arquivo: any = "";       // Nome do arquivo que irá aparecer no input
   caminho: any = "";       // Caminho do arquivo na API
+  tutorSelecionado = true;
 
   // Ao selecionar o arquivo, vai aparecer o nome no input
   onFileSelected(event: any) {
@@ -43,27 +44,47 @@ export class AdicionarPetComponent  implements OnInit {
   closeModal() {
     this.modalController.dismiss();
   }
+
+  procurarTutor() {  // Ao desclicar input tutor, procura um tutor com o nome
+    let res = this.getAPI('listar', 'tutor', this.tutor)[0];
+    if (!res.SUCESSO){
+      this.tutor = res.nome;
+      this.tutorSelecionado = false;
+    } 
+  }
   
   async adicionarPet(){
     if (this.foto) {
-      await this.adicionarArquivo()  // Espera o aquivo ser adicionado
+      await this.adicionarArquivo();  // Espera o aquivo ser adicionado
     }
+
     
-    let pet = {
-      'nome': `'${this.nome}'`,
-      'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
-      'especie': `'${this.especie}'`,
-      'raca': `'${this.raca}'`,
-      'porte': `'${this.porte}'`,
-      'sociabilidade': Number(this.sociabilidade),
-      'observacoes': `'${this.observacoes}'`,
-      'foto_perfil': `'${this.caminho}'`
+    if (this.tutorSelecionado){         // Se um tutor não for escolhido
+      alert('Escolha um tutor');
+    } else{
+      let pet = {
+        'nome': `'${this.nome}'`,
+        'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
+        'especie': `'${this.especie}'`,
+        'raca': `'${this.raca}'`,
+        'porte': `'${this.porte}'`,
+        'sociabilidade': Number(this.sociabilidade),
+        'observacoes': `'${this.observacoes}'`,
+        'foto_perfil': `'${this.caminho}'`
+      }
+      let resposta = await this.postAPI('adicionar', 'pet', '', pet);
+      if(resposta.ERRO){
+        alert(resposta.ERRO); // Trocar alert por toast
+      }
+      else{
+        this.modalController.dismiss();
+      }
     }
-    
+
   }
 
   // Faz um post na API
-  postAPI(acao:any, tabela:any, parametro:any, dados:any) {
+  async postAPI(acao:any, tabela:any, parametro:any, dados:any) {
     const options = {
         method: 'POST',
         body: JSON.stringify(dados),
@@ -71,10 +92,13 @@ export class AdicionarPetComponent  implements OnInit {
             'Content-Type': 'application/json'
         }
     }
-    fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
-        .then(res => res.json())
-        .then(res => console.log(JSON.stringify(res)))
-        .catch(err => console.error(err))
+    return fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
+        .then(res => {
+          return res.json()
+        })
+        .catch(err => {
+          return err.json()
+        })
   }
 
   // Faz um get na API
