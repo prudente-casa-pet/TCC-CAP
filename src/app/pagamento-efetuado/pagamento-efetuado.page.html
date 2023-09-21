@@ -64,49 +64,22 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos">
+      <div class="elementos"  *ngIf="verificarArray(buscarAPI('listar', 'pagamento_efetuado', parametro))===true">
 
-          <div class="elemento">
+          <div class="elemento" *ngFor="let pagamento of buscarAPI('listar', 'pagamento_efetuado', parametro)">
             <div class="primeiraLinha">
-              <p class="titulo">08/08/2023 - Amanda Cancian</p>
+              <p class="titulo">{{pagamento.data}} - {{pagamento.tutor}}</p>
             </div>
             <div class="segundaLinha">
               <ul>
-                <li><b>Valor:</b> R$ 35,00</li>
-                <li><b>Desconto:</b> R$ 0,00</li>
-                <li><b>Valor Total:</b> R$ 35,00</li>
-                <li><b>Forma:</b> pix</li>
+                <li><b>Valor:</b> R$ {{pagamento.valor}}</li>
+                <li><b>Desconto:</b> R$ {{pagamento.desconto}}</li>
+                <li><b>Valor Total:</b> R$ {{pagamento.total}}</li>
+                <li><b>Forma:</b> {{pagamento.forma}}</li>
               </ul>
             </div>
         </div>
-  
-        <div class="elemento">
-          <div class="primeiraLinha">
-            <p class="titulo">25/08/2023 - Patrícia Dias</p>
-          </div>
-          <div class="segundaLinha">
-            <ul>
-              <li><b>Valor:</b> R$ 45,00</li>
-                <li><b>Desconto:</b> R$ 5,00</li>
-                <li><b>Valor Total:</b> R$ 40,00</li>
-                <li><b>Forma:</b> dinheiro</li>
-            </ul>
-          </div>
-      </div>
 
-      <div class="elemento">
-        <div class="primeiraLinha">
-          <p class="titulo">30/08/2023</p>
-        </div>
-        <div class="segundaLinha">
-          <ul>
-            <li><b>Valor:</b> R$ 50,00</li>
-                <li><b>Desconto:</b> R$ 10,00</li>
-                <li><b>Valor Total:</b> R$ 40,00</li>
-                <li><b>Forma:</b> pix</li>
-          </ul>
-        </div>
-    </div>
 
       </div>
     </ion-col>

@@ -1,7 +1,7 @@
 import { CommonModule, NumberSymbol } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule, ModalController, NavParams } from '@ionic/angular';
+import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -35,7 +35,7 @@ export class AdicionarPetComponent  implements OnInit {
     }
   }
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, private toastController: ToastController) {}
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -57,10 +57,10 @@ export class AdicionarPetComponent  implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo();  // Espera o aquivo ser adicionado
     }
-
     
-    if (this.tutorSelecionado){         // Se um tutor não for escolhido
-      alert('Escolha um tutor');
+    
+    if (this.tutorSelecionado){  // Se um tutor não for escolhido
+      this.presentToast("Escolha um tutor válido");
     } else{
       let pet = {
         'nome': `'${this.nome}'`,
@@ -73,8 +73,9 @@ export class AdicionarPetComponent  implements OnInit {
         'foto_perfil': `'${this.caminho}'`
       }
       let resposta = await this.postAPI('adicionar', 'pet', '', pet);
+      
       if(resposta.ERRO){
-        alert(resposta.ERRO); // Trocar alert por toast
+        this.presentToast(resposta.ERRO); //chama toast da verificação
       }
       else{
         this.modalController.dismiss();
@@ -94,7 +95,7 @@ export class AdicionarPetComponent  implements OnInit {
     }
     return fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
         .then(res => {
-          return res.json()
+          return res.json();
         })
         .catch(err => {
           return err.json()
@@ -147,4 +148,15 @@ export class AdicionarPetComponent  implements OnInit {
         throw err;
     }
   }
+
+  async presentToast(mensagem:any) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: 2000,
+      position: 'top',
+    });
+
+    await toast.present();
+  }
+  
 }
