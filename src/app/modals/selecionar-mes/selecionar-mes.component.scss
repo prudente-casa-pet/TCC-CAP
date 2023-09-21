@@ -14,7 +14,7 @@ ion-row{
 }
 
 ion-title{
-    color: var(--ion-color-quartenary);
+    color: var(--ion-color-primary);
     font-size: 2em;
     font-weight: bolder;
     margin-top: 15px;
@@ -22,4 +22,8 @@ ion-title{
 
 ion-button{
     font-size: 1.2em;
+}
+
+ion-icon{
+    color: var(--ion-color-primary);
 }
