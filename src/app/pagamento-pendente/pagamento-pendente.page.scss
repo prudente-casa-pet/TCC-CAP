@@ -54,6 +54,8 @@ a:hover{
 
 .botoes{
     display: flex;
+    font-size: 2em;
+    color: var(--ion-color-primary);
 }
 
 .divInicio{
@@ -84,4 +86,5 @@ ion-searchbar{
     font-size: 1.3em;
     font-family: 'Playfair Display', serif;
     margin-left: 5.5em;
+    cursor: pointer;
 }
