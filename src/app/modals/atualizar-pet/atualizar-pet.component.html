@@ -13,7 +13,7 @@
     <ion-row>
         <ion-col size="12" class="ion-padding centro">
             <label for="tutor" class="etiqueta">Tutor</label>
-            <input type="text" name="tutor" id="tutor" list="tutores" class="input" [(ngModel)]="tutor">
+            <input type="text" name="tutor" id="tutor" list="tutores" class="input" [(ngModel)]="tutor" (blur)="procurarTutor()">
             <datalist id="tutores" *ngIf="verificarArray(getAPI('listar', 'tutor', ''))===true">
                 <ng-container *ngFor="let tutor of getAPI('listar', 'tutor', '')">
                     <option value="{{tutor.nome}}">{{tutor.nome}}</option>
@@ -37,9 +37,9 @@
         <ion-col size="12" class="ion-padding centro">
             <label for="porte" class="etiqueta">Porte</label>
             <select name="porte" id="porte" class="input" [(ngModel)]="porte">
-                <option value="Pequeno">Pequeno</option>
-                <option value="Médio">Médio</option>
-                <option value="Grande">Grande</option>
+                <option value="P">Pequeno</option>
+                <option value="M">Médio</option>
+                <option value="G">Grande</option>
             </select>
         </ion-col>
     </ion-row>

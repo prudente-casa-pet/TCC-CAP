@@ -21,6 +21,7 @@ export class PagamentoEfetuadoPage {
   ano = this.hoje.getFullYear();              // Ano atual
   data:any = `${this.meses[this.mes]} ${this.ano}`;
   parametro:any = `${this.ano}-${this.mes}`;
+  pesquisa:any = '';
 
   // Modal
   constructor(private modalController: ModalController,
@@ -81,8 +82,7 @@ export class PagamentoEfetuadoPage {
   }
 
   // Pesquisa de pet
-  // handleInput(event:any) {
-  //   let pesquisa = event.target.value;
-  //   this.parametro = pesquisa;
-  // }
+  handleInput(event:any) {
+    this.pesquisa = event.target.value;
+  }
 }

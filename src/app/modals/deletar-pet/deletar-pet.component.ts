@@ -25,9 +25,9 @@ export class DeletarPetComponent  implements OnInit {
   @Input() customData: any;
 
   deletarPet(parametro:any){
-    let foto = this.buscarAPI('listar', 'pet', parametro)[0].foto_perfil.substring(9);  // Foto perfil do pet
+    let foto = this.buscarAPI('listar', 'pet', parametro)[0].foto_perfil;  // Foto perfil do pet
     if(foto){
-      this.buscarAPI('deletarArquivos', foto, '');  // Apaga foto de perfil
+      this.deletarArquivo(foto);  // Apaga foto de perfil
     }
     this.buscarAPI('deletar', 'pet', parametro);  // Apaga pet
     this.modalController.dismiss();
@@ -46,4 +46,9 @@ export class DeletarPetComponent  implements OnInit {
     }
   }
 
+  deletarArquivo(caminho:any) {
+    const request = new XMLHttpRequest();
+    request.open('GET', `http://localhost/Aula/API/deletar${caminho}`, false);
+    request.send();
+  }
 }
