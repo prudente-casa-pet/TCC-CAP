@@ -29,7 +29,7 @@
 // Deixa modais arrendodados e define o tamanho
 ion-modal::part(content) {
     border-radius: 50px; 
-    max-height: 690px;
+    max-height: 100vh;
     height: auto;
     min-width: 450px;
     width: auto;

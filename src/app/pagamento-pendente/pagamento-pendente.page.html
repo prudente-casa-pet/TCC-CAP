@@ -62,56 +62,24 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos">
-
-          <div class="elemento">
-            <div class="primeiraLinha">
-              <p class="titulo">08/08/2023 - Amanda Cancian</p>
-              <div class="botoes">
-                <ion-icon name="card"></ion-icon>
+      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_pendente', parametro))===true">
+          <div class="elemento" *ngFor="let pagamento of buscarAPI('listar', 'pagamento_pendente', parametro)">
+            <ng-container *ngIf="pagamento.tutor.includes(pesquisa) || pesquisa === ''">
+              <div class="primeiraLinha">
+                <p class="titulo">{{pagamento.data}} - {{pagamento.tutor}}</p>
+                <div class="botoes">
+                  <ion-icon name="card"></ion-icon>
+                </div>
               </div>
-            </div>
-            <div class="segundaLinha">
-              <ul>
-                <li><b>Valor:</b> R$ 35,00</li>
-                <li><b>Desconto:</b> R$ 0,00</li>
-                <li><b>Valor Total:</b> R$ 35,00</li>
-              </ul>
-            </div>
+              <div class="segundaLinha">
+                <ul>
+                  <li><b>Valor:</b> R$ {{pagamento.valor}}</li>
+                  <li><b>Desconto:</b> R$ {{pagamento.desconto}}</li>
+                  <li><b>Valor Total:</b> R$ {{pagamento.total}}</li>
+                </ul>
+              </div>
+            </ng-container>
         </div>
-  
-        <div class="elemento">
-          <div class="primeiraLinha">
-            <p class="titulo">25/08/2023 - Patrícia Dias</p>
-            <div class="botoes">
-              <ion-icon name="card"></ion-icon>
-            </div>
-          </div>
-          <div class="segundaLinha">
-            <ul>
-              <li><b>Valor:</b> R$ 45,00</li>
-                <li><b>Desconto:</b> R$ 5,00</li>
-                <li><b>Valor Total:</b> R$ 40,00</li>
-            </ul>
-          </div>
-      </div>
-
-      <div class="elemento">
-        <div class="primeiraLinha">
-          <p class="titulo">30/08/2023</p>
-          <div class="botoes">
-            <ion-icon name="card"></ion-icon>
-          </div>
-        </div>
-        <div class="segundaLinha">
-          <ul>
-            <li><b>Valor:</b> R$ 50,00</li>
-                <li><b>Desconto:</b> R$ 10,00</li>
-                <li><b>Valor Total:</b> R$ 40,00</li>
-          </ul>
-        </div>
-    </div>
-
       </div>
     </ion-col>
   </ion-row>

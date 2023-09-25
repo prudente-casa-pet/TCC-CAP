@@ -51,11 +51,10 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos">
-
-          <div class="elemento">
+      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'tipoprocedimento', parametro))===true">
+          <div class="elemento" *ngFor="let procedimento of buscarAPI('listar', 'tipoprocedimento', parametro)">
             <div class="primeiraLinha">
-              <p class="titulo">Castração</p>
+              <p class="titulo">{{procedimento.nome}}</p>
               <div class="botoes">
                 <ion-fab-button size="small">
                   <ion-icon name="create-outline"></ion-icon>
@@ -68,51 +67,10 @@
             </div>
             <div class="segundaLinha">
               <ul>
-                <li><b>Intervalo:</b> 0</li>
+                <li><b>Intervalo:</b>{{procedimento.intervalo}}</li>
               </ul>
             </div>
         </div>
-  
-        <div class="elemento">
-          <div class="primeiraLinha">
-            <p class="titulo">Vacina de raiva</p>
-            <div class="botoes">
-              <ion-fab-button size="small">
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-fab-button>
-              <ion-fab-button size="small">
-                <ion-icon name="trash"></ion-icon>
-              </ion-fab-button>
-
-            </div>
-          </div>
-          <div class="segundaLinha">
-            <ul>
-              <li><b>Intervalo:</b> 6 meses</li>
-            </ul>
-          </div>
-      </div>
-
-      <div class="elemento">
-        <div class="primeiraLinha">
-          <p class="titulo">Vermífugo</p>
-          <div class="botoes">
-            <ion-fab-button size="small">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-fab-button>
-            <ion-fab-button size="small">
-              <ion-icon name="trash"></ion-icon>
-            </ion-fab-button>
-
-          </div>
-        </div>
-        <div class="segundaLinha">
-          <ul>
-            <li><b>Intervalo:</b> 2 meses</li>
-          </ul>
-        </div>
-    </div>
-
       </div>
     </ion-col>
   </ion-row>
