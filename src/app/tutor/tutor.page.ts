@@ -1,20 +1,43 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { AdicionarTutorComponent } from '../modals/adicionar-tutor/adicionar-tutor.component';
+// import { AtualizarPetComponent } from '../modals/atualizar-pet/atualizar-pet.component';
+import { DeletarTutorComponent } from '../modals/deletar-tutor/deletar-tutor.component';
 
 @Component({
   selector: 'app-tutor',
   templateUrl: './tutor.page.html',
   styleUrls: ['./tutor.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, RouterLink]
 })
-export class TutorPage implements OnInit {
+export class TutorPage{
 
-  constructor() { }
+  // Modal
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {
+  }
+
+  // Abre modal de adicionar tutor
+  async modalAdicionarTutor() {
+    const modal = await this.modalController.create({
+      component: AdicionarTutorComponent,
+    });
+    await modal.present();
+  }
+
+  // Abre modal de deletar tutor passa parâmetro
+  async modalDeletarTutor(data: any) {
+    const modal = await this.modalController.create({
+      component: DeletarTutorComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
   }
 
   // Lógica de listagem

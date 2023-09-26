@@ -43,7 +43,7 @@
     <ion-col size="6" class="divInicio"><ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)"></ion-searchbar></ion-col>
     <ion-col size="3" class="divInicio">
       <ion-fab>
-        <ion-fab-button>
+        <ion-fab-button (click)="modalAdicionarTutor()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -64,7 +64,7 @@
                 <ion-fab-button size="small">
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-fab-button>
-                <ion-fab-button size="small">
+                <ion-fab-button size="small" (click)="modalDeletarTutor(tutor)">
                   <ion-icon name="trash"></ion-icon>
                 </ion-fab-button>
               </div>
