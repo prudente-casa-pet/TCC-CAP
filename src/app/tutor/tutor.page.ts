@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { AdicionarTutorComponent } from '../modals/adicionar-tutor/adicionar-tutor.component';
-// import { AtualizarPetComponent } from '../modals/atualizar-pet/atualizar-pet.component';
+import { AtualizarTutorComponent } from '../modals/atualizar-tutor/atualizar-tutor.component';
 import { DeletarTutorComponent } from '../modals/deletar-tutor/deletar-tutor.component';
 
 @Component({
@@ -25,6 +25,17 @@ export class TutorPage{
   async modalAdicionarTutor() {
     const modal = await this.modalController.create({
       component: AdicionarTutorComponent,
+    });
+    await modal.present();
+  }
+
+  // Abre modal de atualizar pet passa parâmetro
+  async modalAtualizarTutor(data: any) {
+    const modal = await this.modalController.create({
+      component: AtualizarTutorComponent,
+      componentProps: {
+        customData: data
+      },
     });
     await modal.present();
   }
