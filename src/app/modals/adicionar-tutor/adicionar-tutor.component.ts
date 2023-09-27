@@ -32,23 +32,23 @@ export class AdicionarTutorComponent  implements OnInit {
   // LÓGICA DE ADICIONAR
   
   async adicionarTutor () {
-      let tutor = {
-        'nome': `'${this.nome}'`,
-        'cpf': `'${this.cpf}'`,
-        'telefone': `'${this.telefone}'`,
-        'data_nasc': `'${this.data_nasc}'`,
-        'endereco': `'${this.endereco}'`,
-        'email': `'${this.email}'`,
-        'senha': `'${this.senha}'`
-      }
-      let resposta = await this.postAPI('adicionar', 'tutor', '', tutor);
-      if (resposta.ERRO) {
-        this.presentToast(resposta.ERRO); //chama toast da verificação
-      }
-      else {
-        this.modalController.dismiss();
-      }
+    let tutor = {
+      'nome': `'${this.nome}'`,
+      'cpf': `'${this.cpf}'`,
+      'telefone': `'${this.telefone}'`,
+      'data_nasc': `'${this.data_nasc}'`,
+      'endereco': `'${this.endereco}'`,
+      'email': `'${this.email}'`,
+      'senha': `'${this.senha}'`
     }
+    let resposta = await this.postAPI('adicionar', 'tutor', '', tutor);
+    if (resposta.ERRO) {
+      this.presentToast(resposta.ERRO); //chama toast da verificação
+    }
+    else {
+      this.modalController.dismiss();
+    }
+  }
   
   // Faz um post na API
   async postAPI (acao:any, tabela:any, parametro:any, dados:any) {

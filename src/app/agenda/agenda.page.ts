@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { AdicionarAgendamentoComponent } from '../modals/adicionar-agendamento/adicionar-agendamento.component';
+
 
 @Component({
   selector: 'app-agenda',
@@ -12,6 +14,20 @@ import { IonicModule } from '@ionic/angular';
   
 })
 export class AgendaPage {
+
+// Modal
+constructor(private modalController: ModalController) {}
+
+// Abre modal de adicionar pet
+async modalAdicionarAgendamento(data: any) {
+  const modal = await this.modalController.create({
+    component: AdicionarAgendamentoComponent,
+    componentProps: {
+      customData: data
+    },
+  });
+  await modal.present();
+}
 
 meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
