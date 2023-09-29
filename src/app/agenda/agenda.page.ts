@@ -14,9 +14,14 @@ import { AdicionarAgendamentoComponent } from '../modals/adicionar-agendamento/a
   
 })
 export class AgendaPage {
-
-// Modal
-constructor(private modalController: ModalController) {}
+  
+  // Modal
+  constructor(private modalController: ModalController) {}
+  ngOnInit(): void {
+    this.agendamentosMesAnt = this.buscarAPI('listar', 'agendamento', this.gerarDataAnt(this.ano, this.mes))
+    this.agendamentosMesProx = this.buscarAPI('listar', 'agendamento', this.gerarDataProx(this.ano, this.mes))
+    this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
+}
 
 // Abre modal de adicionar pet
 async modalAdicionarAgendamento(data: any) {
@@ -27,6 +32,8 @@ async modalAdicionarAgendamento(data: any) {
     },
   });
   await modal.present();
+  this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
+  
 }
 
 meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -50,6 +57,21 @@ priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que apar
 proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
 
 fimDeSemana: number[] = this.gerarFimDeSemana()         // Array com os dias que são sábado ou domingo
+
+agendamentosMesAnt: any;
+agendamentosMesProx: any;
+agendamentosMes:any;
+
+pets: any = []
+
+filtrarData(dia:any){
+  return this.agendamentosMes.filter((item:any) => item.data === `2023-09-0${dia}`)
+}
+
+buscarNomePet(id:any){
+  let nomePet = this.buscarAPI('listar', 'pet', id)[0].nome
+  this.pets[id] = nomePet
+}
 
 // Gera os dias que são sábado ou domingo
 gerarFimDeSemana(){
@@ -84,6 +106,10 @@ mesAnterior(){
   this.priMesAnt = this.antDia - this.quantAntDias + 1;         // Primeiro dia que aparecera do mês anterior
   this.proxDias = 6 - this.ultimoDia.getDay();                  // Quantidade de dias que aparecera do mês seguinte 
   this.fimDeSemana = this.gerarFimDeSemana();                   // Array com os dias que são sábado ou domingo
+
+  this.agendamentosMesAnt = this.buscarAPI('listar', 'agendamento', this.gerarDataAnt(this.ano, this.mes))
+  this.agendamentosMesProx = this.buscarAPI('listar', 'agendamento', this.gerarDataProx(this.ano, this.mes))
+  this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
 }
 
 proximoMes(){
@@ -106,6 +132,10 @@ proximoMes(){
   this.priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
   this.proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
   this.fimDeSemana = this.gerarFimDeSemana();                  // Array com os dias são sábado ou domingo
+
+  this.agendamentosMesAnt = this.buscarAPI('listar', 'agendamento', this.gerarDataAnt(this.ano, this.mes))
+  this.agendamentosMesProx = this.buscarAPI('listar', 'agendamento', this.gerarDataProx(this.ano, this.mes))
+  this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
 }
 
 adicionarUmDia(data: Date): Date {
@@ -126,12 +156,17 @@ generateRange(start: number, end: number): number[] {
   return range;
 }
 
-gerarDataAnt(ano:any, mes:any, dia:any){
-  const dataDia = `${ano}-${mes-1 < 10 ? `0${mes}` : mes}-${dia < 10 ? '0' + dia : dia}`;
+gerarDataAnt(ano:any, mes:any){
+  const dataDia = `${ano}-${mes-1 < 10 ? `0${mes}` : mes}`;
   return dataDia;
 }
 
-gerarData(ano:any, mes:any, dia:any){
+gerarData(ano:any, mes:any){
+  const dataDia = `${ano}-${mes < 10 ? `0${mes+1}` : mes+1}`;
+  return dataDia;
+}
+
+gerarDataDia(ano:any, mes:any, dia:any){
   const dataDia = `${ano}-${mes < 10 ? `0${mes+1}` : mes+1}-${dia < 10 ? '0' + dia : dia}`;
   return dataDia;
 }
@@ -156,8 +191,8 @@ gerarDataPostItAPI(data:any){
   return dataFormatada;
 }
 
-gerarDataProx(ano:any, mes:any, dia:any){
-  const dataDia = `${ano}-${mes+2 < 10 ? `0${mes+2}` : mes+2}-${dia < 10 ? '0' + dia : dia}`;
+gerarDataProx(ano:any, mes:any){
+  const dataDia = `${ano}-${mes+2 < 10 ? `0${mes+2}` : mes+2}`;
   return dataDia;
 }
 
