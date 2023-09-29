@@ -75,7 +75,6 @@ export class AdicionarPetComponent  implements OnInit {
         'especie': `'${this.especie}'`,
         'raca': `'${this.raca}'`,
         'porte': `'${this.porte}'`,
-        'sociabilidade': Number(this.sociabilidade),
         'observacoes': `'${this.observacoes}'`,
         'foto_perfil': `'${this.caminho}'`
       }

@@ -17,7 +17,7 @@ export class AdicionarAgendamentoComponent  implements OnInit {
   @Input() customData: any;
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.gerarValor()    
   }
 
   // Declaração de variavéis
@@ -26,26 +26,44 @@ export class AdicionarAgendamentoComponent  implements OnInit {
   tutorSelecionado = true;
   cod_pet: any = '';
   servico: any = '1';
-  qtd_banho: any = '';
-  observacoes: any = '';
+  qtd_banho: any = '0';
+  observacao: any = '';
   cod_pacote: any = '';
+  data_saida: any = '';
   status: any = false;
+  cod_agendamento:any = '';
   valor: any = '0.00';
-  desconto: any = 0;
+  desconto: any = '0.00';
   valor_total: any = Number(this.valor)+Number(this.desconto);
   forma:any = '';
 
 
   // LÓGICA DO FORMULARIO
   procurarTutor () {  // Ao desclicar input tutor, procura um tutor com o nome
-    let res = this.getAPI('listar', 'tutor', this.tutor)[0];
-    if (res){  // Se for achado um tutor, permite cadastro
-      this.tutor = res.nome;
-      this.tutorSelecionado = false;
-      this.cod_tutor = res.cod_tutor;
-    } else {
-      this.tutorSelecionado = true;
+    if(this.tutor !== ""){
+      let res = this.getAPI('listar', 'tutor', this.tutor)[0];
+      if (res){  // Se for achado um tutor, permite cadastro
+        this.tutor = res.nome;
+        this.tutorSelecionado = false;
+        this.cod_tutor = res.cod_tutor;
+      } else {
+        this.tutorSelecionado = true;
+      }
     }
+  }
+
+  gerarValor(){
+    let diarias = 1
+    if (this.data_saida != '') {
+      let d1:any = new Date(this.customData)
+      let d2:any = new Date(this.data_saida)
+      let diff = d2 - d1
+      diarias = diff / (24 * 60 * 60 * 1000)
+    }
+    let valor_diaria = this.getAPI('listar', 'servico', this.servico)[0].valor_diaria;
+    this.valor = valor_diaria * diarias
+    this.valor_total = this.valor - this.desconto;
+
   }
   
   // Verifica se é array
@@ -55,9 +73,41 @@ export class AdicionarAgendamentoComponent  implements OnInit {
 
   // LÓGICA DE ADICIONAR  
   async adicionarAgendamento () {
-    if (this.tutorSelecionado) {  // Se um tutor não for escolhido
-      this.presentToast("Escolha um tutor válido");
-    } 
+    if (this.cod_pet === ""){
+      this.presentToast("Escolha um pet");
+    } else {
+      let agendamento = {
+        'cod_pet': Number(this.cod_pet),
+        'cod_servico': Number(this.servico),
+        'cod_pacote': this.cod_pacote == '' ? "NULL" : Number(this.cod_pacote),
+        'data': `'${this.customData}'`,
+        'data_saida': `'${this.data_saida === '' ? this.customData : this.data_saida}'`,
+        'qtd_banho': Number(this.qtd_banho),
+        'observacao': `'${this.observacao}'`
+      }
+      let resposta = await this.postAPI('adicionar', 'agendamento', '', agendamento);
+      this.cod_agendamento = resposta.ID;
+      if (resposta.ERRO) {
+        this.presentToast(resposta.ERRO); //chama toast da verificação
+      }
+      else {
+        let pagamento = {
+          'cod_agendamento': Number(this.cod_agendamento),
+          'valor': Number(this.valor),
+          'desconto': Number(this.desconto),
+          'valor_total': Number(this.valor_total),
+          'forma': `'${this.forma}'`,
+          'status': this.status ? 1 : 0
+        }
+        console.log(JSON.stringify(pagamento))
+        let resposta = await this.postAPI('adicionar', 'pgt_agendamento', '', pagamento);
+        if (resposta.ERRO) {
+          this.presentToast(resposta.ERRO); //chama toast da verificação
+        } else {
+          this.modalController.dismiss();
+        }
+      }
+    }
   }
     
     // Faz um post na API
