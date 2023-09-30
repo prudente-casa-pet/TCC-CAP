@@ -15,7 +15,7 @@ import { ListarAgendamentosComponent } from '../listar-agendamentos/listar-agend
 export class AdicionarAgendamentoComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
-  @Input() customData: any;
+  @Input() customData: any
 
   ngOnInit(): void {
     this.dataModal = `${this.customData.slice(8,10)}/${this.customData.slice(5,7)}`
@@ -27,7 +27,7 @@ export class AdicionarAgendamentoComponent  implements OnInit {
     const modal = await this.modalController.create({
       component: ListarAgendamentosComponent,
       componentProps: {
-        customData: data;
+        customData: data
       },
     });
     this.modalController.dismiss();
