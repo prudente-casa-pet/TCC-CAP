@@ -5,52 +5,33 @@ import { IonicModule, ModalController, NavParams, ToastController } from '@ionic
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-atualizar-tutor',
-  templateUrl: './atualizar-tutor.component.html',
-  styleUrls: ['./atualizar-tutor.component.scss'],
+  selector: 'app-atualizar-servico',
+  templateUrl: './atualizar-servico.component.html',
+  styleUrls: ['./atualizar-servico.component.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
-
-export class AtualizarTutorComponent  implements OnInit {
+export class AtualizarServicoComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
   @Input() customData: any;
 
   // Declaração de variaveis
-  nome: any;
-  cpf: any;
-  telefone: any;
-  data_nasc: any;
-  endereco: any;
-  email: any;
-  senha: any;
-  
-  // Iniciação das variaveis
+  valor_diaria: any;
+
+  // Iniciação da variavel
   ngOnInit(): void {
-    this.nome = this.customData.nome;
-    this.cpf = this.customData.cpf;
-    this.telefone = this.customData.telefone;
-    this.data_nasc = this.customData.data_nasc;
-    this.endereco = this.customData.endereco;
-    this.email = this.customData.email;
-    this.senha = this.customData.senha;
+    this.valor_diaria = this.customData.valor_diaria;
   }
 
-  // LÓGICA DE ATUALIZAÇÃO
+    // LÓGICA DE ATUALIZAÇÃO
 
-  async atualizarTutor (codigo:any) {
+  async atualizarServico (codigo:any) {
 
-    let tutor = {
-      'nome': `'${this.nome}'`,
-      'cpf': `'${this.cpf}'`,
-      'telefone': `'${this.telefone}'`,
-      'data_nasc': `'${this.data_nasc}'`,
-      'endereco': `'${this.endereco}'`,
-      'email': `'${this.email}'`,
-      'senha': `'${this.senha}'`
+    let servico = {
+      'valor_diaria': `'${this.valor_diaria}`
     }
-    let resposta = await this.postAPI('atualizar', 'tutor', codigo, tutor); 
+    let resposta = await this.postAPI('atualizar', 'servico', codigo, servico); 
     if (resposta.ERRO) {
       this.presentToast(resposta.ERRO); //chama toast da verificação
     }
@@ -107,4 +88,5 @@ export class AtualizarTutorComponent  implements OnInit {
     
     await toast.present();
   }
+
 }

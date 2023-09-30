@@ -1,20 +1,34 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { AtualizarServicoComponent } from '../modals/atualizar-servico/atualizar-servico.component';
 
 @Component({
   selector: 'app-servico',
   templateUrl: './servico.page.html',
   styleUrls: ['./servico.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, RouterLink]
 })
-export class ServicoPage implements OnInit {
+export class ServicoPage{
 
-  constructor() { }
+  // Modal
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {
+  }
+
+
+  // Abre modal de atualizar pet passa parâmetro
+  async modalAtualizarServico(data: any) {
+    const modal = await this.modalController.create({
+      component: AtualizarServicoComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
   }
 
   // Lógica de listagem
