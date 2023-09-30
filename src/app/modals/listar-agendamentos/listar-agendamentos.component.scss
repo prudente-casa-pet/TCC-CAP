@@ -108,3 +108,30 @@ input:-webkit-autofill:focus {
 .ativo{
     color: var(--ion-color-quartenary);
 }
+
+.titulo{
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.elemento{
+    border-bottom: 1px solid var(--ion-color-primary);
+    margin-top: 8px;
+}
+
+.elemento:last-child{
+    border-bottom: none;
+}
+
+ion-fab{
+    margin-left: 2em;
+}
+
+.primeiraLinha{
+    display: flex;
+    justify-content: space-between;
+}
+
+.botoes{
+    display: flex;
+}
