@@ -15,7 +15,6 @@ export class ServicoPage{
 
   // Modal
   constructor(private modalController: ModalController) {}
-
   ngOnInit() {
   }
 
@@ -58,12 +57,6 @@ export class ServicoPage{
         console.error('Erro na requisição:', request.status);
         return Array();
     }
-  }
-
-  // Pesquisa de serviço
-  handleInput(event:any) {
-    let pesquisa = event.target.value;
-    this.parametro = pesquisa;
   }
 
 }

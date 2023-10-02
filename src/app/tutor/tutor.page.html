@@ -52,9 +52,9 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'tutor', parametro))===true">
+      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'tutor_search', parametro))===true">
 
-          <div class="elemento" *ngFor="let tutor of buscarAPI('listar', 'tutor', parametro)">
+          <div class="elemento" *ngFor="let tutor of buscarAPI('listar', 'tutor_search', parametro)">
             <div class="primeiraLinha">
               <p class="titulo">{{tutor.nome}}</p>
               <div class="botoes">

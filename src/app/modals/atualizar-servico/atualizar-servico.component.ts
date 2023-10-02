@@ -29,7 +29,7 @@ export class AtualizarServicoComponent  implements OnInit {
   async atualizarServico (codigo:any) {
 
     let servico = {
-      'valor_diaria': `'${this.valor_diaria}`
+      'valor_diaria': Number(this.valor_diaria)
     }
     let resposta = await this.postAPI('atualizar', 'servico', codigo, servico); 
     if (resposta.ERRO) {
