@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { ListarAgendamentosComponent } from '../listar-agendamentos/listar-agendamentos.component';
 
 @Component({
   selector: 'app-adicionar-agendamento',
@@ -14,11 +15,24 @@ import { FormsModule } from '@angular/forms';
 export class AdicionarAgendamentoComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
-  @Input() customData: any;
+  @Input() customData: any
 
   ngOnInit(): void {
+    this.dataModal = `${this.customData.slice(8,10)}/${this.customData.slice(5,7)}`
     this.gerarValor()    
   }
+
+  // Abre modal de adicionar pet
+  async modalListarAgendamentos(data: any) {
+    const modal = await this.modalController.create({
+      component: ListarAgendamentosComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    this.modalController.dismiss();
+    await modal.present();
+}
 
   // Declaração de variavéis
   tutor: any = "";
@@ -36,6 +50,7 @@ export class AdicionarAgendamentoComponent  implements OnInit {
   desconto: any = '0.00';
   valor_total: any = Number(this.valor)+Number(this.desconto);
   forma:any = '';
+  dataModal:any;
 
 
   // LÓGICA DO FORMULARIO
