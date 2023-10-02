@@ -20,6 +20,7 @@ ngOnInit(): void {
 }
 
 // LÓGICA DO MODAL
+
 // Abre modal de adicionar pet
 async modalAdicionarAgendamento(data: any) {
   const modal = await this.modalController.create({
@@ -83,7 +84,6 @@ gerarFimDeSemana () {
   }
   return fimSemana;
 }
-
 
 mesAnterior () {
   if (this.mes == 0){  // Se é janeiro

@@ -20,10 +20,10 @@
                     <p class="titulo">{{buscarAPI('listar', 'pet', agendamento.cod_pet)[0].nome}} - {{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</p>
                     <div class="botoes">
                       <ion-fab-button size="small">
-                        <ion-icon name="create-outline"></ion-icon>
+                        <ion-icon name="create-outline" (click)="modalAtualizarAgendamento(agendamento)"></ion-icon>
                       </ion-fab-button>
                       <ion-fab-button size="small">
-                        <ion-icon name="trash"></ion-icon>
+                        <ion-icon name="trash" (click)="modalDeletarAgendamento(agendamento)"></ion-icon>
                       </ion-fab-button>
       
                     </div>

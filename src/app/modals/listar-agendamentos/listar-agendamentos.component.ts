@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { AdicionarAgendamentoComponent } from '../adicionar-agendamento/adicionar-agendamento.component';
+import { AtualizarAgendamentoComponent } from '../atualizar-agendamento/atualizar-agendamento.component';
+import { DeletarAgendamentoComponent } from '../deletar-agendamento/deletar-agendamento.component';
 
 @Component({
   selector: 'app-listar-agendamentos',
@@ -18,12 +20,12 @@ export class ListarAgendamentosComponent  implements OnInit {
   @Input() customData: any;
 
   ngOnInit(): void {
-    this.dataModal = `${this.customData.slice(8,10)}/${this.customData.slice(5,7)}`
+    this.dataModal = `${this.customData.slice(8,10)}/${this.customData.slice(5,7)}`;
   }
 
   dataModal:any = "";
 
-  async modalAdicionarAgendamento(data: any) {
+  async modalAdicionarAgendamento (data: any) {
     const modal = await this.modalController.create({
       component: AdicionarAgendamentoComponent,
       componentProps: {
@@ -32,13 +34,47 @@ export class ListarAgendamentosComponent  implements OnInit {
     });
     this.modalController.dismiss();
     await modal.present();
+
+    modal.onDidDismiss().then(() => {
+      location.reload();
+    });
   }
 
-  verificarArray(items:any): any {
-    return Array.isArray(items)
+  async modalAtualizarAgendamento (data: any) {
+    const modal = await this.modalController.create({
+      component: AtualizarAgendamentoComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    this.modalController.dismiss();
+    await modal.present();
+
+    modal.onDidDismiss().then(() => {
+      location.reload();
+    });
+  }
+
+  async modalDeletarAgendamento (data: any) {
+    const modal = await this.modalController.create({
+      component: DeletarAgendamentoComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    this.modalController.dismiss();
+    await modal.present();
+
+    modal.onDidDismiss().then(() => {
+      location.reload();
+    });
+  }
+
+  verificarArray (items:any): any {
+    return Array.isArray(items);
   }
   
-  generateRange(start: number, end: number): number[] {
+  generateRange (start: number, end: number): number[] {
     const range = [];
     for (let i = start; i <= end; i++) {
       range.push(i);
@@ -47,7 +83,7 @@ export class ListarAgendamentosComponent  implements OnInit {
   }
   
   // Função que faz uma busca na API
-  buscarAPI(metodo:any, tabela:any, parametro:any) {
+  buscarAPI (metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();
     request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);
     request.send();
