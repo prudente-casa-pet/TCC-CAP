@@ -42,7 +42,7 @@
     <ion-col size="6" class="divInicio"><ion-searchbar placeholder="Pesquisar"></ion-searchbar></ion-col>
     <ion-col size="3" class="divInicio">
       <ion-fab>
-        <ion-fab-button>
+        <ion-fab-button (click)="modalAdicionarProcedimentos()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -56,7 +56,7 @@
             <div class="primeiraLinha">
               <p class="titulo">{{procedimento.nome}}</p>
               <div class="botoes">
-                <ion-fab-button size="small">
+                <ion-fab-button size="small" (click)="modalAtualizarProcedimentos(procedimento)">
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-fab-button>
                 <ion-fab-button size="small" (click)="modalDeletarProcedimentos(procedimento)">

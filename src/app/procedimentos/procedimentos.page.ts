@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
-// import { AdicionarPetComponent } from '../modals/adicionar-pet/adicionar-pet.component';
-// import { AtualizarPetComponent } from '../modals/atualizar-pet/atualizar-pet.component';
+import { AdicionarProcedimentosComponent } from '../modals/adicionar-procedimentos/adicionar-procedimentos.component';
+import { AtualizarProcedimentosComponent } from '../modals/atualizar-procedimentos/atualizar-procedimentos.component';
 import { DeletarProcedimentosComponent } from '../modals/deletar-procedimentos/deletar-procedimentos.component';
 
 @Component({
@@ -19,6 +19,25 @@ export class ProcedimentosPage{
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {
+  }
+
+  // Abre modal de adicionar procedimentos
+  async modalAdicionarProcedimentos() {
+    const modal = await this.modalController.create({
+      component: AdicionarProcedimentosComponent,
+    });
+    await modal.present();
+  }
+
+  // Abre modal de atualizar procedimentos passa parâmetro
+  async modalAtualizarProcedimentos(data: any) {
+    const modal = await this.modalController.create({
+      component: AtualizarProcedimentosComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
   }
 
   // Abre modal de deletar procedimentos passa parâmetro

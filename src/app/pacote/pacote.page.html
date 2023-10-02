@@ -40,7 +40,7 @@
 
   <ion-row>
     <ion-col size="3" class="divInicio"></ion-col>
-    <ion-col size="6" class="divInicio"><ion-title class="tituloPagina">Pacotes - Aysha</ion-title></ion-col>
+    <ion-col size="6" class="divInicio"><ion-title class="tituloPagina">Pacotes - {{buscarAPI('listar', 'pet', pet.cod_pet)[0].nome}}</ion-title></ion-col>
     <ion-col size="3" class="divInicio fab">
       <ion-fab>
         <ion-fab-button>
@@ -52,13 +52,13 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos">
+      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pacote_pet', pet.cod_pet))===true">
 
-          <div class="elemento">
+          <div class="elemento" *ngFor="let pacote of buscarAPI('listar', 'pacote_pet', pet.cod_pet)">
             <div class="primeiraLinha">
-              <p class="titulo">Pacote 4 diárias</p>
+              <p class="titulo">{{pacote.nome}}</p>
               <div class="botoes">
-                <ion-fab-button size="small">
+                <ion-fab-button size="small" (click)="modalDeletarPacote(pacote)">
                   <ion-icon name="trash"></ion-icon>
                 </ion-fab-button>
 
@@ -66,47 +66,11 @@
             </div>
             <div class="segundaLinha">
               <ul>
-                <li><b>Quantidade de diárias:</b> 4</li>
-                <li><b>Diárias disponíveis:</b> 3</li>
+                <li><b>Quantidade de diárias:</b> {{pacote.qtd_diaria}}</li>
+                <li><b>Diárias disponíveis:</b> {{pacote.diarias_disponiveis}}</li>
               </ul>
             </div>
         </div>
-        
-        <div class="elemento">
-          <div class="primeiraLinha">
-            <p class="titulo">Pacote Páscoa</p>
-            <div class="botoes">
-              <ion-fab-button size="small">
-                <ion-icon name="trash"></ion-icon>
-              </ion-fab-button>
-
-            </div>
-          </div>
-          <div class="segundaLinha">
-            <ul>
-              <li><b>Quantidade de diárias:</b> 4</li>
-                <li><b>Diárias disponíveis:</b> 3</li>
-            </ul>
-          </div>
-      </div>
-      
-      <div class="elemento">
-        <div class="primeiraLinha">
-          <p class="titulo">Pacote Natal</p>
-          <div class="botoes">
-            <ion-fab-button size="small">
-              <ion-icon name="trash"></ion-icon>
-            </ion-fab-button>
-
-          </div>
-        </div>
-        <div class="segundaLinha">
-          <ul>
-            <li><b>Quantidade de diárias:</b> 4</li>
-            <li><b>Diárias disponíveis:</b> 3</li>
-          </ul>
-        </div>
-    </div>
 
       </div>
     </ion-col>

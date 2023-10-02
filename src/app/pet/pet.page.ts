@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { SharedDataService } from '../services/shared-data.service';
 import { AdicionarPetComponent } from '../modals/adicionar-pet/adicionar-pet.component';
 import { AtualizarPetComponent } from '../modals/atualizar-pet/atualizar-pet.component';
 import { DeletarPetComponent } from '../modals/deletar-pet/deletar-pet.component';
@@ -16,9 +17,12 @@ import { DeletarPetComponent } from '../modals/deletar-pet/deletar-pet.component
   
 })
 export class PetPage {
+  router: Router;
 
   // Modal
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService) {
+    this.router = router;
+  }
 
   // Abre modal de adicionar pet
   async modalAdicionarPet() {
@@ -48,6 +52,12 @@ export class PetPage {
       },
     });
     await modal.present();
+  }
+
+  // Abre página do pacote do pet
+  async abrirPacotes(data: any){
+    this.sharedDataService.petPacote = data;
+    this.router.navigate(['/', 'pacote']);
   }
 
   // Lógica de listagem
