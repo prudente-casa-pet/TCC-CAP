@@ -3,7 +3,7 @@ import { Component} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { SharedDataService } from '../../services/shared-data.service';
+// import { SharedDataService } from '../../services/shared-data.service';
 
 
 @Component({
@@ -14,23 +14,6 @@ import { SharedDataService } from '../../services/shared-data.service';
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
 export class ListarPagamentoTutorComponent {
-
-  meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-  hoje = new Date();                          // Data atual
-  mes = this.hoje.getMonth();                 // Mês atual
-  ano = this.hoje.getFullYear();              // Ano atual
-  data:any = `${this.meses[this.mes]} ${this.ano}`;
-  parametro:any = `${this.ano}-${this.mes}`;
-
-  // ngOnInit(): void {
-  //   this.tutor = `{{buscarAPI('listar', 'tutor', pagamento_pendente.cod_tutor)[0].cod_codtutor}}`;
-  // }
-
-
-  // Modal
-  constructor(private modalController: ModalController,
-    private sharedDataService: SharedDataService) {}
-
 
   // Lógica de listagem
 
