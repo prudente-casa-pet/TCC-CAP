@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
+import { AdicionarPacoteComponent } from '../modals/adicionar-pacote/adicionar-pacote.component';
 import { DeletarPacoteComponent } from '../modals/deletar-pacote/deletar-pacote.component';
 
 
@@ -19,8 +20,18 @@ export class PacotePage implements OnInit {
 
   pet:any = this.sharedDataService.petPacote;
 
+
   ngOnInit() {
     }
+
+  // Abre modal de adicionar tutopacoter
+  async modalAdicionarPacote() {
+    const modal = await this.modalController.create({
+      component: AdicionarPacoteComponent,
+    });
+    await modal.present();
+  }
+
 
   // Abre modal de deletar pacote passa parâmetro
   async modalDeletarPacote(data: any) {

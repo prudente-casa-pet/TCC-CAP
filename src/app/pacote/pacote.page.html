@@ -43,7 +43,7 @@
     <ion-col size="6" class="divInicio"><ion-title class="tituloPagina">Pacotes - {{buscarAPI('listar', 'pet', pet.cod_pet)[0].nome}}</ion-title></ion-col>
     <ion-col size="3" class="divInicio fab">
       <ion-fab>
-        <ion-fab-button>
+        <ion-fab-button (click)="modalAdicionarPacote()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
