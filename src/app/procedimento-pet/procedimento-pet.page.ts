@@ -1,22 +1,28 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Input} from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-
+import { IonicModule, ModalController } from '@ionic/angular';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
-  selector: 'app-listar-pagamento-tutor',
-  templateUrl: './listar-pagamento-tutor.component.html',
-  styleUrls: ['./listar-pagamento-tutor.component.scss'],
+  selector: 'app-procedimento-pet',
+  templateUrl: './procedimento-pet.page.html',
+  styleUrls: ['./procedimento-pet.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterLink, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule]
 })
-export class ListarPagamentoTutorComponent {
-  constructor(private modalController: ModalController) {}
-  @Input() customData: any;
+export class ProcedimentoPetPage implements OnInit {
 
-  // Lógica de listagem
+  constructor(private modalController: ModalController, private sharedDataService: SharedDataService) { }
+
+  pet:any = this.sharedDataService.petProcedimento;
+
+
+  ngOnInit() {
+    console.log(this.pet);
+    }
+
+    // Lógica de listagem
 
   verificarArray(items:any): any {
     return Array.isArray(items)
@@ -29,7 +35,7 @@ export class ListarPagamentoTutorComponent {
     }
     return range;
   }
-  
+
   // Função que faz uma busca na API
   buscarAPI(metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();

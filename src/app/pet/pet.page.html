@@ -59,6 +59,9 @@
             <div class="primeiraLinha">
               <p class="titulo">{{pet.nome}} - {{buscarAPI('listar', 'tutor', pet.cod_tutor)[0].nome}}</p>
               <div class="botoes">
+                <ion-fab-button size="small" (click)="abrirProcedimentos(pet)">
+                  <ion-icon name="bandage-outline"></ion-icon>
+                </ion-fab-button>
                 <ion-fab-button size="small" (click)="abrirPacotes(pet)">
                   <ion-icon name="briefcase"></ion-icon>
                 </ion-fab-button>

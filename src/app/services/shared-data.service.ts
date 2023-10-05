@@ -6,4 +6,5 @@ import { Injectable } from '@angular/core';
 export class SharedDataService {
   public mes: any ='';
   public petPacote:any = '';
+  public petProcedimento:any = '';
 }

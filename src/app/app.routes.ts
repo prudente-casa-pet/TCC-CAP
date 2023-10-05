@@ -51,5 +51,9 @@ export const routes: Routes = [
     path: 'pagamento-pendente',
     loadComponent: () => import('./pagamento-pendente/pagamento-pendente.page').then( m => m.PagamentoPendentePage),
     canActivate: [IsLoginGuard]
+  },
+  {
+    path: 'procedimento-pet',
+    loadComponent: () => import('./procedimento-pet/procedimento-pet.page').then( m => m.ProcedimentoPetPage)
   }
 ];

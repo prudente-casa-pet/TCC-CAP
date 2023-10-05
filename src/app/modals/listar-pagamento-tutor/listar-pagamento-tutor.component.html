@@ -8,10 +8,10 @@
           </ion-row>
         <ion-row>
             <ion-col size="12">
-              <div class="elementos" >
-                  <div class="elemento">
+              <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_pendente_tutor', customData))===true">
+                  <div class="elemento" *ngFor="let pagamentoPendenteT of buscarAPI('listar', 'pagamento_pendente_tutor', customData)">
                       <div class="primeiraLinha">
-                        <p class="titulo">08-2023</p>
+                        <p class="titulo">{{pagamentoPendenteT.data}}</p>
                         <div class="botoes">
                           <ion-fab-button size="small">
                             <ion-icon name="card"></ion-icon>
@@ -20,21 +20,29 @@
                       </div>
                       <div class="segundaLinha">
                         <ul>
-                          <li><b>Valor:</b> R$ 80,00</li>
-                          <li><b>Desconto:</b> R$ 5,00</li>
-                          <li><b>Valor Total:</b> R$ 75,00</li>
+                          <li><b>Valor:</b> R$ {{pagamentoPendenteT.valor}}</li>
+                          <li><b>Desconto:</b> R$ {{pagamentoPendenteT.desconto}}</li>
+                          <li><b>Valor Total:</b> R$ {{pagamentoPendenteT.total}}</li>
                         </ul>
                       </div>
                 </div>
               </div>
             </ion-col>
           </ion-row>
+
+          <div class="linha"></div>
+          <ion-row >
+            <ion-col size="12" class="centro">
+                <ion-title class="titulo_pendente">Pagamentos Efetuados</ion-title>
+            </ion-col>
+            </ion-row>
+
           <ion-row>
             <ion-col size="12">
-              <div class="elementos" >
-                  <div class="elemento">
+              <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_efetuado_tutor', customData))===true">
+                  <div class="elemento" *ngFor="let pagamentoEfetuadoT of buscarAPI('listar', 'pagamento_efetuado_tutor', customData)">
                       <div class="primeiraLinha">
-                        <p class="titulo">08-2023</p>
+                        <p class="titulo">{{pagamentoEfetuadoT.data}}</p>
                         <div class="botoes">
                           <ion-fab-button size="small">
                             <ion-icon name="card"></ion-icon>
@@ -43,59 +51,10 @@
                       </div>
                       <div class="segundaLinha">
                         <ul>
-                          <li><b>Valor:</b> R$ 80,00</li>
-                          <li><b>Desconto:</b> R$ 5,00</li>
-                          <li><b>Valor Total:</b> R$ 75,00</li>
-                        </ul>
-                      </div>
-                </div>
-              </div>
-            </ion-col>
-          </ion-row>
-      </ion-col>
-    </ion-row>
-  <div class="linha"></div>
-    <ion-row size="12" class="centro">
-      <ion-col>
-        <ion-row >
-          <ion-col size="12" class="centro">
-              <ion-title class="titulo_efetuado">Pagamentos Efetuados</ion-title>
-          </ion-col>
-          </ion-row>
-        <ion-row>
-            <ion-col size="12">
-              <div class="elementos" >
-                  <div class="elemento">
-                      <div class="primeiraLinha">
-                        <p class="titulo">08-2023</p>
-                      </div>
-                      <div class="segundaLinha">
-                        <ul>
-                          <li><b>Valor:</b> R$ 80,00</li>
-                          <li><b>Desconto:</b> R$ 5,00</li>
-                          <li><b>Valor Total:</b> R$ 75,00</li>
-                          <li><b>Forma:</b> Pix</li>
-
-                        </ul>
-                      </div>
-                </div>
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12">
-              <div class="elementos" >
-                  <div class="elemento">
-                      <div class="primeiraLinha">
-                        <p class="titulo">08-2023</p>
-                      </div>
-                      <div class="segundaLinha">
-                        <ul>
-                          <li><b>Valor:</b> R$ 80,00</li>
-                          <li><b>Desconto:</b> R$ 5,00</li>
-                          <li><b>Valor Total:</b> R$ 75,00</li>
-                          <li><b>Forma:</b> Pix</li>
-
+                          <li><b>Valor:</b> R$ {{pagamentoEfetuadoT.valor}}</li>
+                          <li><b>Desconto:</b> R$ {{pagamentoEfetuadoT.desconto}}</li>
+                          <li><b>Valor Total:</b> R$ {{pagamentoEfetuadoT.total}}</li>
+                          <li><b>Forma :</b> R$ {{pagamentoEfetuadoT.forma}}</li>
                         </ul>
                       </div>
                 </div>

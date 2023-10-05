@@ -31,9 +31,12 @@ export class TutorPage{
   }
 
   // Abre modal de listagem de pagamento
-  async modalListarPagamentoTutor() {
+  async modalListarPagamentoTutor(data: any) {
     const modal = await this.modalController.create({
       component: ListarPagamentoTutorComponent,
+      componentProps: {
+        customData: data
+      },
     });
     await modal.present();
   }
