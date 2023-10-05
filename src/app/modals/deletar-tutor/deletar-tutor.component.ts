@@ -15,7 +15,6 @@ export class DeletarTutorComponent  implements OnInit {
 
   constructor(private modalController: ModalController) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   closeModal() {
@@ -26,6 +25,7 @@ export class DeletarTutorComponent  implements OnInit {
 
   deletarTutor(parametro:any){
     this.buscarAPI('deletar', 'tutor', parametro);  // Apaga tutor
+    this.buscarAPI('deletar', 'login_tutor', parametro);  // Apaga login do tutor
     this.modalController.dismiss();
   }
 

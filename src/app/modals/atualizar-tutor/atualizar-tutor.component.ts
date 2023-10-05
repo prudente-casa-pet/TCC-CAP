@@ -33,8 +33,8 @@ export class AtualizarTutorComponent  implements OnInit {
     this.telefone = this.customData.telefone;
     this.data_nasc = this.customData.data_nasc;
     this.endereco = this.customData.endereco;
-    this.email = this.customData.email;
-    this.senha = this.customData.senha;
+    this.email = this.getAPI('listar', 'login_tutor', this.customData.cod_tutor)[0].email;
+    this.senha = this.getAPI('listar', 'login_tutor', this.customData.cod_tutor)[0].senha;
   }
 
   // LÓGICA DE ATUALIZAÇÃO
@@ -47,14 +47,17 @@ export class AtualizarTutorComponent  implements OnInit {
       'telefone': `'${this.telefone}'`,
       'data_nasc': `'${this.data_nasc}'`,
       'endereco': `'${this.endereco}'`,
-      'email': `'${this.email}'`,
-      'senha': `'${this.senha}'`
     }
     let resposta = await this.postAPI('atualizar', 'tutor', codigo, tutor); 
     if (resposta.ERRO) {
       this.presentToast(resposta.ERRO); //chama toast da verificação
     }
     else{
+      let login = {
+        'email': `'${this.email}'`,
+        'senha': `'${this.senha}'`
+      }
+      let resposta = await this.postAPI('atualizar', 'login', codigo, login); 
       this.modalController.dismiss();
     }
     

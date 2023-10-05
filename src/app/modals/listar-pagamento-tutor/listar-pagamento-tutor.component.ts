@@ -16,6 +16,9 @@ export class ListarPagamentoTutorComponent {
   constructor(private modalController: ModalController) {}
   @Input() customData: any;
 
+  ngOnInit(): void {
+  }
+
   // Lógica de listagem
 
   verificarArray(items:any): any {

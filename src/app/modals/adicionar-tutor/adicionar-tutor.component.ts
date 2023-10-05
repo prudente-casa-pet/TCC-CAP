@@ -20,6 +20,7 @@ export class AdicionarTutorComponent  implements OnInit {
   }
   
   // Declaração de variavéis
+  cod_tutor: any = "";
   nome: any = "";
   cpf: any = "";
   telefone: any = "";
@@ -37,16 +38,25 @@ export class AdicionarTutorComponent  implements OnInit {
       'cpf': `'${this.cpf}'`,
       'telefone': `'${this.telefone}'`,
       'data_nasc': `'${this.data_nasc}'`,
-      'endereco': `'${this.endereco}'`,
-      'email': `'${this.email}'`,
-      'senha': `'${this.senha}'`
+      'endereco': `'${this.endereco}'`
     }
     let resposta = await this.postAPI('adicionar', 'tutor', '', tutor);
+    this.cod_tutor = resposta.ID;
     if (resposta.ERRO) {
       this.presentToast(resposta.ERRO); //chama toast da verificação
     }
     else {
-      this.modalController.dismiss();
+      let login = {
+      'cod_tutor': `'${this.cod_tutor}'`,        
+      'email': `'${this.email}'`,
+      'senha': `'${this.senha}'`
+      }
+      let resposta = await this.postAPI('adicionar', 'login', '', login);
+      if (resposta.ERRO) {
+        this.presentToast(resposta.ERRO); //chama toast da verificação
+      } else {
+        this.modalController.dismiss();
+      }
     }
   }
   

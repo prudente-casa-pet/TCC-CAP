@@ -21,6 +21,7 @@ export class AdicionarPetComponent  implements OnInit {
   }
   
   // Declaração de variavéis
+  cod_pet: any = "";
   nome: any = "";
   tutor: any = "";
   especie: any = "";
@@ -79,12 +80,25 @@ export class AdicionarPetComponent  implements OnInit {
         'foto_perfil': `'${this.caminho}'`
       }
       let resposta = await this.postAPI('adicionar', 'pet', '', pet);
+      this.cod_pet = resposta.ID;
       if (resposta.ERRO) {
         this.presentToast(resposta.ERRO); //chama toast da verificação
       }
       else {
+        this.adicionarProcedimentos();
         this.modalController.dismiss();
       }
+    }
+  }
+
+  async adicionarProcedimentos(){
+    let procedimentos = await this.getAPI('listar', 'tipoProcedimento', '');
+    for(let procedimento of procedimentos){
+      let procedimento_pet = {
+        'cod_pet': Number(this.cod_pet),
+        'cod_tipoProcedimento': Number(procedimento.cod_tipoProcedimento)
+      }
+      await this.postAPI('adicionar', 'pet_procedimento', '', procedimento_pet);
     }
   }
   

@@ -15,14 +15,24 @@ export class ProcedimentoPetPage implements OnInit {
 
   constructor(private modalController: ModalController, private sharedDataService: SharedDataService) { }
 
-  pet:any = this.sharedDataService.petProcedimento;
+  pet: any = this.sharedDataService.petProcedimento;
 
+  ngOnInit() {}
 
-  ngOnInit() {
-    console.log(this.pet);
+  // Lógica de listagem
+
+  gerarVencimento(data: any, intervalo: any){
+    let data_vencimento = "Dose única";
+    if (intervalo != 0){
+      let dataNova = new Date(data);
+      dataNova.setMonth(dataNova.getMonth() + intervalo);
+      let ano = dataNova.getFullYear();
+      let mes = dataNova.getMonth() + 1; 
+      let dia = dataNova.getDate();
+      data_vencimento = ano + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia;
     }
-
-    // Lógica de listagem
+    return data_vencimento;
+  }
 
   verificarArray(items:any): any {
     return Array.isArray(items)
