@@ -55,7 +55,7 @@
       <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pacote_pet', pet.cod_pet))===true">
 
           <div class="elemento" *ngFor="let pacote of buscarAPI('listar', 'pacote_pet', pet.cod_pet)">
-            <div class="primeiraLinha">
+            <div class="primeiraLinha" [class.inativo]="pacote.situacao==0">
               <p class="titulo">{{pacote.nome}}</p>
               <div class="botoes">
                 <ion-fab-button size="small" (click)="modalDeletarPacote(pacote)">
@@ -64,7 +64,7 @@
 
               </div>
             </div>
-            <div class="segundaLinha">
+            <div class="segundaLinha" [class.inativo]="pacote.situacao==0">
               <ul>
                 <li><b>Quantidade de diárias:</b> {{pacote.qtd_diaria}}</li>
                 <li><b>Diárias disponíveis:</b> {{pacote.diarias_disponiveis}}</li>
