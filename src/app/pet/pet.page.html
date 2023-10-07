@@ -53,11 +53,11 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pet', parametro))===true">
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pet', parametro))===true">
 
-          <div class="elemento" *ngFor="let pet of buscarAPI('listar', 'pet', parametro)">
+          <div class="elemento" *ngFor="let pet of getAPI('listar', 'pet', parametro)">
             <div class="primeiraLinha">
-              <p class="titulo">{{pet.nome}} - {{buscarAPI('listar', 'tutor', pet.cod_tutor)[0].nome}}</p>
+              <p class="titulo">{{pet.nome}} - {{getAPI('listar', 'tutor', pet.cod_tutor)[0].nome}}</p>
               <div class="botoes">
                 <ion-fab-button size="small" (click)="abrirProcedimentos(pet)">
                   <ion-icon name="bandage-outline"></ion-icon>

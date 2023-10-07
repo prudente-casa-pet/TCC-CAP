@@ -51,8 +51,8 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'tipoprocedimento', parametro))===true">
-          <div class="elemento" *ngFor="let procedimento of buscarAPI('listar', 'tipoprocedimento', parametro)">
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'tipoprocedimento', parametro))===true">
+          <div class="elemento" *ngFor="let procedimento of getAPI('listar', 'tipoprocedimento', parametro)">
             <div class="primeiraLinha">
               <p class="titulo">{{procedimento.nome}}</p>
               <div class="botoes">

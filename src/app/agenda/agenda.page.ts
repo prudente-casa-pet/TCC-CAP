@@ -16,7 +16,7 @@ export class AgendaPage {
   
 constructor(private modalController: ModalController) {}
 ngOnInit(): void {
-  this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes)); // Busca agendamentos na API
+  this.agendamentosMes = this.getAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes)); // Busca agendamentos na API
 }
 
 // LÓGICA DO MODAL
@@ -32,7 +32,7 @@ async modalAdicionarAgendamento(data: any) {
   await modal.present();
   // Quando modal é fechado, pega novamente os agendamentos
   modal.onDidDismiss().then(() => {
-    this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
+    this.agendamentosMes = this.getAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
   });
 }
 
@@ -69,7 +69,7 @@ filtrarData (dia:any, agendamentos:any) {
 }
 
 buscarNomePet (id:any) {
-  let nomePet = this.buscarAPI('listar', 'pet', id)[0].nome;
+  let nomePet = this.getAPI('listar', 'pet', id)[0].nome;
   this.pets[id] = nomePet;
 }
 
@@ -105,7 +105,7 @@ mesAnterior () {
   this.priMesAnt = this.antDia - this.quantAntDias + 1;         // Primeiro dia que aparecera do mês anterior
   this.proxDias = 6 - this.ultimoDia.getDay();                  // Quantidade de dias que aparecera do mês seguinte 
   this.fimDeSemana = this.gerarFimDeSemana();                   // Array com os dias que são sábado ou domingo
-  this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes));
+  this.agendamentosMes = this.getAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes));
 }
 
 proximoMes () {
@@ -128,7 +128,7 @@ proximoMes () {
   this.priMesAnt = this.antDia - this.quantAntDias + 1;        // Primeiro dia que aparecera do mês anterior
   this.proxDias = 6 - this.ultimoDia.getDay();                 // Quantidade de dias que aparecera do mês seguinte  
   this.fimDeSemana = this.gerarFimDeSemana();                  // Array com os dias são sábado ou domingo
-  this.agendamentosMes = this.buscarAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
+  this.agendamentosMes = this.getAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes))
 }
 
 adicionarUmDia (data: Date) : Date {
@@ -182,19 +182,29 @@ gerarDataPostItAPI (data:any) {
 
 // Gera escrita do agendamento
 gerarAgendamento (agendamento: any) {
-  let sevico = this.buscarAPI('listar', 'servico', agendamento.cod_servico)[0].nome;  // Pega o nome do serviço do agendamento
-  let pet = this.buscarAPI('listar', 'pet', agendamento.cod_pet)[0].nome;             // Pega o nome do pet do agendamento
+  let sevico = this.getAPI('listar', 'servico', agendamento.cod_servico)[0].nome;  // Pega o nome do serviço do agendamento
+  let pet = this.getAPI('listar', 'pet', agendamento.cod_pet)[0].nome;             // Pega o nome do pet do agendamento
   return `${sevico} - ${pet}`;
 }
 
 // Função que faz uma busca na API
-buscarAPI (metodo:any, tabela:any, parametro:any) {
+getAPI (metodo:any, tabela:any, parametro:any) {
   const request = new XMLHttpRequest();
   request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);
+  const token = localStorage.getItem('token');
+  if (token) {
+    request.setRequestHeader('Authorization', `Bearer ${token}`);
+  }
   request.send();
 
   if (request.status === 200) {
-    return JSON.parse(request.responseText);
+    if (JSON.parse(request.responseText).ACESSO){
+      console.log(JSON.parse(request.responseText).ACESSO)
+      localStorage.clear();
+      window.location.reload();
+    } else {
+      return JSON.parse(request.responseText);
+    }
   } else {
     console.error('Erro na requisição:', request.status);
     return Array();

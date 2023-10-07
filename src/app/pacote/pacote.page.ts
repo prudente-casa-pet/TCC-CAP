@@ -5,6 +5,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
 import { AdicionarPacoteComponent } from '../modals/adicionar-pacote/adicionar-pacote.component';
 import { DeletarPacoteComponent } from '../modals/deletar-pacote/deletar-pacote.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,14 +16,20 @@ import { DeletarPacoteComponent } from '../modals/deletar-pacote/deletar-pacote.
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class PacotePage implements OnInit {
+  router: Router;
 
-  constructor(private modalController: ModalController, private sharedDataService: SharedDataService) { }
+  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService) {
+    this.router = router;
+  }
 
   pet:any = this.sharedDataService.petPacote;
 
 
   ngOnInit() {
+    if (this.pet == ''){
+      this.router.navigate(['/', 'pet']);
     }
+  }
 
   // Abre modal de adicionar tutopacoter
   async modalAdicionarPacote() {
@@ -59,13 +66,23 @@ export class PacotePage implements OnInit {
   }
 
   // Função que faz uma busca na API
-  buscarAPI(metodo:any, tabela:any, parametro:any) {
+  getAPI(metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();
     request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);
+    const token = localStorage.getItem('token');
+    if (token) {
+      request.setRequestHeader('Authorization', `Bearer ${token}`);
+    }
     request.send();
 
     if (request.status === 200) {
+      if (JSON.parse(request.responseText).ACESSO){
+        console.log(JSON.parse(request.responseText).ACESSO)
+        localStorage.clear();
+        window.location.reload();
+      } else {
         return JSON.parse(request.responseText);
+      }
     } else {
         console.error('Erro na requisição:', request.status);
         return Array();

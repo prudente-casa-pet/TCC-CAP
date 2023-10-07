@@ -62,8 +62,8 @@
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_pendente', parametro))===true">
-          <div class="elemento" *ngFor="let pagamento of buscarAPI('listar', 'pagamento_pendente', parametro)">
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_pendente', parametro))===true">
+          <div class="elemento" *ngFor="let pagamento of getAPI('listar', 'pagamento_pendente', parametro)">
             <ng-container *ngIf="pagamento.tutor.includes(pesquisa) || pesquisa === ''">
               <div class="primeiraLinha">
                 <p class="titulo">{{pagamento.data}} - {{pagamento.tutor}}</p>

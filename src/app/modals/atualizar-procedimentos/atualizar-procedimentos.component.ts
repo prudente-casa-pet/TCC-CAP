@@ -48,7 +48,8 @@ export class AtualizarProcedimentosComponent  implements OnInit {
       method: 'POST',
       body: JSON.stringify(dados),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }
     return fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)

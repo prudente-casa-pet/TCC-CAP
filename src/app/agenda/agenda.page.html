@@ -75,19 +75,19 @@
   <ion-col size="3" class="ion-text-center">
     <div class="postit">
       <p class="titulo">{{gerarDataPostIt(this.hoje)}}</p>
-      <ul *ngIf="verificarArray(buscarAPI('listar', 'agendamento', gerarDataPostItAPI(this.hoje)))">
-        <li *ngFor="let agend of buscarAPI('listar', 'agendamento', gerarDataPostItAPI(this.hoje))">{{gerarAgendamento(agend)}}</li>
+      <ul *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(this.hoje)))">
+        <li *ngFor="let agend of getAPI('listar', 'agendamento', gerarDataPostItAPI(this.hoje))">{{gerarAgendamento(agend)}}</li>
       </ul>
-      <ul *ngIf="verificarArray(buscarAPI('listar', 'agendamento', gerarDataPostItAPI(this.hoje)))===false">
+      <ul *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(this.hoje)))===false">
         <li>Sem agendamentos hoje</li>
       </ul>
     </div>
     <div class="postit">
       <p class="titulo">{{gerarDataPostIt(this.amanha)}}</p>
-      <ul *ngIf="verificarArray(buscarAPI('listar', 'agendamento', gerarDataPostItAPI(this.amanha)))">
-        <li *ngFor="let agend of buscarAPI('listar', 'agendamento', gerarDataPostItAPI(this.amanha))">{{gerarAgendamento(agend)}}</li>
+      <ul *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(this.amanha)))">
+        <li *ngFor="let agend of getAPI('listar', 'agendamento', gerarDataPostItAPI(this.amanha))">{{gerarAgendamento(agend)}}</li>
       </ul>
-      <ul *ngIf="verificarArray(buscarAPI('listar', 'agendamento', gerarDataPostItAPI(this.amanha)))===false">
+      <ul *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(this.amanha)))===false">
         <li>Sem agendamentos amanhã</li>
       </ul>
     </div>

@@ -9,8 +9,16 @@ export class IsLoginGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const loggedIn = !!localStorage.getItem('tolken');
-    if (loggedIn) {
+    const tempoAtual = new Date().getTime();
+    const exp = Number(localStorage.getItem('exp'));
+
+    if (tempoAtual > exp){
+      localStorage.clear()
+    }
+
+    const loggedIn = !!localStorage.getItem('token');
+
+    if (loggedIn ) {
       return true;
     } else {
       this.router.navigate(['/home']);

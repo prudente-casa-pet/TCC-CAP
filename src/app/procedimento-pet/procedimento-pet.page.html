@@ -40,28 +40,28 @@
 
   <ion-row>
     <ion-col size="3" class="divInicio"></ion-col>
-    <ion-col size="6" class="divInicio"><ion-title class="tituloPagina">Procedimentos - {{buscarAPI('listar', 'pet', pet.cod_pet)[0].nome}}</ion-title></ion-col>
+    <ion-col size="6" class="divInicio"><ion-title class="tituloPagina">Procedimentos - {{getAPI('listar', 'pet', pet.cod_pet)[0].nome}}</ion-title></ion-col>
     <ion-col size="3" class="divInicio">
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pet_procedimento', pet.cod_pet))===true">
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pet_procedimento', pet.cod_pet))===true">
 
-          <div class="elemento" *ngFor="let petProcedimento of buscarAPI('listar', 'pet_procedimento', pet.cod_pet)">
+          <div class="elemento" *ngFor="let petProcedimento of getAPI('listar', 'pet_procedimento', pet.cod_pet)">
             <div class="primeiraLinha">
-              <p class="titulo">{{buscarAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].nome}}</p>
+              <p class="titulo">{{getAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].nome}}</p>
               <div class="botoes">
                 <ion-fab-button size="small">
-                  <ion-icon name="create-outline"></ion-icon>
+                  <ion-icon name="create-outline" (click)="modalAtualizarProcedimentoPet(petProcedimento)"></ion-icon>
                 </ion-fab-button>
               </div>
             </div>
             <div class="segundaLinha">
               <ul>
                 <li *ngIf="petProcedimento.data"><b>Data:</b> {{petProcedimento.data}}</li>
-                <li *ngIf="petProcedimento.data"><b>Vencimento:</b> {{gerarVencimento(petProcedimento.data, buscarAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].intervalo)}}</li>
+                <li *ngIf="petProcedimento.data"><b>Vencimento:</b> {{gerarVencimento(petProcedimento.data, getAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].intervalo)}}</li>
                 <li *ngIf="!petProcedimento.data">Procedimento não foi realizado</li>
               </ul>
             </div>

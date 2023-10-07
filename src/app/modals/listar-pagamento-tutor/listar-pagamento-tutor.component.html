@@ -8,15 +8,15 @@
           </ion-row>
         <ion-row>
             <ion-col size="12">
-              <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor))===false">
+              <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor))===false">
                 <div class="segundaLinha">
                   <ul>
                     <li>Sem agendamentos com pagamento pendente</li>
                   </ul>
                 </div>
               </div>
-              <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor))===true">
-                  <div class="elemento" *ngFor="let pagamentoPendenteT of buscarAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor)">
+              <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor))===true">
+                  <div class="elemento" *ngFor="let pagamentoPendenteT of getAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor)">
                       <div class="primeiraLinha">
                         <p class="titulo">{{pagamentoPendenteT.data}}</p>
                         <div class="botoes">
@@ -46,15 +46,15 @@
 
           <ion-row>
             <ion-col size="12">
-              <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor))===false">
+              <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor))===false">
                 <div class="segundaLinha">
                   <ul>
                     <li>Sem agendamentos com pagamento efetuado</li>
                   </ul>
                 </div>
               </div>
-              <div class="elementos" *ngIf="verificarArray(buscarAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor))===true">
-                  <div class="elemento" *ngFor="let pagamentoEfetuadoT of buscarAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor)">
+              <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor))===true">
+                  <div class="elemento" *ngFor="let pagamentoEfetuadoT of getAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor)">
                       <div class="primeiraLinha">
                         <p class="titulo">{{pagamentoEfetuadoT.data}}</p>
                         <div class="botoes">

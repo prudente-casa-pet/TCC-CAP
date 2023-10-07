@@ -14,7 +14,7 @@ export class AuthService {
       method: 'POST',
       body: JSON.stringify(dados),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     };
     let res = await fetch(`http://localhost/Aula/API/login`, options)
@@ -22,7 +22,12 @@ export class AuthService {
         return res.json();
       })
       if (res) {
-        localStorage.setItem('tolken', res);
+        let timestamp_atual = new Date().getTime();
+        let miliseconds = 1.5 * 60 * 60 * 1000; 
+        let exp = timestamp_atual + miliseconds;
+        
+        localStorage.setItem('token', res);
+        localStorage.setItem('exp', exp.toString())
         return false;
     }
     return 'Login inválido';

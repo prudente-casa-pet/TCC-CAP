@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
+import { AtualizarProcedimentoPetComponent } from '../modals/atualizar-procedimento-pet/atualizar-procedimento-pet.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-procedimento-pet',
@@ -11,13 +13,32 @@ import { SharedDataService } from '../services/shared-data.service';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class ProcedimentoPetPage implements OnInit {
 
-  constructor(private modalController: ModalController, private sharedDataService: SharedDataService) { }
+export class ProcedimentoPetPage implements OnInit {
+  router: Router;
+  
+  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService) {
+    this.router = router;
+  }
 
   pet: any = this.sharedDataService.petProcedimento;
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.pet == ''){
+      this.router.navigate(['/', 'pet']);
+    }
+  }
+
+  // Abre modal de adicionar pet
+  async modalAtualizarProcedimentoPet(data: any) {
+    const modal = await this.modalController.create({
+      component: AtualizarProcedimentoPetComponent,
+      componentProps: {
+        customData: data
+      }
+    });
+    await modal.present();
+  }
 
   // Lógica de listagem
 
@@ -47,13 +68,23 @@ export class ProcedimentoPetPage implements OnInit {
   }
 
   // Função que faz uma busca na API
-  buscarAPI(metodo:any, tabela:any, parametro:any) {
+  getAPI(metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();
     request.open('GET', `http://localhost/Aula/API/${metodo}/${tabela}/${parametro}`, false);
+    const token = localStorage.getItem('token');
+    if (token) {
+      request.setRequestHeader('Authorization', `Bearer ${token}`);
+    }
     request.send();
 
     if (request.status === 200) {
+      if (JSON.parse(request.responseText).ACESSO){
+        console.log(JSON.parse(request.responseText).ACESSO)
+        localStorage.clear();
+        window.location.reload();
+      } else {
         return JSON.parse(request.responseText);
+      }
     } else {
         console.error('Erro na requisição:', request.status);
         return Array();
