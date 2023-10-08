@@ -26,7 +26,7 @@ export class AuthService {
         let miliseconds = 1.5 * 60 * 60 * 1000; 
         let exp = timestamp_atual + miliseconds;
         
-        localStorage.setItem('token', res);
+        localStorage.setItem('token', res.token);
         localStorage.setItem('exp', exp.toString())
         return false;
     }
