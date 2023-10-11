@@ -23,7 +23,6 @@ export class AuthService {
       .then (res => {
         return res.json();
       })
-      console.log(res)
       if (res) {
         let timestamp_atual = new Date().getTime();
         let miliseconds = 1.5 * 60 * 60 * 1000; 
