@@ -41,7 +41,7 @@ export class TutorPage{
     await modal.present();
   }
 
-  // Abre modal de atualizar pet passa parâmetro
+  // Abre modal de atualizar tutor passa parâmetro
   async modalAtualizarTutor(data: any) {
     const modal = await this.modalController.create({
       component: AtualizarTutorComponent,
@@ -51,6 +51,8 @@ export class TutorPage{
     });
     await modal.present();
   }
+
+
 
   // Abre modal de deletar tutor passa parâmetro
   async modalDeletarTutor(data: any) {

@@ -3,6 +3,7 @@ import { Component, Input} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { PagarComponent } from '../../modals/pagar/pagar.component';
 
 
 @Component({
@@ -17,6 +18,18 @@ export class ListarPagamentoTutorComponent {
   @Input() customData: any;
 
   ngOnInit(): void {
+  }
+
+  // Abre modal de atualizar pagamento passa parâmetro, ou seja, pagar
+  async modalPagar(data: any) {
+    const modal = await this.modalController.create({
+      component: PagarComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
+
   }
 
   // Lógica de listagem
