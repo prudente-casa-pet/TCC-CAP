@@ -6,6 +6,7 @@ import { timestamp } from 'rxjs';
 })
 export class AuthService {
   async login (senha: any) {
+    localStorage.clear()
     const dados = {
       "email": "admin@gmail.com",
       "senha": senha
@@ -17,18 +18,23 @@ export class AuthService {
         'Content-Type': 'application/json',
       }
     };
+
     let res = await fetch(`http://localhost/Aula/API/login`, options)
       .then (res => {
         return res.json();
       })
+      console.log(res)
       if (res) {
         let timestamp_atual = new Date().getTime();
         let miliseconds = 1.5 * 60 * 60 * 1000; 
         let exp = timestamp_atual + miliseconds;
-        
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('exp', exp.toString())
-        return false;
+        if (res.admin){
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('exp', exp.toString())
+          return false;
+        } else {
+          return 'Login inválido';
+        }
     }
     return 'Login inválido';
   }

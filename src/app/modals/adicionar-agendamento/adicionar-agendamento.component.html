@@ -94,8 +94,15 @@
   </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="12" class="ion-padding centro">
+    <ion-col size="12" class="ion-padding centro" *ngIf="cod_pacote === ''">
       <ion-toggle color="primary" name="status" id="status" [(ngModel)]="status" class="toggle">
+      <label for="status">Pagamento Efetuado</label>
+      </ion-toggle>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" class="ion-padding centro" *ngIf="cod_pacote !== ''">
+      <ion-toggle color="primary" name="status" id="status" [(ngModel)]="status" class="toggle" [checked]="true" [disabled]="true">
       <label for="status">Pagamento Efetuado</label>
       </ion-toggle>
     </ion-col>

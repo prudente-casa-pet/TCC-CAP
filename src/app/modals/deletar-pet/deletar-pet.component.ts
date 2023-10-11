@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
 export class DeletarPetComponent  implements OnInit {
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, private firebaseService: FirebaseService) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -57,12 +58,6 @@ export class DeletarPetComponent  implements OnInit {
   }
 
   deletarArquivo(caminho:any) {
-    const request = new XMLHttpRequest();
-    request.open('GET', `http://localhost/Aula/API/deletar${caminho}`, false);
-    const token = localStorage.getItem('token');
-    if (token) {
-      request.setRequestHeader('Authorization', `Bearer ${token}`);
-    }
-    request.send();
+    this.firebaseService.excluirImagem(caminho);
   }
 }

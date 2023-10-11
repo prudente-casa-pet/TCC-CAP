@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
+
 
 @Component({
   selector: 'app-adicionar-pet',
@@ -14,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 
 export class AdicionarPetComponent  implements OnInit {
 
-  constructor(private modalController: ModalController, private toastController: ToastController) {}
+  constructor(private modalController: ModalController, private toastController: ToastController, private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -77,6 +79,7 @@ export class AdicionarPetComponent  implements OnInit {
         'raca': `'${this.raca}'`,
         'porte': `'${this.porte}'`,
         'observacoes': `'${this.observacoes}'`,
+        'sociabilidade': Number(this.sociabilidade),
         'foto_perfil': `'${this.caminho}'`
       }
       let resposta = await this.postAPI('adicionar', 'pet', '', pet);
@@ -154,31 +157,10 @@ export class AdicionarPetComponent  implements OnInit {
     extensao = extensao[extensao.length-1];
     let nomeFoto = `${this.nome}-${Date.now()}.${extensao}`;
     this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
-    this.caminho = await this.adicionarArquivoAPI();
-    this.caminho = this.caminho.slice(4)
+    this.caminho = await this.firebaseService.carregarImagem(this.foto)
   }
   
-  // Adiciona a foto na API
-  async adicionarArquivoAPI () {
-    const formData = new FormData();
-    formData.append('file', this.foto);
-    const options = {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-      
-    };
-    try {
-        const res = await fetch(`http://localhost/Aula/API/adicionarArquivo`, options);
-        const data = await res.json();
-        return data.caminho;
-      } catch (err) {
-        console.error(err);
-        throw err;
-    }
-  }
+
   
   // LÓGICA DOS COMPONENTES
 
