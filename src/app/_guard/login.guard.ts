@@ -18,7 +18,7 @@ export class IsLoginGuard implements CanActivate {
 
     const loggedIn = !!localStorage.getItem('token');
 
-    if (loggedIn ) {
+    if (loggedIn) {
       return true;
     } else {
       this.router.navigate(['/home']);

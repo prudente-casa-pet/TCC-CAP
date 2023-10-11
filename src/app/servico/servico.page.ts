@@ -16,6 +16,7 @@ export class ServicoPage{
   // Modal
   constructor(private modalController: ModalController) {}
   ngOnInit() {
+    console.log(this.getAPI('listar', 'servico', this.parametro))
   }
 
 

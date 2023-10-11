@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class AtualizarPetComponent  implements OnInit {
-  constructor(private modalController: ModalController, private toastController: ToastController) {}
+  constructor(private modalController: ModalController, private toastController: ToastController, private firebaseService: FirebaseService) {}
   @Input() customData: any;
 
   // Declaração de variaveis
@@ -143,13 +144,7 @@ export class AtualizarPetComponent  implements OnInit {
   // LÓGICA DE ARQUIVOS
 
   deletarArquivo(caminho:any) {
-    const request = new XMLHttpRequest();
-    request.open('GET', `http://localhost/Aula/API/deletar${caminho}`, false);
-    const token = localStorage.getItem('token');
-    if (token) {
-      request.setRequestHeader('Authorization', `Bearer ${token}`);
-    }
-    request.send();
+    this.firebaseService.excluirImagem(caminho);
   }
   
   // Chama aa função de adicionar na API e pega o caminho retornado
@@ -157,36 +152,14 @@ export class AtualizarPetComponent  implements OnInit {
     let extensao = this.foto.name.split(".");
     extensao = extensao[extensao.length-1];
     let nomeFoto = `${this.nome}-${Date.now()}.${extensao}`;
-    this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });  // Formata nome da foto
-    this.caminho = await this.adicionarArquivoAPI();
-    this.caminho = this.caminho.slice(4);        // Caminho da foto salva
+    this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
+    this.caminho = await this.firebaseService.carregarImagem(this.foto);
     let foto = this.caminhoAntigo;  // Foto perfil do pet antigo
     if(foto){
       this.deletarArquivo(foto);  // Apaga foto de perfil
     }
   }
   
-  // Adiciona a foto na API
-  async adicionarArquivoAPI() {
-    const formData = new FormData();
-    formData.append('file', this.foto);
-    const options = {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    };
-    try {
-      const res = await fetch(`http://localhost/Aula/API/adicionarArquivo`, options);
-      const data = await res.json();
-      return data.caminho;
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
-  }
   
   // LÓGICA DOS COMPONENTES
 
