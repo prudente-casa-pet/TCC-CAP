@@ -20,7 +20,7 @@
                       <div class="primeiraLinha">
                         <p class="titulo">{{pagamentoPendenteT.data}}</p>
                         <div class="botoes">
-                          <ion-fab-button size="small">
+                          <ion-fab-button size="small" (click)="modalPagar(pagamentoPendenteT)">
                             <ion-icon name="card"></ion-icon>
                           </ion-fab-button>
                         </div>
@@ -57,11 +57,6 @@
                   <div class="elemento" *ngFor="let pagamentoEfetuadoT of getAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor)">
                       <div class="primeiraLinha">
                         <p class="titulo">{{pagamentoEfetuadoT.data}}</p>
-                        <div class="botoes">
-                          <ion-fab-button size="small">
-                            <ion-icon name="card"></ion-icon>
-                          </ion-fab-button>
-                        </div>
                       </div>
                       <div class="segundaLinha">
                         <ul>
