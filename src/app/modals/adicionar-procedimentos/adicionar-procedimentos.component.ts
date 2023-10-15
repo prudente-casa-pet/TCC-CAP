@@ -20,6 +20,7 @@ export class AdicionarProcedimentosComponent  implements OnInit {
   }
 
   // Declaração de variavéis
+  cod_procedimento: any = "";
   nome: any = "";
   intervalo: any = "";
 
@@ -31,11 +32,25 @@ export class AdicionarProcedimentosComponent  implements OnInit {
       'intervalo': `'${this.intervalo}'`
     }
     let resposta = await this.postAPI('adicionar', 'tipoprocedimento', '', procedimentos);
+    this.cod_procedimento = resposta.ID;
     if (resposta.ERRO) {
       this.presentToast(resposta.ERRO); //chama toast da verificação
     }
     else {
+      this.adicionarProcedimentoPet();
       this.modalController.dismiss();
+    }
+  }
+
+  
+  async adicionarProcedimentoPet(){
+    let pets = await this.getAPI('listar', 'pet', '');
+    for(let pet of pets){
+      let procedimento_pet = {
+        'cod_pet': Number(pet.cod_pet),
+        'cod_tipoProcedimento': Number(this.cod_procedimento)
+      }
+      await this.postAPI('adicionar', 'pet_procedimento', '', procedimento_pet);
     }
   }
   

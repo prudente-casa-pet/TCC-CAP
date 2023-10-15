@@ -18,8 +18,8 @@ export class AdicionarAgendamentoComponent  implements OnInit {
   @Input() customData: any
 
   ngOnInit(): void {
-    this.dataModal = `${this.customData.slice(8,10)}/${this.customData.slice(5,7)}`
-    this.gerarValor()    
+    this.dataModal = `${this.customData.slice(8,10)}/${this.customData.slice(5,7)}`;
+    this.gerarValor();    
   }
 
   // Abre modal de adicionar pet
