@@ -18,7 +18,7 @@
               <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor))===true">
                   <div class="elemento" *ngFor="let pagamentoPendenteT of getAPI('listar', 'pagamento_pendente_tutor', customData.cod_tutor)">
                       <div class="primeiraLinha">
-                        <p class="titulo">{{pagamentoPendenteT.data}}</p>
+                        <p class="titulo">{{gerarData(pagamentoPendenteT.data)}}</p>
                         <div class="botoes">
                           <ion-fab-button size="small" (click)="modalPagar(pagamentoPendenteT)">
                             <ion-icon name="card"></ion-icon>
@@ -56,7 +56,7 @@
               <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor))===true">
                   <div class="elemento" *ngFor="let pagamentoEfetuadoT of getAPI('listar', 'pagamento_efetuado_tutor', customData.cod_tutor)">
                       <div class="primeiraLinha">
-                        <p class="titulo">{{pagamentoEfetuadoT.data}}</p>
+                        <p class="titulo">{{gerarData(pagamentoEfetuadoT.data)}}</p>
                       </div>
                       <div class="segundaLinha">
                         <ul>

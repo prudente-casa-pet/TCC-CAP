@@ -49,6 +49,16 @@ export class PagamentoPendentePage {
     }
   }
 
+  // Gera data formatada
+  gerarData(data:any){
+    data = data.split('-');
+    let dia = data[2];
+    let mes = data[1];
+    let ano = data[0];
+    let dataFormatada = `${dia}/${mes}/${ano}`;
+    return dataFormatada;
+  }
+
 
   // Abre modal de adicionar pagamento pendente
   async modalSelecionarMes() {

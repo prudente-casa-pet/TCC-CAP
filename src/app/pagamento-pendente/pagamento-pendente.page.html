@@ -66,7 +66,7 @@
           <div class="elemento" *ngFor="let pagamento of getAPI('listar', 'pagamento_pendente', parametro)">
             <ng-container *ngIf="pagamento.tutor.includes(pesquisa) || pesquisa === ''">
               <div class="primeiraLinha">
-                <p class="titulo">{{pagamento.data}} - {{pagamento.tutor}}</p>
+                <p class="titulo">{{gerarData(pagamento.data)}} - {{pagamento.tutor}}</p>
                 <div class="botoes">
                   <ion-icon name="card" (click)="modalPagar(pagamento)"></ion-icon>
                 </div>

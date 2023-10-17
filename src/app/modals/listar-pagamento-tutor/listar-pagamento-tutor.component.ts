@@ -20,6 +20,16 @@ export class ListarPagamentoTutorComponent {
   ngOnInit(): void {
   }
 
+  // Gera data formatada
+  gerarData(data:any){
+    data = data.split('-');
+    let dia = data[2];
+    let mes = data[1];
+    let ano = data[0];
+    let dataFormatada = `${dia}/${mes}/${ano}`;
+    return dataFormatada;
+  }
+
   // Abre modal de atualizar pagamento passa parâmetro, ou seja, pagar
   async modalPagar(data: any) {
     const modal = await this.modalController.create({
@@ -30,6 +40,7 @@ export class ListarPagamentoTutorComponent {
     });
     await modal.present();
   }
+
 
   // Lógica de listagem
 
