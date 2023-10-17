@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { SelecionarMesComponent } from '../modals/selecionar-mes/selecionar-mes.component';
 import { SharedDataService } from '../services/shared-data.service';
+import { PagarComponent } from '../modals/pagar/pagar.component';
 
 
 @Component({
@@ -25,9 +26,18 @@ export class PagamentoPendentePage {
 
 
   // Modal
-  constructor(private modalController: ModalController,
-    private sharedDataService: SharedDataService) {}
-
+  constructor(private modalController: ModalController, private sharedDataService: SharedDataService) {}
+  
+  // Abre modal de atualizar pagamento passa parâmetro, ou seja, pagar
+  async modalPagar(data: any) {
+    const modal = await this.modalController.create({
+      component: PagarComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
+  }
 
   obterVariavel() {
     if (this.sharedDataService.mes){  // Se for escolhido um mês

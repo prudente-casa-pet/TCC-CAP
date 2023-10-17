@@ -124,10 +124,26 @@ input:-webkit-autofill:focus {
     color: var(--ion-color-primary);
 }
 
+.elementos{
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.elementos::-webkit-scrollbar {
+    width: 0.2em;
+}
+
+.elementos::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.elementos::-webkit-scrollbar-thumb {
+    background-color: var(--ion-color-tertiary);
+    border-radius: 3px;
+}
 .elemento{
     border-bottom: 1px solid var(--ion-color-primary);
     margin-top: 8px;
-    
 }
 
 .elemento:last-child{

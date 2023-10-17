@@ -29,7 +29,6 @@ export class ListarPagamentoTutorComponent {
       },
     });
     await modal.present();
-
   }
 
   // Lógica de listagem

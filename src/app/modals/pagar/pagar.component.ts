@@ -29,22 +29,24 @@ export class PagarComponent  implements OnInit {
     this.cod_agendamento = this.customData.cod_agendamento;
     this.valor = this.customData.valor;
     this.desconto = this.customData.desconto;
-    this.valor_total = this.customData.valor_total;
     this.forma = this.customData.forma;
+    this.gerarValor();
   }
 
   // LÓGICA DE ATUALIZAÇÃO
 
+  gerarValor(){
+    this.valor_total = this.valor - this.desconto;
+  }
+
   async pagar (codigo:any) {
     let pagamento = {
-      'cod_agendamento': Number(this.cod_agendamento),
       'valor': Number(this.valor),
       'desconto': Number(this.desconto),
       'valor_total': Number(this.valor_total),
       'forma': `'${this.forma}'`,
-      'status': Number(this.status)
+      'status': 1
     }
-    console.log(codigo);
     let resposta = await this.postAPI('atualizar', 'pgt_agendamento', codigo, pagamento); 
     if(resposta.ERRO){
       this.presentToast(resposta.ERRO); //chama toast da verificação
