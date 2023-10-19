@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { SelecionarMesComponent } from '../modals/selecionar-mes/selecionar-mes.component';
 import { SharedDataService } from '../services/shared-data.service';
-
 
 @Component({
   selector: 'app-pagamento-efetuado',
@@ -12,8 +11,8 @@ import { SharedDataService } from '../services/shared-data.service';
   styleUrls: ['pagamento-efetuado.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink],
-  
 })
+
 export class PagamentoEfetuadoPage {
   meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
   hoje = new Date();                          // Data atual
@@ -23,10 +22,24 @@ export class PagamentoEfetuadoPage {
   parametro:any = `${this.ano}-${this.mes}`;
   pesquisa:any = '';
 
-  // Modal
-  constructor(private modalController: ModalController,
-    private sharedDataService: SharedDataService) {}
+  menuStatus: boolean = true;
 
+  // Modal
+  constructor(private modalController: ModalController, private sharedDataService: SharedDataService, private menu: MenuController) {}
+
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
+  }
 
   obterVariavel() {
     if (this.sharedDataService.mes){  // Se for escolhido um mês
@@ -63,7 +76,6 @@ export class PagamentoEfetuadoPage {
   }
 
   // Lógica de listagem
-  // parametro = "";
 
   verificarArray(items:any): any {
     return Array.isArray(items)

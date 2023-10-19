@@ -4,6 +4,7 @@ import { timestamp } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   async login (senha: any) {
     localStorage.clear()

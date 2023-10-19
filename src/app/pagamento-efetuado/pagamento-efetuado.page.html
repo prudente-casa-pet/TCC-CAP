@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"  [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-header collapse="condense">
     <ion-toolbar color="primary" id="main-content">
       <img src="../../assets/img/Logo_sem_nome.png" alt="Logo da Prudente Casa Pet" class="logo">
@@ -18,9 +18,8 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
 <div id="container">
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" contentId="main-content" menuId="menu" (ionDidOpen)="menuAberto()">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -36,7 +35,6 @@
       <div><a href="../servico">Serviços</a></div>
     </ion-content>
   </ion-menu>
-
   <ion-row>
     <ion-col size="4" class="divInicioTitulo">
       <ion-row>
@@ -50,7 +48,6 @@
     </ion-col>
     <ion-col size="6" class="divInicio"><ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)"></ion-searchbar></ion-col>
   </ion-row>
-
   <ion-row class="mes">
     <ion-col size="12">
       <ion-item>
@@ -58,7 +55,6 @@
       </ion-item>
     </ion-col>
   </ion-row>
-
   <ion-row>
     <ion-col size="12">
       <div class="elementos"  *ngIf="verificarArray(getAPI('listar', 'pagamento_efetuado', parametro))===true">

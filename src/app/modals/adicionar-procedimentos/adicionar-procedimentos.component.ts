@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
+
 export class AdicionarProcedimentosComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
@@ -41,7 +42,6 @@ export class AdicionarProcedimentosComponent  implements OnInit {
       this.modalController.dismiss();
     }
   }
-
   
   async adicionarProcedimentoPet(){
     let pets = await this.getAPI('listar', 'pet', '');

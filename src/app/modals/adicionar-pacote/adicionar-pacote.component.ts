@@ -12,9 +12,11 @@ import { SharedDataService } from '../../services/shared-data.service';
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
+
 export class AdicionarPacoteComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController, private sharedDataService: SharedDataService) {}
+  
   pet:any = this.sharedDataService.petPacote;
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class AdicionarPacoteComponent  implements OnInit {
   nome: any = "";
   qtd_diaria: any = "";
   diarias_disponiveis:any = "";
+  
   // LÓGICA DE ADICIONAR
   
   async adicionarPacote () {
@@ -99,7 +102,6 @@ export class AdicionarPacoteComponent  implements OnInit {
       duration: 2000,
       position: 'top',
     });
-    
     await toast.present();
   }
   

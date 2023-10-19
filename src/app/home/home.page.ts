@@ -5,20 +5,22 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule],
-  
 })
+
 export class HomePage {
+
   router: Router;
+
   constructor(private authService: AuthService, router: Router, private toastController: ToastController) {
     this.router = router;
   }
+
   senha: string = ''; 
 
   async fazerLogin(){
@@ -37,7 +39,6 @@ export class HomePage {
       duration: 2000,
       position: 'top',
     });
-    
     await toast.present();
   }
 

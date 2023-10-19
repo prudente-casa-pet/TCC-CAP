@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirebaseService {
   private firebaseConfig = {
     apiKey: "AIzaSyBoDdQwC-EN9TaUxSpw3TwqHzH3oDKDE0U",

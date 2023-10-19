@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-header collapse="condense">
     <ion-toolbar color="primary" id="main-content">
       <ion-title>Pacote</ion-title>
@@ -18,10 +18,8 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
 <div id="container">
-
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" contentId="main-content" menuId="menu" (ionDidOpen)="menuAberto()">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -37,18 +35,15 @@
       <div><a href="../servico">Serviços</a></div>
     </ion-content>
   </ion-menu>
-
   <ion-row>
     <ion-col size="3" class="divInicio"></ion-col>
     <ion-col size="6" class="divInicio"><ion-title class="tituloPagina">Procedimentos - {{getAPI('listar', 'pet', pet.cod_pet)[0].nome}}</ion-title></ion-col>
     <ion-col size="3" class="divInicio">
     </ion-col>
   </ion-row>
-
   <ion-row>
     <ion-col size="12">
       <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pet_procedimento', pet.cod_pet))===true">
-
           <div class="elemento" *ngFor="let petProcedimento of getAPI('listar', 'pet_procedimento', pet.cod_pet)">
             <div class="primeiraLinha">
               <p class="titulo">{{getAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].nome}}</p>
@@ -66,13 +61,10 @@
               </ul>
             </div>
         </div>
-
       </div>
     </ion-col>
   </ion-row>
-
 </div>
-
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>

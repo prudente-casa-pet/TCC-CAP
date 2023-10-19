@@ -13,16 +13,15 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class DeletarAgendamentoComponent  implements OnInit {
+
   constructor(private modalController: ModalController) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  @Input() customData: any;
+  
+  ngOnInit(): void {}
 
   closeModal() {
     this.modalController.dismiss();
   }
-
-  @Input() customData: any;
 
   deletarAgendamento(parametro:any){
     this.getAPI('deletar', 'agendamento', parametro);  // Apaga pet

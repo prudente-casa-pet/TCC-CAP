@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
+
 export class PagarComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
@@ -53,42 +54,41 @@ export class PagarComponent  implements OnInit {
     }
     else{
       this.modalController.dismiss();
-  }
-}
-
-// Faz um post na API
-async postAPI(acao:any, tabela:any, parametro:any, dados:any) {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify(dados),
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
   }
-  return fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
-  .then(res => {
-    return res.json();
-  })
-  .catch(err => {
-    return err.json()
-  })
-}
-    
-// LÓGICA DOS COMPONENTES
 
-closeModal() {
-  this.modalController.dismiss();
-}
+  // Faz um post na API
+  async postAPI(acao:any, tabela:any, parametro:any, dados:any) {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(dados),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+    return fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {
+      return err.json()
+    })
+  }
+      
+  // LÓGICA DOS COMPONENTES
 
-async presentToast(mensagem:any) {
-  const toast = await this.toastController.create({
-    message: mensagem,
-    duration: 2000,
-    position: 'top',
-  });
-  
-  await toast.present();
-}
+  closeModal() {
+    this.modalController.dismiss();
+  }
+
+  async presentToast(mensagem:any) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: 2000,
+      position: 'top',
+    });
+    await toast.present();
+  }
 
 }

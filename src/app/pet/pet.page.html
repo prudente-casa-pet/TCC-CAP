@@ -9,8 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <ion-header collapse="condense">
     <ion-toolbar color="primary" id="main-content">
       <img src="../../assets/img/Logo_sem_nome.png" alt="Logo da Prudente Casa Pet" class="logo">
@@ -19,10 +18,8 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
 <div id="container">
-
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" contentId="main-content" menuId="menu" (ionDidOpen)="menuAberto()">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -38,7 +35,6 @@
       <div><a href="../servico">Serviços</a></div>
     </ion-content>
   </ion-menu>
-
   <ion-row>
     <ion-col size="3" class="divInicio"><ion-title class="tituloPagina">Pets</ion-title></ion-col>
     <ion-col size="6" class="divInicio"><ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)"></ion-searchbar></ion-col>
@@ -50,11 +46,9 @@
       </ion-fab>
     </ion-col>
   </ion-row>
-
   <ion-row>
     <ion-col size="12">
       <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'pet', parametro))===true">
-
           <div class="elemento" *ngFor="let pet of getAPI('listar', 'pet', parametro)">
             <div class="primeiraLinha">
               <p class="titulo">{{pet.nome}} - {{getAPI('listar', 'tutor', pet.cod_tutor)[0].nome}}</p>
@@ -71,7 +65,6 @@
                 <ion-fab-button size="small" (click)="modalDeletarPet(pet)">
                   <ion-icon name="trash"></ion-icon>
                 </ion-fab-button>
-
               </div>
             </div>
             <div class="segundaLinha">
@@ -87,9 +80,7 @@
       </div>
     </ion-col>
   </ion-row>
-
 </div>
-
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>

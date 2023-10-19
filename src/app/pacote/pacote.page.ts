@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
 import { AdicionarPacoteComponent } from '../modals/adicionar-pacote/adicionar-pacote.component';
 import { DeletarPacoteComponent } from '../modals/deletar-pacote/deletar-pacote.component';
@@ -15,20 +15,36 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class PacotePage implements OnInit {
-  router: Router;
 
-  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService) {
+export class PacotePage implements OnInit {
+  
+  router: Router;
+  menuStatus: boolean = true;
+
+  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService, private menu: MenuController) {
     this.router = router;
   }
 
   pet:any = this.sharedDataService.petPacote;
 
-
   ngOnInit() {
     if (this.pet == ''){
       this.router.navigate(['/', 'pet']);
     }
+  }
+
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
   }
 
   // Abre modal de adicionar tutopacoter
@@ -88,5 +104,4 @@ export class PacotePage implements OnInit {
         return Array();
     }
   }
-
 }

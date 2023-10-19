@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class AtualizarAgendamentoComponent  implements OnInit {
+
   constructor(private modalController: ModalController, private toastController: ToastController) {}
   @Input() customData: any;
 
@@ -132,7 +133,6 @@ export class AtualizarAgendamentoComponent  implements OnInit {
         duration: 2000,
         position: 'top',
       });
-      
       await toast.present();
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
 import { AtualizarProcedimentoPetComponent } from '../modals/atualizar-procedimento-pet/atualizar-procedimento-pet.component';
 import { Router } from '@angular/router';
@@ -15,9 +15,11 @@ import { Router } from '@angular/router';
 })
 
 export class ProcedimentoPetPage implements OnInit {
-  router: Router;
   
-  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService) {
+  router: Router;
+  menuStatus: boolean = true;
+  
+  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService, private menu: MenuController) {
     this.router = router;
   }
 
@@ -27,6 +29,20 @@ export class ProcedimentoPetPage implements OnInit {
     if (this.pet == ''){
       this.router.navigate(['/', 'pet']);
     }
+  }
+
+    // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
   }
 
   // Abre modal de adicionar pet

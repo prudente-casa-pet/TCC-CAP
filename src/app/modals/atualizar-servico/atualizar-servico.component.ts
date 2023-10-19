@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
+
 export class AtualizarServicoComponent  implements OnInit {
 
   constructor(private modalController: ModalController, private toastController: ToastController) {}
@@ -96,7 +97,6 @@ export class AtualizarServicoComponent  implements OnInit {
       duration: 2000,
       position: 'top',
     });
-    
     await toast.present();
   }
 

@@ -1,27 +1,24 @@
 <div class="container">
-  <ion-row>
-      <ion-col size="12" class="centro">
-          <ion-title class="ion-text-center">Adicionar</ion-title>
-      </ion-col>
-  </ion-row>
-  <ion-row>
-      <ion-col size="12" class="ion-padding centro">
-          <label for="nome" class="etiqueta">Nome</label>
-          <input type="text" name="nome" id="nome" class="input" [(ngModel)]="nome">
-      </ion-col>
-  </ion-row>
-  <ion-row>
-      <ion-col size="12" class="ion-padding centro">
-          <label for="qtd_diaria" class="etiqueta">Quantidade de diárias</label>
-          <input type="number" name="qtd_diaria" id="qtd_diaria" class="input" [(ngModel)]="qtd_diaria">
-      </ion-col>
-  </ion-row>
-  <ion-row>
-      <ion-col size="12" class="ion-text-center ion-padding botao">
-          <ion-button shape="round" (click)="adicionarPacote()">Salvar</ion-button>
-      </ion-col>
-  </ion-row>
+    <ion-row>
+        <ion-col size="12" class="centro">
+            <ion-title class="ion-text-center">Adicionar</ion-title>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="12" class="ion-padding centro">
+            <label for="nome" class="etiqueta">Nome</label>
+            <input type="text" name="nome" id="nome" class="input" [(ngModel)]="nome">
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="12" class="ion-padding centro">
+            <label for="qtd_diaria" class="etiqueta">Quantidade de diárias</label>
+            <input type="number" name="qtd_diaria" id="qtd_diaria" class="input" [(ngModel)]="qtd_diaria">
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="12" class="ion-text-center ion-padding botao">
+            <ion-button shape="round" (click)="adicionarPacote()">Salvar</ion-button>
+        </ion-col>
+    </ion-row>
 </div>
-
-
-

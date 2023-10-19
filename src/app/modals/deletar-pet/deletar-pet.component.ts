@@ -5,7 +5,6 @@ import { IonicModule, ModalController, NavParams } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
-
 @Component({
   selector: 'app-deletar-pet',
   templateUrl: './deletar-pet.component.html',
@@ -13,6 +12,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
+
 export class DeletarPetComponent  implements OnInit {
   constructor(private modalController: ModalController, private firebaseService: FirebaseService) {}
   ngOnInit(): void {

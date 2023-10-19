@@ -9,6 +9,8 @@ export class IsLoginGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+
+    // Verifica se a sessão já expirou
     const tempoAtual = new Date().getTime();
     const exp = Number(localStorage.getItem('exp'));
 
@@ -18,6 +20,7 @@ export class IsLoginGuard implements CanActivate {
 
     const loggedIn = !!localStorage.getItem('token');
 
+    // Verifica se já esta logado
     if (loggedIn) {
       return true;
     } else {

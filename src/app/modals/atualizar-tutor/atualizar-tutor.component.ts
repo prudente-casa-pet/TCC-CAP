@@ -118,7 +118,6 @@ export class AtualizarTutorComponent  implements OnInit {
       duration: 2000,
       position: 'top',
     });
-    
     await toast.present();
   }
 }

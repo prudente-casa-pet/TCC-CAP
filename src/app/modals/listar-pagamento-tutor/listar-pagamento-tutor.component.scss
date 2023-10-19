@@ -42,10 +42,6 @@ ion-radio{
     font-size: 1.2em;
 }
 
-// ion-toggle{
-//     margin-right: 50px;
-// }
-
 .botao{
     margin-bottom: 15px;
 }
@@ -94,9 +90,8 @@ option{
     background: var(--ion-color-light);
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  transition: background-color 0s 600000s, color 0s 600000s;
+input:-webkit-autofill, input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
 }
 
 .data {
@@ -118,6 +113,7 @@ input:-webkit-autofill:focus {
     font-size: 1.5em;
     margin-right: 5em;
 }
+
 .titulo_pendente, .titulo_efetuado{
     font-weight: bolder;
     font-size: 1.8em;
@@ -165,11 +161,10 @@ ion-fab{
 .botoes{
     display: flex;
 }
+
 .linha{
     margin: 0 auto;
     height: 1px;
     width: 90%;
     background-color: var(--ion-color-secondary-contrast);
 }
-
-  

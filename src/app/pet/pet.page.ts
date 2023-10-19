@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
 import { AdicionarPetComponent } from '../modals/adicionar-pet/adicionar-pet.component';
 import { AtualizarPetComponent } from '../modals/atualizar-pet/atualizar-pet.component';
@@ -13,17 +13,33 @@ import { DeletarPetComponent } from '../modals/deletar-pet/deletar-pet.component
   templateUrl: 'pet.page.html',
   styleUrls: ['pet.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterLink],
-  
+  imports: [IonicModule, CommonModule, RouterLink]
 })
+
 export class PetPage {
+
   router: Router;
+  menuStatus: boolean = true;
 
   // Modal
-  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService) {
+  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService, private menu: MenuController) {
     this.router = router;
   }
 
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
+  }
+  
   // Abre modal de adicionar pet
   async modalAdicionarPet() {
     const modal = await this.modalController.create({

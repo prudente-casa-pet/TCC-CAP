@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&display=swap');
 
-
 // Menu
 a{
     color: var(--ion-color-light);
@@ -73,6 +72,7 @@ a:hover{
 ion-fab{
     margin-right: 3em;
 }
-.inativo{ //deixa opaco quando o pacote está inativo(sem diarias disponiveis)
+
+.inativo{         // Deixa opaco quando o pacote está inativo(sem diarias disponiveis)
     filter: opacity(40%);
 }

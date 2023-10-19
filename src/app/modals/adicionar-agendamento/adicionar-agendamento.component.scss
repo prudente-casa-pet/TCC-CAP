@@ -42,10 +42,6 @@ ion-radio{
     font-size: 1.2em;
 }
 
-// ion-toggle{
-//     margin-right: 50px;
-// }
-
 .botao{
     margin-bottom: 15px;
 }
@@ -94,9 +90,8 @@ option{
     background: var(--ion-color-light);
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  transition: background-color 0s 600000s, color 0s 600000s;
+input:-webkit-autofill, input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s;
 }
 
 .data {

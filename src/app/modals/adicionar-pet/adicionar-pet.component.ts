@@ -133,7 +133,6 @@ export class AdicionarPetComponent  implements OnInit {
       request.setRequestHeader('Authorization', `Bearer ${token}`);
     }
     request.send();
-    
     if (request.status === 200) {
       if (JSON.parse(request.responseText).ACESSO){
         console.log(JSON.parse(request.responseText).ACESSO)
@@ -148,7 +147,6 @@ export class AdicionarPetComponent  implements OnInit {
     }
   }
   
-  
   // LÓGICA DE ARQUIVOS
   
   // Chama aa função de adicionar na API e pega o caminho retornado
@@ -159,8 +157,6 @@ export class AdicionarPetComponent  implements OnInit {
     this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
     this.caminho = await this.firebaseService.carregarImagem(this.foto)
   }
-  
-
   
   // LÓGICA DOS COMPONENTES
 
@@ -174,7 +170,6 @@ export class AdicionarPetComponent  implements OnInit {
       duration: 2000,
       position: 'top',
     });
-    
     await toast.present();
   }
   

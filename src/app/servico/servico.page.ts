@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { AtualizarServicoComponent } from '../modals/atualizar-servico/atualizar-servico.component';
 
 @Component({
@@ -11,14 +11,28 @@ import { AtualizarServicoComponent } from '../modals/atualizar-servico/atualizar
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink]
 })
+
 export class ServicoPage{
 
+  menuStatus: boolean = true;
+
   // Modal
-  constructor(private modalController: ModalController) {}
-  ngOnInit() {
-    console.log(this.getAPI('listar', 'servico', this.parametro))
+  constructor(private modalController: ModalController, private menu: MenuController) {}
+  ngOnInit() { }
+
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
   }
 
+  menuAberto(){
+    this.menuStatus = true;
+  }
 
   // Abre modal de atualizar pet passa parâmetro
   async modalAtualizarServico(data: any) {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { AdicionarTutorComponent } from '../modals/adicionar-tutor/adicionar-tutor.component';
 import { AtualizarTutorComponent } from '../modals/atualizar-tutor/atualizar-tutor.component';
 import { DeletarTutorComponent } from '../modals/deletar-tutor/deletar-tutor.component';
@@ -14,12 +14,28 @@ import { ListarPagamentoTutorComponent } from '../modals/listar-pagamento-tutor/
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink]
 })
+
 export class TutorPage{
 
-  // Modal
-  constructor(private modalController: ModalController) {}
+  menuStatus: boolean = true;
 
-  ngOnInit() {
+  // Modal
+  constructor(private modalController: ModalController, private menu: MenuController) {}
+
+  ngOnInit() { }
+
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
   }
 
   // Abre modal de adicionar tutor
@@ -51,8 +67,6 @@ export class TutorPage{
     });
     await modal.present();
   }
-
-
 
   // Abre modal de deletar tutor passa parâmetro
   async modalDeletarTutor(data: any) {

@@ -6,8 +6,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"  [scrollEvents]="true" (ionScroll)="handleScroll($event)">
 <ion-header collapse="condense">
   <ion-toolbar color="primary" id="main-content">
     <img src="../../assets/img/Logo_sem_nome.png" alt="Logo da Prudente Casa Pet" class="logo">
@@ -16,10 +15,8 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <div id="container">
-
-<ion-menu side="end" contentId="main-content">
+<ion-menu side="end" contentId="main-content" menuId="menu" (ionDidOpen)="menuAberto()">
   <ion-header>
     <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
@@ -35,7 +32,6 @@
       <div><a href="../servico">Serviços</a></div>
   </ion-content>
 </ion-menu>
-
 <ion-row>
   <ion-col size="9" id="coluna">
     <div class="calendario">
@@ -94,9 +90,7 @@
   </ion-col>
 </ion-row>
 </div>
-
 <ion-footer>
-<ion-toolbar color="primary">
-</ion-toolbar>
+  <ion-toolbar color="primary"></ion-toolbar>
 </ion-footer>
 </ion-content>

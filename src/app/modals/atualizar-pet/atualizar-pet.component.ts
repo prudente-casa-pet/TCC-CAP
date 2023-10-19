@@ -15,6 +15,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 
 export class AtualizarPetComponent  implements OnInit {
+
   constructor(private modalController: ModalController, private toastController: ToastController, private firebaseService: FirebaseService) {}
   @Input() customData: any;
 
@@ -172,8 +173,7 @@ export class AtualizarPetComponent  implements OnInit {
       message: mensagem,
       duration: 2000,
       position: 'top',
-    });
-    
+    });    
     await toast.present();
   }
 }

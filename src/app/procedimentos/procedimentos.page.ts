@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { AdicionarProcedimentosComponent } from '../modals/adicionar-procedimentos/adicionar-procedimentos.component';
 import { AtualizarProcedimentosComponent } from '../modals/atualizar-procedimentos/atualizar-procedimentos.component';
 import { DeletarProcedimentosComponent } from '../modals/deletar-procedimentos/deletar-procedimentos.component';
@@ -13,12 +13,28 @@ import { DeletarProcedimentosComponent } from '../modals/deletar-procedimentos/d
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink]
 })
+
 export class ProcedimentosPage{
 
-  // Modal
-  constructor(private modalController: ModalController) {}
+  menuStatus: boolean = true;
 
-  ngOnInit() {
+  // Modal
+  constructor(private modalController: ModalController, private menu: MenuController) {}
+
+  ngOnInit() { }
+
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
   }
 
   // Abre modal de adicionar procedimentos

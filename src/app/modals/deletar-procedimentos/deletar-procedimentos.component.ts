@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [IonicModule, CommonModule, RouterLink, FormsModule]
 })
+
 export class DeletarProcedimentosComponent  implements OnInit {
 
   constructor(private modalController: ModalController) {}
