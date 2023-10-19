@@ -73,6 +73,7 @@ a:hover{
   text-align: center;
   position: relative;
   height: 150px;
+  cursor: pointer;
 }
 
 .prev{
@@ -129,6 +130,7 @@ a:hover{
 
 .mudarMes{
   transition: background-color 0.3s ease; 
+  cursor: pointer;
 }
 
 .mudarMes:hover{

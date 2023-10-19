@@ -25,7 +25,6 @@
                       <ion-fab-button size="small">
                         <ion-icon name="trash" (click)="modalDeletarAgendamento(agendamento)"></ion-icon>
                       </ion-fab-button>
-      
                     </div>
                   </div>
                   <div class="segundaLinha">
@@ -37,6 +36,13 @@
                   </div>
               </div>
             </div>
+            <div class="elementos semAgendamento" *ngIf="verificarArray(getAPI('listar', 'agendamento', customData))===false">
+              <div class="segundaLinha">
+                <ul>
+                  <li>Sem agendamentos nesse dia</li>
+                </ul>
+              </div>
+          </div>
         </ion-col>
     </ion-row>
 </div>

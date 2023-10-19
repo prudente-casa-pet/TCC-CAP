@@ -21,7 +21,7 @@ export class PagamentoPendentePage {
   mes = this.hoje.getMonth();                 // Mês atual
   ano = this.hoje.getFullYear();              // Ano atual
   data:any = `${this.meses[this.mes]} ${this.ano}`;
-  parametro:any = `${this.ano}-${this.mes}`;
+  parametro:any = `${this.ano}-${this.mes+1 < 10 ? '0'+this.mes+1 : this.mes+1}`;
   pesquisa:any = '';
 
   menuStatus: boolean = true;

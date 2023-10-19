@@ -19,13 +19,15 @@ export class PagamentoEfetuadoPage {
   mes = this.hoje.getMonth();                 // Mês atual
   ano = this.hoje.getFullYear();              // Ano atual
   data:any = `${this.meses[this.mes]} ${this.ano}`;
-  parametro:any = `${this.ano}-${this.mes}`;
+  parametro:any = `${this.ano}-${this.mes+1 < 10 ? '0'+this.mes+1 : this.mes+1}`;
   pesquisa:any = '';
 
   menuStatus: boolean = true;
 
   // Modal
   constructor(private modalController: ModalController, private sharedDataService: SharedDataService, private menu: MenuController) {}
+
+  ngOnInit() { }
 
   // Fecha menu ao dar scroll na página
   handleScroll(scroll: any){

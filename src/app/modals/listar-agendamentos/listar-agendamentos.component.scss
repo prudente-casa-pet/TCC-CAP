@@ -24,6 +24,7 @@ ion-col{
 ion-title{
     font-size: 1.8em;
     font-weight: bolder;
+    cursor: pointer;
 }
 
 ion-button{
@@ -111,7 +112,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 .elemento{
     border-bottom: 1px solid var(--ion-color-primary);
-    margin-top: 8px;
+    margin: 8px 15px 0 15px;
 }
 
 .elemento:last-child{
@@ -129,4 +130,8 @@ ion-fab{
 
 .botoes{
     display: flex;
+}
+
+.semAgendamento ul{
+    margin: 50px 0;
 }
