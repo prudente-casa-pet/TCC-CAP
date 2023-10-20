@@ -5,6 +5,7 @@ import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
 import { AtualizarProcedimentoPetComponent } from '../modals/atualizar-procedimento-pet/atualizar-procedimento-pet.component';
 import { Router } from '@angular/router';
+import { addMonths } from 'date-fns';
 
 @Component({
   selector: 'app-procedimento-pet',
@@ -26,7 +27,7 @@ export class ProcedimentoPetPage implements OnInit {
   pet: any = this.sharedDataService.petProcedimento;
 
   ngOnInit() {
-    if (this.pet == ''){
+    if (this.pet == '' || this.sharedDataService.petProcedimento == ''){
       this.router.navigate(['/', 'pet']);
     }
   }
@@ -61,14 +62,22 @@ export class ProcedimentoPetPage implements OnInit {
   gerarVencimento(data: any, intervalo: any){
     let data_vencimento = "Dose única";
     if (intervalo != 0){
-      let dataNova = new Date(data);
-      dataNova.setMonth(dataNova.getMonth() + intervalo);
-      let ano = dataNova.getFullYear();
-      let mes = dataNova.getMonth() + 1; 
-      let dia = dataNova.getDate();
-      data_vencimento = ano + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia;
+      data = new Date(data);
+      const novaData = addMonths(data, intervalo);
+      const dia = novaData.getDate() < 10 ? `0${novaData.getDate()}` : novaData.getDate();
+      const mes = novaData.getMonth()+1 < 10 ? `0${novaData.getMonth()+1}` : novaData.getMonth()+1;
+      const ano = novaData.getFullYear();
+      data_vencimento = `${dia}/${mes}/${ano}`;
     }
     return data_vencimento;
+  }
+
+  formatarData(data: any){
+    data = data.split("-");
+    const dia = data[2];
+    const mes = data[1];
+    const ano = data[0];
+    return `${dia}/${mes}/${ano}`;
   }
 
   verificarArray(items:any): any {

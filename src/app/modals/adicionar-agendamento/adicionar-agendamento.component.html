@@ -78,15 +78,17 @@
   <ion-row>
     <ion-col size="12" class="ion-padding centro">
       <label for="cod_pacote" class="etiqueta">Pacote</label>
-      <ng-container *ngIf="cod_pet !== '' && verificarArray(getAPI('listar', 'pacote_pet', cod_pet))">
+      <ng-container *ngIf="cod_pet !== ''">
         <select name="cod_pacote" id="cod_pacote" class="input" [(ngModel)]="cod_pacote">
           <option value=''>Nenhum pacote</option>
+          <ng-container *ngIf="verificarArray(getAPI('listar', 'pacote_pet', cod_pet))">
             <ng-container *ngFor="let pacote of getAPI('listar', 'pacote_pet', cod_pet)">
               <option value="{{pacote.cod_pacote}}">{{pacote.nome}}</option>
             </ng-container>
-          </select>
+          </ng-container>
+        </select>
       </ng-container>
-      <ng-container *ngIf="cod_pet === '' || !verificarArray(getAPI('listar', 'pacote_pet', cod_pet))">
+      <ng-container *ngIf="cod_pet === ''">
         <select name="cod_pacote" id="cod_pacote" class="input" [(ngModel)]="cod_pacote">
             <option value=''>Pet não selecionado</option>
         </select>

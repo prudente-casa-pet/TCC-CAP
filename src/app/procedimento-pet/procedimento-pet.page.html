@@ -55,7 +55,7 @@
             </div>
             <div class="segundaLinha">
               <ul>
-                <li *ngIf="petProcedimento.data"><b>Data:</b> {{petProcedimento.data}}</li>
+                <li *ngIf="petProcedimento.data"><b>Data:</b> {{formatarData(petProcedimento.data)}}</li>
                 <li *ngIf="petProcedimento.data"><b>Vencimento:</b> {{gerarVencimento(petProcedimento.data, getAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].intervalo)}}</li>
                 <li *ngIf="!petProcedimento.data">Procedimento não foi realizado</li>
               </ul>
