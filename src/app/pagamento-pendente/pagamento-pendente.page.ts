@@ -28,8 +28,21 @@ export class PagamentoPendentePage {
 
   // Modal
   constructor(private modalController: ModalController, private sharedDataService: SharedDataService, private menu: MenuController) {}
+
+  filtrarObjetosPorNome(objetos: any[], consulta: string){
+    if (this.verificarArray(objetos)){
+      return objetos.filter((objeto: any) => {
+          const nomeObjeto = objeto.tutor.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          const consultaLowerCase = consulta.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          return nomeObjeto.includes(consultaLowerCase);
+      });
+    }
+    else {
+      return [{}];
+    }
+  }
   
-    // Fecha menu ao dar scroll na página
+  // Fecha menu ao dar scroll na página
   handleScroll(scroll: any){
     if (!this.menuStatus && scroll != 0){
       this.menuStatus = false;
@@ -125,7 +138,7 @@ export class PagamentoPendentePage {
     }
   }
 
-  // Pesquisa de pet
+  // Pesquisa de tutor
   handleInput(event:any) {
     this.pesquisa = event.target.value;
   }

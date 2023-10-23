@@ -29,6 +29,19 @@ export class PagamentoEfetuadoPage {
 
   ngOnInit() { }
 
+  filtrarObjetosPorNome(objetos: any[], consulta: string){
+    if (this.verificarArray(objetos)){
+      return objetos.filter((objeto: any) => {
+          const nomeObjeto = objeto.tutor.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          const consultaLowerCase = consulta.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          return nomeObjeto.includes(consultaLowerCase);
+      });
+    }
+    else {
+      return [{}];
+    }
+  }
+
   // Fecha menu ao dar scroll na página
   handleScroll(scroll: any){
     if (!this.menuStatus && scroll != 0){
