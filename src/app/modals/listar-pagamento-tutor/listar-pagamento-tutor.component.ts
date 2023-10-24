@@ -38,6 +38,7 @@ export class ListarPagamentoTutorComponent {
         customData: data
       },
     });
+    this.modalController.dismiss();
     await modal.present();
   }
 
