@@ -46,6 +46,12 @@ export class ProcedimentoPetPage implements OnInit {
     this.menuStatus = true;
   }
 
+  // Zera sessão
+  sair(){
+    localStorage.clear();
+    this.router.navigate(['/','home']);
+  }
+
   // Abre modal de adicionar pet
   async modalAtualizarProcedimentoPet(data: any) {
     const modal = await this.modalController.create({

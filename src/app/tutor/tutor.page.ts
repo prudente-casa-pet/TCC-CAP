@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { AdicionarTutorComponent } from '../modals/adicionar-tutor/adicionar-tutor.component';
 import { AtualizarTutorComponent } from '../modals/atualizar-tutor/atualizar-tutor.component';
@@ -18,9 +18,12 @@ import { ListarPagamentoTutorComponent } from '../modals/listar-pagamento-tutor/
 export class TutorPage{
 
   menuStatus: boolean = true;
+  router: Router;
 
   // Modal
-  constructor(private modalController: ModalController, private menu: MenuController) {}
+  constructor(private modalController: ModalController, private menu: MenuController, router: Router) {
+    this.router = router;
+  }
 
   ngOnInit() { }
 
@@ -36,6 +39,12 @@ export class TutorPage{
 
   menuAberto(){
     this.menuStatus = true;
+  }
+
+  // Zera sessão
+  sair(){
+    localStorage.clear();
+    this.router.navigate(['/','home']);
   }
 
   // Abre modal de adicionar tutor

@@ -39,6 +39,12 @@ export class PetPage {
   menuAberto(){
     this.menuStatus = true;
   }
+
+  // Zera sessão
+  sair(){
+    localStorage.clear();
+    this.router.navigate(['/','home']);
+  }
   
   // Abre modal de adicionar pet
   async modalAdicionarPet() {

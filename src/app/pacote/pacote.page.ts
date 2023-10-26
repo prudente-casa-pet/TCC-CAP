@@ -47,6 +47,12 @@ export class PacotePage implements OnInit {
     this.menuStatus = true;
   }
 
+  // Zera sessão
+  sair(){
+    localStorage.clear();
+    this.router.navigate(['/','home']);
+  }
+
   // Abre modal de adicionar tutopacoter
   async modalAdicionarPacote() {
     const modal = await this.modalController.create({

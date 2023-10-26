@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { AdicionarAgendamentoComponent } from '../modals/adicionar-agendamento/adicionar-agendamento.component';
 
@@ -15,8 +15,11 @@ import { AdicionarAgendamentoComponent } from '../modals/adicionar-agendamento/a
 export class AgendaPage {
 
 menuStatus: boolean = true;
+router: Router;
   
-constructor(private modalController: ModalController, private menu: MenuController) {}
+constructor(private modalController: ModalController, private menu: MenuController, router: Router) {
+  this.router = router
+}
 
 ngOnInit(): void {
   this.agendamentosMes = this.getAPI('listar', 'agendamento', this.gerarData(this.ano, this.mes)); // Busca agendamentos na API
@@ -34,6 +37,12 @@ handleScroll(scroll: any){
 
 menuAberto(){
   this.menuStatus = true;
+}
+
+// Zera sessão
+sair(){
+  localStorage.clear();
+  this.router.navigate(['/','home']);
 }
 
 // LÓGICA DO MODAL

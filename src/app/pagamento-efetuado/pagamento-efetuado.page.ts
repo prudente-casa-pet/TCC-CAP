@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IonicModule, MenuController, ModalController } from '@ionic/angular';
 import { SelecionarMesComponent } from '../modals/selecionar-mes/selecionar-mes.component';
 import { SharedDataService } from '../services/shared-data.service';
@@ -23,25 +23,35 @@ export class PagamentoEfetuadoPage {
   pesquisa:any = '';
 
   menuStatus: boolean = true;
+  router: Router;
 
   // Modal
-  constructor(private modalController: ModalController, private sharedDataService: SharedDataService, private menu: MenuController) {}
+  constructor(private modalController: ModalController, private sharedDataService: SharedDataService, private menu: MenuController, router: Router) {
+    this.router = router;
+  }
 
   ngOnInit() { }
 
   filtrarObjetosPorNome(objetos: any[], consulta: string){
-    if (this.verificarArray(objetos)){
+    if (objetos[0]!=undefined){
       return objetos.filter((objeto: any) => {
-          const nomeObjeto = objeto.tutor.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-          const consultaLowerCase = consulta.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-          return nomeObjeto.includes(consultaLowerCase);
+        const nomeObjeto = objeto.tutor.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const consultaLowerCase = consulta.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\u0300-\u036f]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return nomeObjeto.includes(consultaLowerCase);
       });
     }
     else {
-      return [{}];
+      return [];
     }
   }
 
+  verificarVazio (vetor:any) {
+    if(vetor.length==0){
+      return false;
+    }
+    return true;
+  }
+  
   // Fecha menu ao dar scroll na página
   handleScroll(scroll: any){
     if (!this.menuStatus && scroll != 0){
@@ -54,6 +64,12 @@ export class PagamentoEfetuadoPage {
 
   menuAberto(){
     this.menuStatus = true;
+  }
+
+  // Zera sessão
+  sair(){
+    localStorage.clear();
+    this.router.navigate(['/','home']);
   }
 
   obterVariavel() {
