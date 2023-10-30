@@ -27,7 +27,7 @@
     "@ionic/angular": "^7.0.0",
     "bootstrap": "^5.2.3",
     "date-fns": "^2.30.0",
-    "firebase": "^10.4.0",
+    "firebase": "^10.5.0",
     "ionicons": "^7.0.0",
     "jquery": "^3.6.4",
     "popper.js": "^1.16.1",
