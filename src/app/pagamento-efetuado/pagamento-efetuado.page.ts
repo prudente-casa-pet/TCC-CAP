@@ -18,9 +18,10 @@ export class PagamentoEfetuadoPage {
   hoje = new Date();                          // Data atual
   mes = this.hoje.getMonth();                 // Mês atual
   ano = this.hoje.getFullYear();              // Ano atual
-  data:any = `${this.meses[this.mes]} ${this.ano}`;
-  parametro:any = `${this.ano}-${this.mes+1 < 10 ? '0'+this.mes+1 : this.mes+1}`;
-  pesquisa:any = '';
+  data: any = `${this.meses[this.mes]} ${this.ano}`;
+  parametro: any = `${this.ano}-${this.mes+1 < 10 ? '0'+this.mes+1 : this.mes+1}`;
+  pesquisa: any = '';
+  total: any = 0.00;
 
   menuStatus: boolean = true;
   router: Router;
@@ -30,7 +31,9 @@ export class PagamentoEfetuadoPage {
     this.router = router;
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.calcularTotal(this.getAPI('listar', 'pagamento_efetuado', this.parametro))
+  }
 
   filtrarObjetosPorNome(objetos: any[], consulta: string){
     if (objetos[0]!=undefined){
@@ -79,6 +82,7 @@ export class PagamentoEfetuadoPage {
       this.mes = data[1]
       this.data = `${this.meses[this.mes-1]} ${this.ano}`;
       this.parametro = `${this.ano}-${this.mes}`;
+      this.calcularTotal(this.getAPI('listar', 'pagamento_efetuado', this.parametro)) 
     }
   }
 
@@ -91,7 +95,6 @@ export class PagamentoEfetuadoPage {
     let dataFormatada = `${dia}/${mes}/${ano}`;
     return dataFormatada;
   }
-
 
   // Abre modal de adicionar pagamento efetuado
   async modalSelecionarMes() {
@@ -109,7 +112,7 @@ export class PagamentoEfetuadoPage {
   // Lógica de listagem
 
   verificarArray(items:any): any {
-    return Array.isArray(items)
+    return Array.isArray(items);;
   }
   
   generateRange(start: number, end: number): number[] {
@@ -147,5 +150,19 @@ export class PagamentoEfetuadoPage {
   // Pesquisa de pet
   handleInput(event:any) {
     this.pesquisa = event.target.value;
+  }
+
+  // Calcular Total
+  calcularTotal(agendamentos: any){
+    if(this.verificarArray(agendamentos)){
+      let total = 0;
+      agendamentos.forEach((agendamento: any) => {
+        total += Number(agendamento.valor);
+      });
+      this.total = Number(total);
+    }
+    else {
+      this.total = 0;
+    }
   }
 }

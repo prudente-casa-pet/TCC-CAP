@@ -19,10 +19,12 @@ export class AtualizarProcedimentoPetComponent  implements OnInit {
 
   // Declaração de variaveis
   data: any;
+  descricao: any;
 
   // Iniciação da variavel
   ngOnInit(): void {
     this.data = this.customData.data;
+    this.descricao = this.customData.descricao;
   }
 
     // LÓGICA DE ATUALIZAÇÃO
@@ -30,7 +32,8 @@ export class AtualizarProcedimentoPetComponent  implements OnInit {
   async atualizarProcedimentoPet (codigo:any) {
 
     let pet_procedimento = {
-      'data': `'${this.data}'`
+      'data': `'${this.data}'`,
+      'descricao': `'${this.descricao}'`
     }
     let resposta = await this.postAPI('atualizar', 'pet_procedimento', codigo, pet_procedimento); 
     if (resposta.ERRO) {

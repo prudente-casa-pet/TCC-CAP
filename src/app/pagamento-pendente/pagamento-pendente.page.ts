@@ -20,9 +20,10 @@ export class PagamentoPendentePage {
   hoje = new Date();                          // Data atual
   mes = this.hoje.getMonth();                 // Mês atual
   ano = this.hoje.getFullYear();              // Ano atual
-  data:any = `${this.meses[this.mes]} ${this.ano}`;
-  parametro:any = `${this.ano}-${this.mes+1 < 10 ? '0'+this.mes+1 : this.mes+1}`;
-  pesquisa:any = '';
+  data: any = `${this.meses[this.mes]} ${this.ano}`;
+  parametro: any = `${this.ano}-${this.mes+1 < 10 ? '0'+this.mes+1 : this.mes+1}`;
+  pesquisa: any = '';
+  total: any = 0;
 
   menuStatus: boolean = true;
   router: Router;
@@ -30,6 +31,10 @@ export class PagamentoPendentePage {
   // Modal
   constructor(private modalController: ModalController, private sharedDataService: SharedDataService, private menu: MenuController, router: Router) {
     this.router = router;
+  }
+
+  ngOnInit() {
+    this.calcularTotal(this.getAPI('listar', 'pagamento_pendente', this.parametro))
   }
 
   filtrarObjetosPorNome(objetos: any[], consulta: string){
@@ -89,7 +94,8 @@ export class PagamentoPendentePage {
       this.ano = data[0]
       this.mes = data[1]
       this.data = `${this.meses[this.mes-1]} ${this.ano}`;
-      this.parametro = `${this.ano}-${this.mes}`; 
+      this.parametro = `${this.ano}-${this.mes}`;
+      this.calcularTotal(this.getAPI('listar', 'pagamento_pendente', this.parametro)) 
     }
   }
 
@@ -157,5 +163,19 @@ export class PagamentoPendentePage {
   // Pesquisa de tutor
   handleInput(event:any) {
     this.pesquisa = event.target.value;
+  }
+
+  // Calcular Total
+  calcularTotal(agendamentos: any){
+    if(this.verificarArray(agendamentos)){
+      let total = 0;
+      agendamentos.forEach((agendamento: any) => {
+        total += Number(agendamento.valor);
+      });
+      this.total = Number(total);
+    }
+    else {
+      this.total = 0;
+    }
   }
 }
