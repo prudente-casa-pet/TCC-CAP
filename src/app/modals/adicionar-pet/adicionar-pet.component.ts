@@ -34,7 +34,6 @@ export class AdicionarPetComponent  implements OnInit {
   foto: any = "";          // Arquivo em si
   arquivo: any = "";       // Nome do arquivo que irá aparecer no input
   caminho: any = "";       // Caminho do arquivo na API
-  tutorSelecionado = true;
   
   // LÓGICA DO FORMULARIO
 
@@ -47,21 +46,11 @@ export class AdicionarPetComponent  implements OnInit {
     }
   }
   
-  procurarTutor () {  // Ao desclicar input tutor, procura um tutor com o nome
-    let res = this.getAPI('listar', 'tutor', this.tutor)[0];
-    if (res){  // Se for achado um tutor, permite cadastro
-      this.tutor = res.nome;
-      this.tutorSelecionado = false;
-    } else {
-      this.tutorSelecionado = true;
-    }
-  }
-  
+
   // Verifica se é array
   verificarArray (items:any): any {
     return Array.isArray(items)
   }
-  
   
   // LÓGICA DE ADICIONAR
   
@@ -69,28 +58,24 @@ export class AdicionarPetComponent  implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo();  // Espera o aquivo ser adicionado
     }
-    if (this.tutorSelecionado) {  // Se um tutor não for escolhido
-      this.presentToast("Escolha um tutor válido");
-    } else {
-      let pet = {
-        'nome': `'${this.nome}'`,
-        'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
-        'especie': `'${this.especie}'`,
-        'raca': `'${this.raca}'`,
-        'porte': `'${this.porte}'`,
-        'observacoes': `'${this.observacoes}'`,
-        'sociabilidade': Number(this.sociabilidade),
-        'foto_perfil': `'${this.caminho}'`
-      }
-      let resposta = await this.postAPI('adicionar', 'pet', '', pet);
-      this.cod_pet = resposta.ID;
-      if (resposta.ERRO) {
-        this.presentToast(resposta.ERRO); //chama toast da verificação
-      }
-      else {
-        this.adicionarProcedimentos();
-        this.modalController.dismiss();
-      }
+    let pet = {
+      'nome': `'${this.nome}'`,
+      'cod_tutor': `${this.tutor}`,
+      'especie': `'${this.especie}'`,
+      'raca': `'${this.raca}'`,
+      'porte': `'${this.porte}'`,
+      'observacoes': `'${this.observacoes}'`,
+      'sociabilidade': Number(this.sociabilidade),
+      'foto_perfil': `'${this.caminho}'`
+    }
+    let resposta = await this.postAPI('adicionar', 'pet', '', pet);
+    this.cod_pet = resposta.ID;
+    if (resposta.ERRO) {
+      this.presentToast(resposta.ERRO); //chama toast da verificação
+    }
+    else {
+      this.adicionarProcedimentos();
+      this.modalController.dismiss();
     }
   }
 

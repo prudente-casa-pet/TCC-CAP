@@ -56,16 +56,6 @@ export class AtualizarPetComponent  implements OnInit {
     }
   }
 
-  procurarTutor () {  // Ao desclicar input tutor, procura um tutor com o nome
-    let res = this.getAPI('listar', 'tutor', this.tutor)[0];
-    if (res) {  // Se for achado um tutor, permite cadastro
-      this.tutor = res.nome;
-      this.tutorSelecionado = false;
-    } else {
-      this.tutorSelecionado = true;
-    }
-  }
-
   // Verifica se é array
   verificarArray (items:any): any {
     return Array.isArray(items)
@@ -77,26 +67,22 @@ export class AtualizarPetComponent  implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo();  // Espera o aquivo ser adicionado
     }
-    if (this.tutorSelecionado){  // Se um tutor não for escolhido
-      this.presentToast("Escolha um tutor válido");
-    } else{
-      let pet = {
-        'nome': `'${this.nome}'`,
-        'cod_tutor': Number(this.getAPI('listar', 'tutor', this.tutor)[0].cod_tutor),
-        'especie': `'${this.especie}'`,
-        'raca': `'${this.raca}'`,
-        'porte': `'${this.porte}'`,
-        'sociabilidade': Number(this.sociabilidade),
-        'observacoes': `'${this.observacoes}'`,
-        'foto_perfil': `'${this.caminho}'`
-      }
-      let resposta = await this.postAPI('atualizar', 'pet', codigo, pet); 
-      if(resposta.ERRO){
-        this.presentToast(resposta.ERRO); //chama toast da verificação
-      }
-      else{
-        this.modalController.dismiss();
-      }
+    let pet = {
+      'nome': `'${this.nome}'`,
+      'cod_tutor': `${this.tutor}`,
+      'especie': `'${this.especie}'`,
+      'raca': `'${this.raca}'`,
+      'porte': `'${this.porte}'`,
+      'sociabilidade': Number(this.sociabilidade),
+      'observacoes': `'${this.observacoes}'`,
+      'foto_perfil': `'${this.caminho}'`
+    }
+    let resposta = await this.postAPI('atualizar', 'pet', codigo, pet); 
+    if(resposta.ERRO){
+      this.presentToast(resposta.ERRO); //chama toast da verificação
+    }
+    else{
+      this.modalController.dismiss();
     }
   }
   
