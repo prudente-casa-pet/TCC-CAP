@@ -41,6 +41,7 @@ export class ListarAgendamentosComponent  implements OnInit {
   }
 
   async modalAtualizarAgendamento (data: any) {
+    
     const modal = await this.modalController.create({
       component: AtualizarAgendamentoComponent,
       componentProps: {

@@ -40,7 +40,6 @@ export class AtualizarTutorComponent  implements OnInit {
   // LÓGICA DE ATUALIZAÇÃO
 
   async atualizarTutor (codigo:any) {
-
     let tutor = {
       'nome': `'${this.nome}'`,
       'cpf': `'${this.cpf}'`,

@@ -30,19 +30,21 @@ export class AtualizarProcedimentoPetComponent  implements OnInit {
     // LÓGICA DE ATUALIZAÇÃO
 
   async atualizarProcedimentoPet (codigo:any) {
-
-    let pet_procedimento = {
-      'data': `'${this.data}'`,
-      'descricao': `'${this.descricao}'`
+    if (this.data == null) {
+      this.presentToast("Data não foi escolhida");
+    } else {
+      let pet_procedimento = {
+        'data': `'${this.data}'`,
+        'descricao': `'${this.descricao}'`
+      }
+      let resposta = await this.postAPI('atualizar', 'pet_procedimento', codigo, pet_procedimento); 
+      if (resposta.ERRO) {
+        this.presentToast(resposta.ERRO); //chama toast da verificação
+      }
+      else{
+        this.modalController.dismiss();
+      }
     }
-    let resposta = await this.postAPI('atualizar', 'pet_procedimento', codigo, pet_procedimento); 
-    if (resposta.ERRO) {
-      this.presentToast(resposta.ERRO); //chama toast da verificação
-    }
-    else{
-      this.modalController.dismiss();
-    }
-    
   }
   
   // Faz um post na API

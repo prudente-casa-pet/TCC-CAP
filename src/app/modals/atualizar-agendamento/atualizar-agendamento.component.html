@@ -6,27 +6,6 @@
   </ion-row>
   <ion-row>
     <ion-col size="12" class="ion-padding centro">
-        <label for="servico" class="etiqueta">Servico</label>
-        <select name="servico" id="servico" class="input" [(ngModel)]="servico">
-            <option value="1">Day Care</option>
-            <option value="2">Hospedagem</option>
-        </select>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12" class="ion-padding centro">
-        <label for="data_saida" class="etiqueta">Data</label>
-        <input type="date" name="data" id="data" class="input" [(ngModel)]="data">
-    </ion-col>
-  </ion-row>
-  <ion-row *ngIf="servico === '2'">
-    <ion-col size="12" class="ion-padding centro">
-        <label for="data_saida" class="etiqueta">Data de Saída</label>
-        <input type="date" name="data_saida" id="data_saida" class="input" [(ngModel)]="data_saida" min="data">
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12" class="ion-padding centro">
       <label for="qtd_banho" class="etiqueta">Banho</label>
       <ng-container *ngIf="servico === '1'">
         <select name="qtd_banho" id="qtd_banho" class="input" [(ngModel)]="qtd_banho">

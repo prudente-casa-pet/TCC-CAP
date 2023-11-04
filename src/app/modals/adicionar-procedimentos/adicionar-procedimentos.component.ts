@@ -30,7 +30,7 @@ export class AdicionarProcedimentosComponent  implements OnInit {
   async adicionarProcedimentos () {
     let procedimentos = {
       'nome': `'${this.nome}'`,
-      'intervalo': `'${this.intervalo}'`
+      'intervalo': Number(this.intervalo),
     }
     let resposta = await this.postAPI('adicionar', 'tipoprocedimento', '', procedimentos);
     this.cod_procedimento = resposta.ID;
@@ -48,8 +48,11 @@ export class AdicionarProcedimentosComponent  implements OnInit {
     for(let pet of pets){
       let procedimento_pet = {
         'cod_pet': Number(pet.cod_pet),
-        'cod_tipoProcedimento': Number(this.cod_procedimento)
+        'cod_tipoProcedimento': Number(this.cod_procedimento),
+        'data': 'null',
+        'descricao': 'null'
       }
+      console.log(JSON.stringify(procedimento_pet))
       await this.postAPI('adicionar', 'pet_procedimento', '', procedimento_pet);
     }
   }

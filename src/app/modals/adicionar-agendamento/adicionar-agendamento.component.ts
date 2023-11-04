@@ -101,25 +101,32 @@ export class AdicionarAgendamentoComponent  implements OnInit {
           'qtd_banho': Number(this.qtd_banho),
           'observacao': `'${this.observacao}'`
         }
+        console.log(JSON.stringify(agendamento))
         let resposta = await this.postAPI('adicionar', 'agendamento', '', agendamento);
         this.cod_agendamento = resposta.ID;
         if (resposta.ERRO) {
           this.presentToast(resposta.ERRO); //chama toast da verificação
         }
         else {
-          let pagamento = {
-            'cod_agendamento': Number(this.cod_agendamento),
-            'valor': Number(this.valor),
-            'desconto': Number(this.desconto),
-            'valor_total': Number(this.valor_total),
-            'forma': `'${this.forma}'`,
-            'status': this.status ? 1 : 0
-          }
-          let resposta = await this.postAPI('adicionar', 'pgt_agendamento', '', pagamento);
-          if (resposta.ERRO) {
-            this.presentToast(resposta.ERRO); //chama toast da verificação
+          if (this.forma == "" && this.status) {
+            this.presentToast("Digite a forma de pagamento"); //chama toast da verificação
+            this.getAPI('deletar', 'agendamento', this.cod_agendamento);
           } else {
-            this.modalController.dismiss();
+            let pagamento = {
+              'cod_agendamento': Number(this.cod_agendamento),
+              'valor': Number(this.valor),
+              'desconto': Number(this.desconto),
+              'valor_total': Number(this.valor_total),
+              'forma': `'${this.forma}'`,
+              'status': this.status ? 1 : 0
+            }
+            let resposta = await this.postAPI('adicionar', 'pgt_agendamento', '', pagamento);
+            if (resposta.ERRO) {
+              this.getAPI('deletar', 'agendamento', this.cod_agendamento);
+              this.presentToast(resposta.ERRO); //chama toast da verificação
+            } else {
+              this.modalController.dismiss();
+            }
           }
         }
       }

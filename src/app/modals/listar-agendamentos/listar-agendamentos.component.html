@@ -31,6 +31,7 @@
                     <ul>
                       <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
                       <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
+                      <li><b>Banhos:</b> {{agendamento.qtd_banho}}</li>
                       <li><b>Observação:</b> {{agendamento.observacao}}</li>
                     </ul>
                   </div>

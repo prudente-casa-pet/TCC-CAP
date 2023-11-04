@@ -59,7 +59,7 @@
   </ion-row>
   <ion-row>
     <ion-col size="12">
-      <div class="elementos" *ngIf="verificarVazio(filtrarObjetosPorNome(getAPI('listar', 'pagamento_efetuado', parametro), pesquisa))">
+      <div class="elementos" *ngIf="verificarVazio(filtrarObjetosPorNome(getAPI('listar', 'pagamento_pendente', parametro), pesquisa))">
         <div class="elemento" *ngFor="let pagamento of filtrarObjetosPorNome(getAPI('listar', 'pagamento_pendente', parametro), pesquisa)">
             <div class="primeiraLinha">
               <p class="titulo">{{gerarData(pagamento.data)}} - {{pagamento.tutor}}</p>

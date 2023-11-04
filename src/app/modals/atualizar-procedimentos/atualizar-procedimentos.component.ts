@@ -32,7 +32,7 @@ export class AtualizarProcedimentosComponent  implements OnInit {
   async atualizarProcedimentos (codigo:any) {
       let procedimentos = {
         'nome': `'${this.nome}'`,
-        'intervalo': `'${this.intervalo}'`
+        'intervalo': Number(this.intervalo)
       }
       let resposta = await this.postAPI('atualizar', 'tipoprocedimento', codigo, procedimentos); 
       if(resposta.ERRO){

@@ -33,14 +33,15 @@ export class AdicionarPacoteComponent  implements OnInit {
   
   async adicionarPacote () {
     let pacote = {
-      'cod_pet': `'${this.cod_pet}'`,
+      'cod_pet': Number(this.cod_pet),
       'nome': `'${this.nome}'`,
-      'qtd_diaria': `'${this.qtd_diaria}'`,
-      'diarias_disponiveis': `'${this.qtd_diaria}'`  
+      'qtd_diaria': Number(this.qtd_diaria),
+      'diarias_disponiveis': Number(this.qtd_diaria),
+      'situacao': 1
     }
     let resposta = await this.postAPI('adicionar', 'pacote', '', pacote);
     if (resposta.ERRO) {
-      this.presentToast(resposta.ERRO); //chama toast da verificação
+      this.presentToast(resposta.ERRO);       // Chama toast da verificação
     }
     else {
       this.modalController.dismiss();

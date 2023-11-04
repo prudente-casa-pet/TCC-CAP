@@ -41,19 +41,23 @@ export class PagarComponent  implements OnInit {
   }
 
   async pagar (codigo:any) {
-    let pagamento = {
-      'valor': Number(this.valor),
-      'desconto': Number(this.desconto),
-      'valor_total': Number(this.valor_total),
-      'forma': `'${this.forma}'`,
-      'status': 1
-    }
-    let resposta = await this.postAPI('atualizar', 'pgt_agendamento', codigo, pagamento); 
-    if(resposta.ERRO){
-      this.presentToast(resposta.ERRO); //chama toast da verificação
-    }
-    else{
-      this.modalController.dismiss();
+    if(this.forma = ""){
+      this.presentToast("Digite a forma de pagamento"); //chama toast da verificação
+    }else{
+      let pagamento = {
+        'valor': Number(this.valor),
+        'desconto': Number(this.desconto),
+        'valor_total': Number(this.valor_total),
+        'forma': `'${this.forma}'`,
+        'status': 1
+      }
+      let resposta = await this.postAPI('atualizar', 'pgt_agendamento', codigo, pagamento); 
+      if(resposta.ERRO){
+        this.presentToast(resposta.ERRO); //chama toast da verificação
+      }
+      else{
+        this.modalController.dismiss();
+      }
     }
   }
 

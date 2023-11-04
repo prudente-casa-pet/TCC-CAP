@@ -28,7 +28,6 @@ export class AtualizarServicoComponent  implements OnInit {
     // LÓGICA DE ATUALIZAÇÃO
 
   async atualizarServico (codigo:any) {
-
     let servico = {
       'valor_diaria': Number(this.valor_diaria)
     }
@@ -39,7 +38,6 @@ export class AtualizarServicoComponent  implements OnInit {
     else{
       this.modalController.dismiss();
     }
-    
   }
   
   // Faz um post na API
