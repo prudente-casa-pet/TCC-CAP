@@ -54,7 +54,8 @@ export class AdicionarTutorComponent  implements OnInit {
       }
       let resposta = await this.postAPI('adicionar', 'login', '', login);
       if (resposta.ERRO) {
-        this.presentToast(resposta.ERRO); //chama toast da verificação
+        this.getAPI('deletar', 'tutor', this.cod_tutor)
+        this.presentToast(resposta.ERRO);   // Chama toast da verificação
       } else {
         this.modalController.dismiss();
       }

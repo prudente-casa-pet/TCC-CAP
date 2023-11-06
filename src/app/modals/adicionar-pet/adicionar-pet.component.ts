@@ -68,7 +68,6 @@ export class AdicionarPetComponent  implements OnInit {
       'sociabilidade': Number(this.sociabilidade),
       'foto_perfil': `'${this.caminho}'`
     }
-    console.log(JSON.stringify(pet))
     let resposta = await this.postAPI('adicionar', 'pet', '', pet);
     this.cod_pet = resposta.ID;
     if (resposta.ERRO) {

@@ -42,6 +42,7 @@ export class AtualizarPetComponent  implements OnInit {
     this.porte = this.customData.porte;
     this.sociabilidade = this.customData.sociabilidade;
     this.observacoes = this.customData.observacoes;
+    this.caminho = this.customData.foto_perfil;
     this.caminhoAntigo = this.customData.foto_perfil;
   }
 
