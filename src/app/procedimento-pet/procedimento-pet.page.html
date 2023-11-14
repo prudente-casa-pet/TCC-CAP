@@ -59,7 +59,7 @@
                 <li *ngIf="petProcedimento.data"><b>Data:</b> {{formatarData(petProcedimento.data)}}</li>
                 <li *ngIf="petProcedimento.data"><b>Vencimento:</b> {{gerarVencimento(petProcedimento.data, getAPI('listar', 'tipoProcedimento', petProcedimento.cod_tipoProcedimento)[0].intervalo)}}</li>
                 <li *ngIf="!petProcedimento.data">Procedimento não foi realizado</li>
-                <li *ngIf="petProcedimento.descricao"><b>Descrição:</b> {{petProcedimento.descricao}}</li>
+                <li *ngIf="petProcedimento.descricao"><b>Descrição:</b> {{petProcedimento.descricao == "null" ? '...' : petProcedimento.descricao}}</li>
               </ul>
             </div>
         </div>

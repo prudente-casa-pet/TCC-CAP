@@ -24,7 +24,7 @@ export class AtualizarProcedimentoPetComponent  implements OnInit {
   // Iniciação da variavel
   ngOnInit(): void {
     this.data = this.customData.data;
-    this.descricao = this.customData.descricao;
+    this.descricao = this.customData.descricao == 'null' ? '' : this.descricao;
   }
 
     // LÓGICA DE ATUALIZAÇÃO
