@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
@@ -42,4 +42,10 @@ export class HomePage {
     await toast.present();
   }
 
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown (event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.fazerLogin();
+    }
+  }
 }
