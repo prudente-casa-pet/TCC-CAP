@@ -41,9 +41,9 @@ export class PagarComponent  implements OnInit {
   }
 
   async pagar (codigo:any) {
-    if(this.forma = ""){
+    if (this.forma == "") {
       this.presentToast("Digite a forma de pagamento"); //chama toast da verificação
-    }else{
+    } else {
       let pagamento = {
         'valor': Number(this.valor),
         'desconto': Number(this.desconto),

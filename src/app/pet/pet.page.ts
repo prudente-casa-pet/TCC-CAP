@@ -81,9 +81,11 @@ export class PetPage {
     this.sharedDataService.petPacote = data;
     this.router.navigate(['/', 'pacote']);
   }
+  
   // Abre página do procedimento do pet
   async abrirProcedimentos(data: any){
     this.sharedDataService.petProcedimento = data;
+    console.log(this.sharedDataService.petProcedimento)
     this.router.navigate(['/', 'procedimento-pet']);
   }
 

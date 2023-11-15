@@ -157,7 +157,7 @@ export class PagamentoEfetuadoPage {
     if(this.verificarArray(agendamentos)){
       let total = 0;
       agendamentos.forEach((agendamento: any) => {
-        total += Number(agendamento.valor);
+        total += Number(agendamento.total);
       });
       this.total = Number(total);
     }

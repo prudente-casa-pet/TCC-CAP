@@ -28,7 +28,14 @@ export class PacotePage implements OnInit {
   pet:any = this.sharedDataService.petPacote;
 
   ngOnInit() {
-    if (this.pet == ''){
+    if (this.pet == '' || this.sharedDataService.petPacote == '') {
+      this.router.navigate(['/', 'pet']);
+    }
+  }
+
+  ionViewDidEnter() {
+    this.pet = this.sharedDataService.petPacote;
+    if (this.pet == '' || this.sharedDataService.petPacote == ''){
       this.router.navigate(['/', 'pet']);
     }
   }

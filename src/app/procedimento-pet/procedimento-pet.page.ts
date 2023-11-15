@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, MenuController, ModalController } from '@ionic/angular';
+import { IonicModule, MenuController, ModalController} from '@ionic/angular';
 import { SharedDataService } from '../services/shared-data.service';
 import { AtualizarProcedimentoPetComponent } from '../modals/atualizar-procedimento-pet/atualizar-procedimento-pet.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { addMonths } from 'date-fns';
 
 @Component({
@@ -20,7 +20,7 @@ export class ProcedimentoPetPage implements OnInit {
   router: Router;
   menuStatus: boolean = true;
   
-  constructor(private modalController: ModalController, router: Router, private sharedDataService: SharedDataService, private menu: MenuController) {
+  constructor(private route: ActivatedRoute, private modalController: ModalController, router: Router, private sharedDataService: SharedDataService, private menu: MenuController) {
     this.router = router;
   }
 
@@ -32,7 +32,14 @@ export class ProcedimentoPetPage implements OnInit {
     }
   }
 
-    // Fecha menu ao dar scroll na página
+  ionViewDidEnter() {
+    this.pet = this.sharedDataService.petProcedimento;
+    if (this.pet == '' || this.sharedDataService.petProcedimento == ''){
+      this.router.navigate(['/', 'pet']);
+    }
+  }
+
+  // Fecha menu ao dar scroll na página
   handleScroll(scroll: any){
     if (!this.menuStatus && scroll != 0){
       this.menuStatus = false;

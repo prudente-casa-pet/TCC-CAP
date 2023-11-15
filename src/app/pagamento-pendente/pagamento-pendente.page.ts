@@ -86,6 +86,9 @@ export class PagamentoPendentePage {
       },
     });
     await modal.present();
+    modal.onDidDismiss().then(() => {
+      window.location.reload();
+    });
   }
 
   obterVariavel() {
@@ -170,7 +173,7 @@ export class PagamentoPendentePage {
     if(this.verificarArray(agendamentos)){
       let total = 0;
       agendamentos.forEach((agendamento: any) => {
-        total += Number(agendamento.valor);
+        total += Number(agendamento.total);
       });
       this.total = Number(total);
     }

@@ -74,7 +74,7 @@ export class AdicionarAgendamentoComponent  implements OnInit {
       let d1:any = new Date(this.customData);
       let d2:any = new Date(this.data_saida);
       let diff = d2 - d1;
-      this.diarias = diff / (24 * 60 * 60 * 1000);
+      this.diarias = diff / (24 * 60 * 60 * 1000) + 1;
     }
     let valor_diaria = this.getAPI('listar', 'servico', this.servico)[0].valor_diaria;
     this.valor = valor_diaria * this.diarias
