@@ -1,5 +1,5 @@
 import { CommonModule, NumberSymbol } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -91,23 +91,22 @@ export class AdicionarAgendamentoComponent  implements OnInit {
     if (this.cod_pet === ""){
       this.presentToast("Escolha um pet");
     } else {
-      if (this.verificarPacote()){
-        let agendamento = {
-          'cod_pet': Number(this.cod_pet),
-          'cod_servico': Number(this.servico),
-          'cod_pacote': this.cod_pacote == '' ? "NULL" : Number(this.cod_pacote),
-          'data': `'${this.customData}'`,
-          'data_saida': `'${this.data_saida === '' ? this.customData : this.data_saida}'`,
-          'qtd_banho': Number(this.qtd_banho),
-          'observacao': `'${this.observacao}'`
-        }
-        console.log(JSON.stringify(agendamento))
-        let resposta = await this.postAPI('adicionar', 'agendamento', '', agendamento);
-        this.cod_agendamento = resposta.ID;
-        if (resposta.ERRO) {
-          this.presentToast(resposta.ERRO); //chama toast da verificação
-        }
-        else {
+      let agendamento = {
+        'cod_pet': Number(this.cod_pet),
+        'cod_servico': Number(this.servico),
+        'cod_pacote': this.cod_pacote == '' ? "NULL" : Number(this.cod_pacote),
+        'data': `'${this.customData}'`,
+        'data_saida': `'${this.servico == 1 ? this.customData : this.data_saida === '' ? this.customData : this.data_saida}'`,
+        'qtd_banho': Number(this.qtd_banho),
+        'observacao': `'${this.observacao}'`
+      }
+      let resposta = await this.postAPI('adicionar', 'agendamento', '', agendamento);
+      this.cod_agendamento = resposta.ID;
+      if (resposta.ERRO) {
+        this.presentToast(resposta.ERRO); //chama toast da verificação
+      }
+      else {
+        if (this.cod_pacote == ""){
           if (this.forma == "" && this.status) {
             this.presentToast("Digite a forma de pagamento"); //chama toast da verificação
             this.getAPI('deletar', 'agendamento', this.cod_agendamento);
@@ -128,6 +127,11 @@ export class AdicionarAgendamentoComponent  implements OnInit {
               this.modalController.dismiss();
             }
           }
+        } else {
+          if (!this.verificarPacote()){
+            this.getAPI('deletar', 'agendamento', this.cod_agendamento);
+          }
+          this.modalController.dismiss();
         }
       }
     }
@@ -137,18 +141,24 @@ export class AdicionarAgendamentoComponent  implements OnInit {
     if (this.cod_pacote != "") {
       let pacote = this.getAPI('listar', 'pacote', this.cod_pacote)[0]
       let diarias_disponiveis = Number(pacote.diarias_disponiveis)
-
-      if (this.diarias == diarias_disponiveis) {
+      if (Number(this.diarias) == Number(diarias_disponiveis)) {
         let pacoteUpdate = {
+          'nome': `'${pacote.nome}'`,  
+          'cod_pet': Number(pacote.cod_pet),
+          'qtd_diaria': Number(pacote.qtd_diaria),
           'diarias_disponiveis': 0,
           'situacao': 0
         }
         this.postAPI('atualizar', 'pacote', pacote.cod_pacote, pacoteUpdate);
         return true;
       }
-      else if (this.diarias < diarias_disponiveis) {
+      else if (Number(this.diarias) < Number(diarias_disponiveis)) {
         let pacoteUpdate = {
+          'nome': `'${pacote.nome}'`,  
+          'cod_pet': Number(pacote.cod_pet),
+          'qtd_diaria': Number(pacote.qtd_diaria),
           'diarias_disponiveis': Number(diarias_disponiveis - this.diarias),
+          'situacao': 1
         }
         this.postAPI('atualizar', 'pacote', pacote.cod_pacote, pacoteUpdate);
         return true;
@@ -158,7 +168,7 @@ export class AdicionarAgendamentoComponent  implements OnInit {
     } 
     return true;
   }
-      
+
   // Faz um post na API
   async postAPI (acao:any, tabela:any, parametro:any, dados:any) {
     const options = {

@@ -85,7 +85,7 @@
           <option value=''>Nenhum pacote</option>
           <ng-container *ngIf="verificarArray(getAPI('listar', 'pacote_pet', cod_pet))">
             <ng-container *ngFor="let pacote of getAPI('listar', 'pacote_pet', cod_pet)">
-              <option value="{{pacote.cod_pacote}}">{{pacote.nome}}</option>
+              <option *ngIf="pacote.situacao == 1" value="{{pacote.cod_pacote}}">{{pacote.nome}}</option>
             </ng-container>
           </ng-container>
         </select>

@@ -1,5 +1,5 @@
 import { CommonModule, NumberSymbol } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -105,5 +105,5 @@ export class AdicionarPacoteComponent  implements OnInit {
     });
     await toast.present();
   }
-  
+
 }
