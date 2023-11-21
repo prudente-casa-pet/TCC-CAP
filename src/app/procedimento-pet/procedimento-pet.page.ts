@@ -81,6 +81,13 @@ export class ProcedimentoPetPage implements OnInit {
       const mes = novaData.getMonth()+1 < 10 ? `0${novaData.getMonth()+1}` : novaData.getMonth()+1;
       const ano = novaData.getFullYear();
       data_vencimento = `${dia}/${mes}/${ano}`;
+      
+      let vencimento = new Date(`${ano}-${mes}-${dia}`);
+      let hoje = new Date();
+      
+      if (hoje > vencimento){
+        return `Vencido em ${data_vencimento}`;
+      }
     }
     return data_vencimento;
   }
